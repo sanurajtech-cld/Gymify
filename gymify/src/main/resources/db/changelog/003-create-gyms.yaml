@@ -1,0 +1,285 @@
+databaseChangeLog:
+  - changeSet:
+      id: 003-create-gyms
+      author: gymify
+      changes:
+        - createTable:
+            tableName: gyms
+            columns:
+              - column:
+                  name: id
+                  type: uuid
+                  defaultValueComputed: uuid_generate_v4()
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: owner_id
+                  type: uuid
+                  constraints:
+                    nullable: false
+              - column:
+                  name: name
+                  type: varchar(200)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: description
+                  type: text
+              - column:
+                  name: logo_url
+                  type: varchar(500)
+              - column:
+                  name: address_line1
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: address_line2
+                  type: varchar(255)
+              - column:
+                  name: city
+                  type: varchar(100)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: state
+                  type: varchar(100)
+              - column:
+                  name: country
+                  type: varchar(100)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: postal_code
+                  type: varchar(20)
+              - column:
+                  name: location
+                  type: geometry(Point, 4326)
+              - column:
+                  name: phone
+                  type: varchar(20)
+              - column:
+                  name: email
+                  type: varchar(255)
+              - column:
+                  name: website
+                  type: varchar(255)
+              - column:
+                  name: status
+                  type: varchar(20)
+                  defaultValue: PENDING
+              - column:
+                  name: is_active
+                  type: boolean
+                  defaultValueBoolean: true
+              - column:
+                  name: created_at
+                  type: timestamp with time zone
+                  defaultValueComputed: CURRENT_TIMESTAMP
+              - column:
+                  name: updated_at
+                  type: timestamp with time zone
+                  defaultValueComputed: CURRENT_TIMESTAMP
+        - addForeignKeyConstraint:
+            baseTableName: gyms
+            baseColumnNames: owner_id
+            referencedTableName: users
+            referencedColumnNames: id
+            constraintName: fk_gyms_owner
+            onDelete: RESTRICT
+
+        - createTable:
+            tableName: gym_operating_hours
+            columns:
+              - column:
+                  name: id
+                  type: uuid
+                  defaultValueComputed: uuid_generate_v4()
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: gym_id
+                  type: uuid
+                  constraints:
+                    nullable: false
+              - column:
+                  name: day_of_week
+                  type: smallint
+                  constraints:
+                    nullable: false
+              - column:
+                  name: open_time
+                  type: time
+              - column:
+                  name: close_time
+                  type: time
+              - column:
+                  name: is_closed
+                  type: boolean
+                  defaultValueBoolean: false
+        - addForeignKeyConstraint:
+            baseTableName: gym_operating_hours
+            baseColumnNames: gym_id
+            referencedTableName: gyms
+            referencedColumnNames: id
+            constraintName: fk_gym_operating_hours_gym
+            onDelete: CASCADE
+        - addUniqueConstraint:
+            tableName: gym_operating_hours
+            columnNames: gym_id, day_of_week
+            constraintName: uk_gym_operating_hours
+
+        - createTable:
+            tableName: facilities
+            columns:
+              - column:
+                  name: id
+                  type: uuid
+                  defaultValueComputed: uuid_generate_v4()
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: name
+                  type: varchar(100)
+                  constraints:
+                    nullable: false
+                    unique: true
+              - column:
+                  name: icon
+                  type: varchar(100)
+              - column:
+                  name: description
+                  type: varchar(255)
+
+        - createTable:
+            tableName: gym_facilities
+            columns:
+              - column:
+                  name: gym_id
+                  type: uuid
+                  constraints:
+                    nullable: false
+              - column:
+                  name: facility_id
+                  type: uuid
+                  constraints:
+                    nullable: false
+        - addPrimaryKey:
+            tableName: gym_facilities
+            columnNames: gym_id, facility_id
+        - addForeignKeyConstraint:
+            baseTableName: gym_facilities
+            baseColumnNames: gym_id
+            referencedTableName: gyms
+            referencedColumnNames: id
+            constraintName: fk_gym_facilities_gym
+            onDelete: CASCADE
+        - addForeignKeyConstraint:
+            baseTableName: gym_facilities
+            baseColumnNames: facility_id
+            referencedTableName: facilities
+            referencedColumnNames: id
+            constraintName: fk_gym_facilities_facility
+            onDelete: CASCADE
+
+        - createTable:
+            tableName: gym_photos
+            columns:
+              - column:
+                  name: id
+                  type: uuid
+                  defaultValueComputed: uuid_generate_v4()
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: gym_id
+                  type: uuid
+                  constraints:
+                    nullable: false
+              - column:
+                  name: image_url
+                  type: varchar(500)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: caption
+                  type: varchar(255)
+              - column:
+                  name: display_order
+                  type: int
+                  defaultValueNumeric: 0
+              - column:
+                  name: created_at
+                  type: timestamp with time zone
+                  defaultValueComputed: CURRENT_TIMESTAMP
+        - addForeignKeyConstraint:
+            baseTableName: gym_photos
+            baseColumnNames: gym_id
+            referencedTableName: gyms
+            referencedColumnNames: id
+            constraintName: fk_gym_photos_gym
+            onDelete: CASCADE
+
+        - createTable:
+            tableName: gym_trainers
+            columns:
+              - column:
+                  name: gym_id
+                  type: uuid
+                  constraints:
+                    nullable: false
+              - column:
+                  name: trainer_id
+                  type: uuid
+                  constraints:
+                    nullable: false
+              - column:
+                  name: is_active
+                  type: boolean
+                  defaultValueBoolean: true
+              - column:
+                  name: joined_at
+                  type: timestamp with time zone
+                  defaultValueComputed: CURRENT_TIMESTAMP
+        - addPrimaryKey:
+            tableName: gym_trainers
+            columnNames: gym_id, trainer_id
+        - addForeignKeyConstraint:
+            baseTableName: gym_trainers
+            baseColumnNames: gym_id
+            referencedTableName: gyms
+            referencedColumnNames: id
+            constraintName: fk_gym_trainers_gym
+            onDelete: CASCADE
+        - addForeignKeyConstraint:
+            baseTableName: gym_trainers
+            baseColumnNames: trainer_id
+            referencedTableName: users
+            referencedColumnNames: id
+            constraintName: fk_gym_trainers_trainer
+            onDelete: CASCADE
+
+        - createIndex:
+            tableName: gyms
+            indexName: idx_gyms_owner
+            columns:
+              - column:
+                  name: owner_id
+        - createIndex:
+            tableName: gyms
+            indexName: idx_gyms_city
+            columns:
+              - column:
+                  name: city
+        - createIndex:
+            tableName: gyms
+            indexName: idx_gyms_status
+            columns:
+              - column:
+                  name: status
+        - sql:
+            sql: CREATE INDEX idx_gyms_location ON gyms USING GIST (location);

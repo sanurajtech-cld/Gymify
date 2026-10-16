@@ -1,0 +1,233 @@
+databaseChangeLog:
+  - changeSet:
+      id: 007-create-tracking
+      author: gymify
+      changes:
+        - createTable:
+            tableName: workout_logs
+            columns:
+              - column:
+                  name: id
+                  type: uuid
+                  defaultValueComputed: uuid_generate_v4()
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: user_id
+                  type: uuid
+                  constraints:
+                    nullable: false
+              - column:
+                  name: assignment_id
+                  type: uuid
+              - column:
+                  name: workout_day_id
+                  type: uuid
+              - column:
+                  name: workout_date
+                  type: date
+                  constraints:
+                    nullable: false
+              - column:
+                  name: started_at
+                  type: timestamp with time zone
+              - column:
+                  name: completed_at
+                  type: timestamp with time zone
+              - column:
+                  name: duration_minutes
+                  type: int
+              - column:
+                  name: calories_burned
+                  type: int
+              - column:
+                  name: status
+                  type: varchar(20)
+                  defaultValue: IN_PROGRESS
+              - column:
+                  name: notes
+                  type: text
+              - column:
+                  name: created_at
+                  type: timestamp with time zone
+                  defaultValueComputed: CURRENT_TIMESTAMP
+        - addForeignKeyConstraint:
+            baseTableName: workout_logs
+            baseColumnNames: user_id
+            referencedTableName: users
+            referencedColumnNames: id
+            constraintName: fk_workout_logs_user
+            onDelete: CASCADE
+        - addForeignKeyConstraint:
+            baseTableName: workout_logs
+            baseColumnNames: assignment_id
+            referencedTableName: workout_assignments
+            referencedColumnNames: id
+            constraintName: fk_workout_logs_assignment
+            onDelete: SET NULL
+        - addForeignKeyConstraint:
+            baseTableName: workout_logs
+            baseColumnNames: workout_day_id
+            referencedTableName: workout_days
+            referencedColumnNames: id
+            constraintName: fk_workout_logs_day
+            onDelete: SET NULL
+
+        - createTable:
+            tableName: exercise_logs
+            columns:
+              - column:
+                  name: id
+                  type: uuid
+                  defaultValueComputed: uuid_generate_v4()
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: workout_log_id
+                  type: uuid
+                  constraints:
+                    nullable: false
+              - column:
+                  name: exercise_id
+                  type: uuid
+                  constraints:
+                    nullable: false
+              - column:
+                  name: workout_exercise_id
+                  type: uuid
+              - column:
+                  name: sets_completed
+                  type: int
+              - column:
+                  name: reps_completed
+                  type: varchar(100)
+              - column:
+                  name: weight_used_kg
+                  type: decimal(6,2)
+              - column:
+                  name: duration_seconds
+                  type: int
+              - column:
+                  name: is_completed
+                  type: boolean
+                  defaultValueBoolean: false
+              - column:
+                  name: notes
+                  type: text
+              - column:
+                  name: created_at
+                  type: timestamp with time zone
+                  defaultValueComputed: CURRENT_TIMESTAMP
+        - addForeignKeyConstraint:
+            baseTableName: exercise_logs
+            baseColumnNames: workout_log_id
+            referencedTableName: workout_logs
+            referencedColumnNames: id
+            constraintName: fk_exercise_logs_workout_log
+            onDelete: CASCADE
+        - addForeignKeyConstraint:
+            baseTableName: exercise_logs
+            baseColumnNames: exercise_id
+            referencedTableName: exercises
+            referencedColumnNames: id
+            constraintName: fk_exercise_logs_exercise
+            onDelete: RESTRICT
+        - addForeignKeyConstraint:
+            baseTableName: exercise_logs
+            baseColumnNames: workout_exercise_id
+            referencedTableName: workout_exercises
+            referencedColumnNames: id
+            constraintName: fk_exercise_logs_workout_exercise
+            onDelete: SET NULL
+
+        - createTable:
+            tableName: body_measurements
+            columns:
+              - column:
+                  name: id
+                  type: uuid
+                  defaultValueComputed: uuid_generate_v4()
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: user_id
+                  type: uuid
+                  constraints:
+                    nullable: false
+              - column:
+                  name: measured_at
+                  type: date
+                  constraints:
+                    nullable: false
+              - column:
+                  name: weight_kg
+                  type: decimal(5,2)
+              - column:
+                  name: height_cm
+                  type: decimal(5,2)
+              - column:
+                  name: body_fat_percentage
+                  type: decimal(4,2)
+              - column:
+                  name: chest_cm
+                  type: decimal(5,2)
+              - column:
+                  name: waist_cm
+                  type: decimal(5,2)
+              - column:
+                  name: hips_cm
+                  type: decimal(5,2)
+              - column:
+                  name: biceps_cm
+                  type: decimal(5,2)
+              - column:
+                  name: thighs_cm
+                  type: decimal(5,2)
+              - column:
+                  name: notes
+                  type: text
+              - column:
+                  name: created_at
+                  type: timestamp with time zone
+                  defaultValueComputed: CURRENT_TIMESTAMP
+        - addForeignKeyConstraint:
+            baseTableName: body_measurements
+            baseColumnNames: user_id
+            referencedTableName: users
+            referencedColumnNames: id
+            constraintName: fk_body_measurements_user
+            onDelete: CASCADE
+
+        - createIndex:
+            tableName: workout_logs
+            indexName: idx_workout_logs_user
+            columns:
+              - column:
+                  name: user_id
+        - createIndex:
+            tableName: workout_logs
+            indexName: idx_workout_logs_date
+            columns:
+              - column:
+                  name: workout_date
+        - createIndex:
+            tableName: exercise_logs
+            indexName: idx_exercise_logs_workout
+            columns:
+              - column:
+                  name: workout_log_id
+        - createIndex:
+            tableName: body_measurements
+            indexName: idx_body_measurements_user
+            columns:
+              - column:
+                  name: user_id
+        - createIndex:
+            tableName: body_measurements
+            indexName: idx_body_measurements_date
+            columns:
+              - column:
+                  name: measured_at

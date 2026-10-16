@@ -1,0 +1,234 @@
+databaseChangeLog:
+  - changeSet:
+      id: 005-create-exercises
+      author: gymify
+      changes:
+        - createTable:
+            tableName: exercise_categories
+            columns:
+              - column:
+                  name: id
+                  type: uuid
+                  defaultValueComputed: uuid_generate_v4()
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: name
+                  type: varchar(100)
+                  constraints:
+                    nullable: false
+                    unique: true
+              - column:
+                  name: description
+                  type: varchar(255)
+              - column:
+                  name: icon
+                  type: varchar(100)
+
+        - createTable:
+            tableName: muscle_groups
+            columns:
+              - column:
+                  name: id
+                  type: uuid
+                  defaultValueComputed: uuid_generate_v4()
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: name
+                  type: varchar(100)
+                  constraints:
+                    nullable: false
+                    unique: true
+              - column:
+                  name: body_region
+                  type: varchar(50)
+              - column:
+                  name: image_url
+                  type: varchar(500)
+
+        - createTable:
+            tableName: equipment
+            columns:
+              - column:
+                  name: id
+                  type: uuid
+                  defaultValueComputed: uuid_generate_v4()
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: name
+                  type: varchar(100)
+                  constraints:
+                    nullable: false
+                    unique: true
+              - column:
+                  name: description
+                  type: varchar(255)
+              - column:
+                  name: image_url
+                  type: varchar(500)
+
+        - createTable:
+            tableName: exercises
+            columns:
+              - column:
+                  name: id
+                  type: uuid
+                  defaultValueComputed: uuid_generate_v4()
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: name
+                  type: varchar(200)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: description
+                  type: text
+              - column:
+                  name: instructions
+                  type: text
+              - column:
+                  name: category_id
+                  type: uuid
+              - column:
+                  name: difficulty
+                  type: varchar(20)
+              - column:
+                  name: exercise_type
+                  type: varchar(30)
+              - column:
+                  name: image_url
+                  type: varchar(500)
+              - column:
+                  name: video_url
+                  type: varchar(500)
+              - column:
+                  name: thumbnail_url
+                  type: varchar(500)
+              - column:
+                  name: calories_per_minute
+                  type: decimal(5,2)
+              - column:
+                  name: is_active
+                  type: boolean
+                  defaultValueBoolean: true
+              - column:
+                  name: created_by
+                  type: uuid
+              - column:
+                  name: created_at
+                  type: timestamp with time zone
+                  defaultValueComputed: CURRENT_TIMESTAMP
+              - column:
+                  name: updated_at
+                  type: timestamp with time zone
+                  defaultValueComputed: CURRENT_TIMESTAMP
+        - addForeignKeyConstraint:
+            baseTableName: exercises
+            baseColumnNames: category_id
+            referencedTableName: exercise_categories
+            referencedColumnNames: id
+            constraintName: fk_exercises_category
+            onDelete: SET NULL
+        - addForeignKeyConstraint:
+            baseTableName: exercises
+            baseColumnNames: created_by
+            referencedTableName: users
+            referencedColumnNames: id
+            constraintName: fk_exercises_created_by
+            onDelete: SET NULL
+
+        - createTable:
+            tableName: exercise_muscle_groups
+            columns:
+              - column:
+                  name: exercise_id
+                  type: uuid
+                  constraints:
+                    nullable: false
+              - column:
+                  name: muscle_group_id
+                  type: uuid
+                  constraints:
+                    nullable: false
+              - column:
+                  name: is_primary
+                  type: boolean
+                  defaultValueBoolean: true
+        - addPrimaryKey:
+            tableName: exercise_muscle_groups
+            columnNames: exercise_id, muscle_group_id
+        - addForeignKeyConstraint:
+            baseTableName: exercise_muscle_groups
+            baseColumnNames: exercise_id
+            referencedTableName: exercises
+            referencedColumnNames: id
+            constraintName: fk_exercise_muscle_groups_exercise
+            onDelete: CASCADE
+        - addForeignKeyConstraint:
+            baseTableName: exercise_muscle_groups
+            baseColumnNames: muscle_group_id
+            referencedTableName: muscle_groups
+            referencedColumnNames: id
+            constraintName: fk_exercise_muscle_groups_muscle
+            onDelete: CASCADE
+
+        - createTable:
+            tableName: exercise_equipment
+            columns:
+              - column:
+                  name: exercise_id
+                  type: uuid
+                  constraints:
+                    nullable: false
+              - column:
+                  name: equipment_id
+                  type: uuid
+                  constraints:
+                    nullable: false
+              - column:
+                  name: is_required
+                  type: boolean
+                  defaultValueBoolean: true
+        - addPrimaryKey:
+            tableName: exercise_equipment
+            columnNames: exercise_id, equipment_id
+        - addForeignKeyConstraint:
+            baseTableName: exercise_equipment
+            baseColumnNames: exercise_id
+            referencedTableName: exercises
+            referencedColumnNames: id
+            constraintName: fk_exercise_equipment_exercise
+            onDelete: CASCADE
+        - addForeignKeyConstraint:
+            baseTableName: exercise_equipment
+            baseColumnNames: equipment_id
+            referencedTableName: equipment
+            referencedColumnNames: id
+            constraintName: fk_exercise_equipment_equipment
+            onDelete: CASCADE
+
+        - createIndex:
+            tableName: exercises
+            indexName: idx_exercises_category
+            columns:
+              - column:
+                  name: category_id
+        - createIndex:
+            tableName: exercises
+            indexName: idx_exercises_difficulty
+            columns:
+              - column:
+                  name: difficulty
+        - createIndex:
+            tableName: exercises
+            indexName: idx_exercises_name
+            columns:
+              - column:
+                  name: name

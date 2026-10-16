@@ -1,0 +1,264 @@
+databaseChangeLog:
+  - changeSet:
+      id: 006-create-workouts
+      author: gymify
+      changes:
+        - createTable:
+            tableName: workout_plans
+            columns:
+              - column:
+                  name: id
+                  type: uuid
+                  defaultValueComputed: uuid_generate_v4()
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: trainer_id
+                  type: uuid
+                  constraints:
+                    nullable: false
+              - column:
+                  name: name
+                  type: varchar(200)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: description
+                  type: text
+              - column:
+                  name: goal
+                  type: varchar(100)
+              - column:
+                  name: difficulty
+                  type: varchar(20)
+              - column:
+                  name: duration_weeks
+                  type: int
+              - column:
+                  name: is_template
+                  type: boolean
+                  defaultValueBoolean: false
+              - column:
+                  name: is_published
+                  type: boolean
+                  defaultValueBoolean: false
+              - column:
+                  name: created_at
+                  type: timestamp with time zone
+                  defaultValueComputed: CURRENT_TIMESTAMP
+              - column:
+                  name: updated_at
+                  type: timestamp with time zone
+                  defaultValueComputed: CURRENT_TIMESTAMP
+        - addForeignKeyConstraint:
+            baseTableName: workout_plans
+            baseColumnNames: trainer_id
+            referencedTableName: users
+            referencedColumnNames: id
+            constraintName: fk_workout_plans_trainer
+            onDelete: CASCADE
+
+        - createTable:
+            tableName: workout_days
+            columns:
+              - column:
+                  name: id
+                  type: uuid
+                  defaultValueComputed: uuid_generate_v4()
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: plan_id
+                  type: uuid
+                  constraints:
+                    nullable: false
+              - column:
+                  name: day_of_week
+                  type: smallint
+                  constraints:
+                    nullable: false
+              - column:
+                  name: name
+                  type: varchar(100)
+              - column:
+                  name: is_rest_day
+                  type: boolean
+                  defaultValueBoolean: false
+              - column:
+                  name: notes
+                  type: text
+        - addForeignKeyConstraint:
+            baseTableName: workout_days
+            baseColumnNames: plan_id
+            referencedTableName: workout_plans
+            referencedColumnNames: id
+            constraintName: fk_workout_days_plan
+            onDelete: CASCADE
+        - addUniqueConstraint:
+            tableName: workout_days
+            columnNames: plan_id, day_of_week
+            constraintName: uk_workout_days_plan_day
+
+        - createTable:
+            tableName: workout_exercises
+            columns:
+              - column:
+                  name: id
+                  type: uuid
+                  defaultValueComputed: uuid_generate_v4()
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: workout_day_id
+                  type: uuid
+                  constraints:
+                    nullable: false
+              - column:
+                  name: exercise_id
+                  type: uuid
+                  constraints:
+                    nullable: false
+              - column:
+                  name: display_order
+                  type: int
+                  defaultValueNumeric: 0
+              - column:
+                  name: sets
+                  type: int
+              - column:
+                  name: reps
+                  type: varchar(50)
+              - column:
+                  name: duration_seconds
+                  type: int
+              - column:
+                  name: rest_seconds
+                  type: int
+              - column:
+                  name: weight_kg
+                  type: decimal(6,2)
+              - column:
+                  name: notes
+                  type: text
+        - addForeignKeyConstraint:
+            baseTableName: workout_exercises
+            baseColumnNames: workout_day_id
+            referencedTableName: workout_days
+            referencedColumnNames: id
+            constraintName: fk_workout_exercises_day
+            onDelete: CASCADE
+        - addForeignKeyConstraint:
+            baseTableName: workout_exercises
+            baseColumnNames: exercise_id
+            referencedTableName: exercises
+            referencedColumnNames: id
+            constraintName: fk_workout_exercises_exercise
+            onDelete: RESTRICT
+
+        - createTable:
+            tableName: workout_assignments
+            columns:
+              - column:
+                  name: id
+                  type: uuid
+                  defaultValueComputed: uuid_generate_v4()
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: plan_id
+                  type: uuid
+                  constraints:
+                    nullable: false
+              - column:
+                  name: customer_id
+                  type: uuid
+                  constraints:
+                    nullable: false
+              - column:
+                  name: trainer_id
+                  type: uuid
+                  constraints:
+                    nullable: false
+              - column:
+                  name: gym_id
+                  type: uuid
+              - column:
+                  name: start_date
+                  type: date
+                  constraints:
+                    nullable: false
+              - column:
+                  name: end_date
+                  type: date
+              - column:
+                  name: status
+                  type: varchar(20)
+                  defaultValue: ACTIVE
+              - column:
+                  name: notes
+                  type: text
+              - column:
+                  name: created_at
+                  type: timestamp with time zone
+                  defaultValueComputed: CURRENT_TIMESTAMP
+              - column:
+                  name: updated_at
+                  type: timestamp with time zone
+                  defaultValueComputed: CURRENT_TIMESTAMP
+        - addForeignKeyConstraint:
+            baseTableName: workout_assignments
+            baseColumnNames: plan_id
+            referencedTableName: workout_plans
+            referencedColumnNames: id
+            constraintName: fk_workout_assignments_plan
+            onDelete: RESTRICT
+        - addForeignKeyConstraint:
+            baseTableName: workout_assignments
+            baseColumnNames: customer_id
+            referencedTableName: users
+            referencedColumnNames: id
+            constraintName: fk_workout_assignments_customer
+            onDelete: CASCADE
+        - addForeignKeyConstraint:
+            baseTableName: workout_assignments
+            baseColumnNames: trainer_id
+            referencedTableName: users
+            referencedColumnNames: id
+            constraintName: fk_workout_assignments_trainer
+            onDelete: RESTRICT
+        - addForeignKeyConstraint:
+            baseTableName: workout_assignments
+            baseColumnNames: gym_id
+            referencedTableName: gyms
+            referencedColumnNames: id
+            constraintName: fk_workout_assignments_gym
+            onDelete: SET NULL
+
+        - createIndex:
+            tableName: workout_plans
+            indexName: idx_workout_plans_trainer
+            columns:
+              - column:
+                  name: trainer_id
+        - createIndex:
+            tableName: workout_assignments
+            indexName: idx_workout_assignments_customer
+            columns:
+              - column:
+                  name: customer_id
+        - createIndex:
+            tableName: workout_assignments
+            indexName: idx_workout_assignments_trainer
+            columns:
+              - column:
+                  name: trainer_id
+        - createIndex:
+            tableName: workout_assignments
+            indexName: idx_workout_assignments_status
+            columns:
+              - column:
+                  name: status

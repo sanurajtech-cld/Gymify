@@ -1,0 +1,17 @@
+databaseChangeLog:
+  - include:
+      file: db/changelog/001-create-extensions.yaml
+  - include:
+      file: db/changelog/002-create-users.yaml
+  - include:
+      file: db/changelog/003-create-gyms.yaml
+  - include:
+      file: db/changelog/004-create-memberships.yaml
+  - include:
+      file: db/changelog/005-create-exercises.yaml
+  - include:
+      file: db/changelog/006-create-workouts.yaml
+  - include:
+      file: db/changelog/007-create-tracking.yaml
+  - include:
+      file: db/changelog/008-create-notifications.yaml
