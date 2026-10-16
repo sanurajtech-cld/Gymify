@@ -1,0 +1,75 @@
+{
+	"name": "Workouts",
+	"item": [
+		{
+			"name": "Customer",
+			"item": [
+				{
+					"name": "Get My Assignments",
+					"request": {
+						"method": "GET",
+						"header": [{"key": "Authorization", "value": "Bearer {{accessToken}}"}],
+						"url": {"raw": "{{baseUrl}}/workouts/my-assignments", "host": ["{{baseUrl}}"], "path": ["workouts", "my-assignments"]}
+					}
+				},
+				{
+					"name": "Get Plan By ID",
+					"request": {
+						"method": "GET",
+						"header": [{"key": "Authorization", "value": "Bearer {{accessToken}}"}],
+						"url": {"raw": "{{baseUrl}}/workouts/plans/{{workoutPlanId}}", "host": ["{{baseUrl}}"], "path": ["workouts", "plans", "{{workoutPlanId}}"]}
+					}
+				}
+			]
+		},
+		{
+			"name": "Trainer",
+			"item": [
+				{
+					"name": "Get My Plans",
+					"request": {
+						"method": "GET",
+						"header": [{"key": "Authorization", "value": "Bearer {{accessToken}}"}],
+						"url": {"raw": "{{baseUrl}}/trainer/workouts/plans", "host": ["{{baseUrl}}"], "path": ["trainer", "workouts", "plans"]}
+					}
+				},
+				{
+					"name": "Create Workout Plan",
+					"event": [{"listen": "test", "script": {"exec": ["var jsonData = pm.response.json();", "if(jsonData.success && jsonData.data) {", "    pm.collectionVariables.set('workoutPlanId', jsonData.data.id);", "}"]}}],
+					"request": {
+						"method": "POST",
+						"header": [{"key": "Authorization", "value": "Bearer {{accessToken}}"}, {"key": "Content-Type", "value": "application/json"}],
+						"body": {"mode": "raw", "raw": "{\n    \"name\": \"Beginner Full Body\",\n    \"description\": \"A complete full body workout for beginners\",\n    \"goal\": \"GENERAL\",\n    \"difficulty\": \"BEGINNER\",\n    \"durationWeeks\": 4,\n    \"isTemplate\": true,\n    \"days\": [\n        {\n            \"dayOfWeek\": 1,\n            \"name\": \"Upper Body\",\n            \"isRestDay\": false,\n            \"notes\": \"Focus on form\",\n            \"exercises\": [\n                {\n                    \"exerciseId\": \"{{exerciseId}}\",\n                    \"displayOrder\": 1,\n                    \"sets\": 3,\n                    \"reps\": \"10-12\",\n                    \"restSeconds\": 60,\n                    \"notes\": \"Warm up first\"\n                }\n            ]\n        },\n        {\n            \"dayOfWeek\": 2,\n            \"name\": \"Rest Day\",\n            \"isRestDay\": true,\n            \"notes\": \"Active recovery\"\n        }\n    ]\n}"},
+						"url": {"raw": "{{baseUrl}}/trainer/workouts/plans", "host": ["{{baseUrl}}"], "path": ["trainer", "workouts", "plans"]}
+					}
+				},
+				{
+					"name": "Publish Plan",
+					"request": {
+						"method": "PUT",
+						"header": [{"key": "Authorization", "value": "Bearer {{accessToken}}"}],
+						"url": {"raw": "{{baseUrl}}/trainer/workouts/plans/{{workoutPlanId}}/publish", "host": ["{{baseUrl}}"], "path": ["trainer", "workouts", "plans", "{{workoutPlanId}}", "publish"]}
+					}
+				},
+				{
+					"name": "Assign Plan to Customer",
+					"event": [{"listen": "test", "script": {"exec": ["var jsonData = pm.response.json();", "if(jsonData.success && jsonData.data) {", "    pm.collectionVariables.set('assignmentId', jsonData.data.id);", "}"]}}],
+					"request": {
+						"method": "POST",
+						"header": [{"key": "Authorization", "value": "Bearer {{accessToken}}"}, {"key": "Content-Type", "value": "application/json"}],
+						"body": {"mode": "raw", "raw": "{\n    \"planId\": \"{{workoutPlanId}}\",\n    \"customerId\": \"{{userId}}\",\n    \"gymId\": \"{{gymId}}\",\n    \"startDate\": \"2024-01-15\",\n    \"endDate\": \"2024-02-15\",\n    \"notes\": \"Follow the plan strictly\"\n}"},
+						"url": {"raw": "{{baseUrl}}/trainer/workouts/assign", "host": ["{{baseUrl}}"], "path": ["trainer", "workouts", "assign"]}
+					}
+				},
+				{
+					"name": "Get My Assignments",
+					"request": {
+						"method": "GET",
+						"header": [{"key": "Authorization", "value": "Bearer {{accessToken}}"}],
+						"url": {"raw": "{{baseUrl}}/trainer/workouts/assignments", "host": ["{{baseUrl}}"], "path": ["trainer", "workouts", "assignments"]}
+					}
+				}
+			]
+		}
+	]
+}

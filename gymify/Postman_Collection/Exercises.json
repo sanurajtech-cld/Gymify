@@ -1,0 +1,61 @@
+{
+	"name": "Exercises",
+	"item": [
+		{
+			"name": "Get All Exercises",
+			"request": {
+				"method": "GET",
+				"url": {"raw": "{{baseUrl}}/exercises?page=0&size=20", "host": ["{{baseUrl}}"], "path": ["exercises"], "query": [{"key": "page", "value": "0"}, {"key": "size", "value": "20"}]}
+			}
+		},
+		{
+			"name": "Get Exercise By ID",
+			"request": {
+				"method": "GET",
+				"url": {"raw": "{{baseUrl}}/exercises/{{exerciseId}}", "host": ["{{baseUrl}}"], "path": ["exercises", "{{exerciseId}}"]}
+			}
+		},
+		{
+			"name": "Search Exercises",
+			"request": {
+				"method": "GET",
+				"url": {"raw": "{{baseUrl}}/exercises/search?query=squat&page=0&size=20", "host": ["{{baseUrl}}"], "path": ["exercises", "search"], "query": [{"key": "query", "value": "squat"}, {"key": "page", "value": "0"}, {"key": "size", "value": "20"}]}
+			}
+		},
+		{
+			"name": "Get Exercises By Category",
+			"request": {
+				"method": "GET",
+				"url": {"raw": "{{baseUrl}}/exercises/category/{{categoryId}}?page=0&size=20", "host": ["{{baseUrl}}"], "path": ["exercises", "category", "{{categoryId}}"], "query": [{"key": "page", "value": "0"}, {"key": "size", "value": "20"}]}
+			}
+		},
+		{
+			"name": "Get Exercises By Muscle Group",
+			"request": {
+				"method": "GET",
+				"url": {"raw": "{{baseUrl}}/exercises/muscle-group/{{muscleGroupId}}?page=0&size=20", "host": ["{{baseUrl}}"], "path": ["exercises", "muscle-group", "{{muscleGroupId}}"], "query": [{"key": "page", "value": "0"}, {"key": "size", "value": "20"}]}
+			}
+		},
+		{
+			"name": "Get All Categories",
+			"request": {
+				"method": "GET",
+				"url": {"raw": "{{baseUrl}}/exercises/categories", "host": ["{{baseUrl}}"], "path": ["exercises", "categories"]}
+			}
+		},
+		{
+			"name": "Get All Muscle Groups",
+			"request": {
+				"method": "GET",
+				"url": {"raw": "{{baseUrl}}/exercises/muscle-groups", "host": ["{{baseUrl}}"], "path": ["exercises", "muscle-groups"]}
+			}
+		},
+		{
+			"name": "Get All Equipment",
+			"request": {
+				"method": "GET",
+				"url": {"raw": "{{baseUrl}}/exercises/equipment", "host": ["{{baseUrl}}"], "path": ["exercises", "equipment"]}
+			}
+		}
+	]
+}

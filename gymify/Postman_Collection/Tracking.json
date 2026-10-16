@@ -1,0 +1,74 @@
+{
+	"name": "Tracking",
+	"item": [
+		{
+			"name": "Workout Logs",
+			"item": [
+				{
+					"name": "Start Workout",
+					"event": [{"listen": "test", "script": {"exec": ["var jsonData = pm.response.json();", "if(jsonData.success && jsonData.data) {", "    pm.collectionVariables.set('workoutLogId', jsonData.data.id);", "}"]}}],
+					"request": {
+						"method": "POST",
+						"header": [{"key": "Authorization", "value": "Bearer {{accessToken}}"}, {"key": "Content-Type", "value": "application/json"}],
+						"body": {"mode": "raw", "raw": "{\n    \"assignmentId\": \"{{assignmentId}}\",\n    \"workoutDayId\": null,\n    \"workoutDate\": \"2024-01-15\",\n    \"notes\": \"Feeling good today\",\n    \"exercises\": [\n        {\n            \"exerciseId\": \"{{exerciseId}}\",\n            \"setsCompleted\": 3,\n            \"repsCompleted\": \"12,10,8\",\n            \"weightUsedKg\": 20.0,\n            \"durationSeconds\": null,\n            \"isCompleted\": true,\n            \"notes\": \"Increased weight\"\n        }\n    ]\n}"},
+						"url": {"raw": "{{baseUrl}}/tracking/workouts", "host": ["{{baseUrl}}"], "path": ["tracking", "workouts"]}
+					}
+				},
+				{
+					"name": "Complete Workout",
+					"request": {
+						"method": "PUT",
+						"header": [{"key": "Authorization", "value": "Bearer {{accessToken}}"}],
+						"url": {"raw": "{{baseUrl}}/tracking/workouts/{{workoutLogId}}/complete", "host": ["{{baseUrl}}"], "path": ["tracking", "workouts", "{{workoutLogId}}", "complete"]}
+					}
+				},
+				{
+					"name": "Get My Workout Logs",
+					"request": {
+						"method": "GET",
+						"header": [{"key": "Authorization", "value": "Bearer {{accessToken}}"}],
+						"url": {"raw": "{{baseUrl}}/tracking/workouts?page=0&size=20", "host": ["{{baseUrl}}"], "path": ["tracking", "workouts"], "query": [{"key": "page", "value": "0"}, {"key": "size", "value": "20"}]}
+					}
+				},
+				{
+					"name": "Get Workouts By Date Range",
+					"request": {
+						"method": "GET",
+						"header": [{"key": "Authorization", "value": "Bearer {{accessToken}}"}],
+						"url": {"raw": "{{baseUrl}}/tracking/workouts/range?start=2024-01-01&end=2024-01-31", "host": ["{{baseUrl}}"], "path": ["tracking", "workouts", "range"], "query": [{"key": "start", "value": "2024-01-01"}, {"key": "end", "value": "2024-01-31"}]}
+					}
+				}
+			]
+		},
+		{
+			"name": "Body Measurements",
+			"item": [
+				{
+					"name": "Add Measurement",
+					"request": {
+						"method": "POST",
+						"header": [{"key": "Authorization", "value": "Bearer {{accessToken}}"}, {"key": "Content-Type", "value": "application/json"}],
+						"body": {"mode": "raw", "raw": "{\n    \"measuredAt\": \"2024-01-15\",\n    \"weightKg\": 75.5,\n    \"heightCm\": 175.0,\n    \"bodyFatPercentage\": 18.5,\n    \"chestCm\": 100.0,\n    \"waistCm\": 85.0,\n    \"hipsCm\": 95.0,\n    \"bicepsCm\": 35.0,\n    \"thighsCm\": 55.0,\n    \"notes\": \"Morning measurement\"\n}"},
+						"url": {"raw": "{{baseUrl}}/tracking/measurements", "host": ["{{baseUrl}}"], "path": ["tracking", "measurements"]}
+					}
+				},
+				{
+					"name": "Get My Measurements",
+					"request": {
+						"method": "GET",
+						"header": [{"key": "Authorization", "value": "Bearer {{accessToken}}"}],
+						"url": {"raw": "{{baseUrl}}/tracking/measurements?page=0&size=20", "host": ["{{baseUrl}}"], "path": ["tracking", "measurements"], "query": [{"key": "page", "value": "0"}, {"key": "size", "value": "20"}]}
+					}
+				},
+				{
+					"name": "Get Measurement History",
+					"request": {
+						"method": "GET",
+						"header": [{"key": "Authorization", "value": "Bearer {{accessToken}}"}],
+						"url": {"raw": "{{baseUrl}}/tracking/measurements/history?start=2024-01-01&end=2024-12-31", "host": ["{{baseUrl}}"], "path": ["tracking", "measurements", "history"], "query": [{"key": "start", "value": "2024-01-01"}, {"key": "end", "value": "2024-12-31"}]}
+					}
+				}
+			]
+		}
+	]
+}

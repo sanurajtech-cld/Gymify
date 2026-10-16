@@ -1,0 +1,41 @@
+{
+	"name": "Gyms (Public)",
+	"item": [
+		{
+			"name": "Get All Gyms",
+			"request": {
+				"method": "GET",
+				"url": {"raw": "{{baseUrl}}/gyms?page=0&size=20", "host": ["{{baseUrl}}"], "path": ["gyms"], "query": [{"key": "page", "value": "0"}, {"key": "size", "value": "20"}]}
+			}
+		},
+		{
+			"name": "Get Gym By ID",
+			"event": [{"listen": "test", "script": {"exec": ["var jsonData = pm.response.json();", "if(jsonData.success && jsonData.data) {", "    pm.collectionVariables.set('gymId', jsonData.data.id);", "}"]}}],
+			"request": {
+				"method": "GET",
+				"url": {"raw": "{{baseUrl}}/gyms/{{gymId}}", "host": ["{{baseUrl}}"], "path": ["gyms", "{{gymId}}"]}
+			}
+		},
+		{
+			"name": "Search Gyms",
+			"request": {
+				"method": "GET",
+				"url": {"raw": "{{baseUrl}}/gyms/search?query=fitness&page=0&size=20", "host": ["{{baseUrl}}"], "path": ["gyms", "search"], "query": [{"key": "query", "value": "fitness"}, {"key": "page", "value": "0"}, {"key": "size", "value": "20"}]}
+			}
+		},
+		{
+			"name": "Get Nearby Gyms",
+			"request": {
+				"method": "GET",
+				"url": {"raw": "{{baseUrl}}/gyms/nearby?latitude=28.6139&longitude=77.2090&radiusKm=10", "host": ["{{baseUrl}}"], "path": ["gyms", "nearby"], "query": [{"key": "latitude", "value": "28.6139"}, {"key": "longitude", "value": "77.2090"}, {"key": "radiusKm", "value": "10"}]}
+			}
+		},
+		{
+			"name": "Get Gyms By City",
+			"request": {
+				"method": "GET",
+				"url": {"raw": "{{baseUrl}}/gyms/city/Delhi?page=0&size=20", "host": ["{{baseUrl}}"], "path": ["gyms", "city", "Delhi"], "query": [{"key": "page", "value": "0"}, {"key": "size", "value": "20"}]}
+			}
+		}
+	]
+}

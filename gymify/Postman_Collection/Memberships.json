@@ -1,0 +1,47 @@
+{
+	"name": "Memberships",
+	"item": [
+		{
+			"name": "Get Gym Plans",
+			"request": {
+				"method": "GET",
+				"header": [{"key": "Authorization", "value": "Bearer {{accessToken}}"}],
+				"url": {"raw": "{{baseUrl}}/memberships/plans/{{gymId}}", "host": ["{{baseUrl}}"], "path": ["memberships", "plans", "{{gymId}}"]}
+			}
+		},
+		{
+			"name": "Get My Memberships",
+			"request": {
+				"method": "GET",
+				"header": [{"key": "Authorization", "value": "Bearer {{accessToken}}"}],
+				"url": {"raw": "{{baseUrl}}/memberships/my", "host": ["{{baseUrl}}"], "path": ["memberships", "my"]}
+			}
+		},
+		{
+			"name": "Get Membership By ID",
+			"request": {
+				"method": "GET",
+				"header": [{"key": "Authorization", "value": "Bearer {{accessToken}}"}],
+				"url": {"raw": "{{baseUrl}}/memberships/{{membershipId}}", "host": ["{{baseUrl}}"], "path": ["memberships", "{{membershipId}}"]}
+			}
+		},
+		{
+			"name": "Purchase Membership",
+			"event": [{"listen": "test", "script": {"exec": ["var jsonData = pm.response.json();", "if(jsonData.success && jsonData.data) {", "    pm.collectionVariables.set('membershipId', jsonData.data.id);", "}"]}}],
+			"request": {
+				"method": "POST",
+				"header": [{"key": "Authorization", "value": "Bearer {{accessToken}}"}, {"key": "Content-Type", "value": "application/json"}],
+				"body": {"mode": "raw", "raw": "{\n    \"planId\": \"{{planId}}\",\n    \"startDate\": \"2024-01-15\",\n    \"trainerId\": null\n}"},
+				"url": {"raw": "{{baseUrl}}/memberships/purchase/{{gymId}}", "host": ["{{baseUrl}}"], "path": ["memberships", "purchase", "{{gymId}}"]}
+			}
+		},
+		{
+			"name": "Get My Payments",
+			"request": {
+				"method": "GET",
+				"header": [{"key": "Authorization", "value": "Bearer {{accessToken}}"}],
+				"url": {"raw": "{{baseUrl}}/memberships/payments", "host": ["{{baseUrl}}"], "path": ["memberships", "payments"]}
+			}
+		}
+	]
+}
