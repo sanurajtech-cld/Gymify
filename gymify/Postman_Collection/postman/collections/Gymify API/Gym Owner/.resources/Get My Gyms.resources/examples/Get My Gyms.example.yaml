@@ -1,0 +1,176 @@
+$kind: http-example
+request:
+  url: "{{baseUrl}}/owner/gyms"
+  method: GET
+  headers:
+    Authorization: Bearer {{accessToken}}
+response:
+  statusCode: 200
+  statusText: ""
+  headers:
+    x-content-type-options: nosniff
+    x-xss-protection: "0"
+    cache-control: no-cache, no-store, max-age=0, must-revalidate
+    pragma: no-cache
+    expires: "0"
+    x-frame-options: SAMEORIGIN
+    content-type: application/json
+    transfer-encoding: chunked
+    date: Sat, 17 Oct 2026 10:26:39 GMT
+    keep-alive: timeout=60
+    connection: keep-alive
+  body:
+    type: json
+    content: |-
+      {
+        "success": true,
+        "data": [
+          {
+            "id": "dd88cee7-4317-4034-ba9d-bfbceffbf907",
+            "ownerId": "8b65515f-cdc3-45e6-885e-930512c05a29",
+            "name": "Fitness First Koramangala",
+            "description": "Premium fitness center in Koramangala with state-of-the-art equipment",
+            "logoUrl": null,
+            "addressLine1": "80 Feet Road, 4th Block",
+            "addressLine2": "Near Sony Signal",
+            "city": "Bengaluru",
+            "state": "Karnataka",
+            "country": "India",
+            "postalCode": "560034",
+            "latitude": null,
+            "longitude": null,
+            "phone": "+918041234567",
+            "email": "koramangala@fitnessfirst.com",
+            "website": null,
+            "status": "APPROVED",
+            "isActive": true,
+            "facilities": [
+              "Steam Room",
+              "Locker Room",
+              "Air Conditioning",
+              "Cardio Zone",
+              "Parking",
+              "Personal Training"
+            ],
+            "photos": [],
+            "operatingHours": [
+              {
+                "dayOfWeek": 0,
+                "openTime": "07:00:00",
+                "closeTime": "20:00:00",
+                "isClosed": false
+              },
+              {
+                "dayOfWeek": 1,
+                "openTime": "05:30:00",
+                "closeTime": "22:00:00",
+                "isClosed": false
+              },
+              {
+                "dayOfWeek": 2,
+                "openTime": "05:30:00",
+                "closeTime": "22:00:00",
+                "isClosed": false
+              },
+              {
+                "dayOfWeek": 3,
+                "openTime": "05:30:00",
+                "closeTime": "22:00:00",
+                "isClosed": false
+              },
+              {
+                "dayOfWeek": 4,
+                "openTime": "05:30:00",
+                "closeTime": "22:00:00",
+                "isClosed": false
+              },
+              {
+                "dayOfWeek": 5,
+                "openTime": "05:30:00",
+                "closeTime": "22:00:00",
+                "isClosed": false
+              },
+              {
+                "dayOfWeek": 6,
+                "openTime": "05:30:00",
+                "closeTime": "22:00:00",
+                "isClosed": false
+              }
+            ]
+          },
+          {
+            "id": "f114c6cd-9225-4b41-a2df-42fd2a8a3712",
+            "ownerId": "8b65515f-cdc3-45e6-885e-930512c05a29",
+            "name": "Fitness First Indiranagar",
+            "description": "Modern gym with CrossFit zone and yoga studio",
+            "logoUrl": null,
+            "addressLine1": "100 Feet Road, HAL 2nd Stage",
+            "addressLine2": "Above Starbucks",
+            "city": "Bengaluru",
+            "state": "Karnataka",
+            "country": "India",
+            "postalCode": "560038",
+            "latitude": null,
+            "longitude": null,
+            "phone": "+918041234568",
+            "email": "indiranagar@fitnessfirst.com",
+            "website": null,
+            "status": "APPROVED",
+            "isActive": true,
+            "facilities": [
+              "Steam Room",
+              "Locker Room",
+              "Air Conditioning",
+              "Cardio Zone",
+              "Parking"
+            ],
+            "photos": [],
+            "operatingHours": [
+              {
+                "dayOfWeek": 0,
+                "openTime": "07:00:00",
+                "closeTime": "20:00:00",
+                "isClosed": false
+              },
+              {
+                "dayOfWeek": 1,
+                "openTime": "05:30:00",
+                "closeTime": "22:00:00",
+                "isClosed": false
+              },
+              {
+                "dayOfWeek": 2,
+                "openTime": "05:30:00",
+                "closeTime": "22:00:00",
+                "isClosed": false
+              },
+              {
+                "dayOfWeek": 3,
+                "openTime": "05:30:00",
+                "closeTime": "22:00:00",
+                "isClosed": false
+              },
+              {
+                "dayOfWeek": 4,
+                "openTime": "05:30:00",
+                "closeTime": "22:00:00",
+                "isClosed": false
+              },
+              {
+                "dayOfWeek": 5,
+                "openTime": "05:30:00",
+                "closeTime": "22:00:00",
+                "isClosed": false
+              },
+              {
+                "dayOfWeek": 6,
+                "openTime": "05:30:00",
+                "closeTime": "22:00:00",
+                "isClosed": false
+              }
+            ]
+          }
+        ],
+        "timestamp": "2026-10-17T10:26:39.308722Z"
+      }
+order: 1792232802932

@@ -1,0 +1,5 @@
+$kind: http-request
+url: "{{baseUrl}}/exercises/categories"
+method: GET
+examples: .resources/Get All Categories.resources/examples
+order: 6000

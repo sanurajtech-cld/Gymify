@@ -1,0 +1,11 @@
+$kind: http-request
+url: "{{baseUrl}}/notifications/preferences"
+method: PUT
+headers:
+  Authorization: Bearer {{accessToken}}
+  Content-Type: application/json
+body:
+  type: text
+  content: '{"workoutReminders":true,"membershipAlerts":true,"planUpdates":true,"promotional":false,"reminderTime":"08:00"}'
+examples: .resources/Update Preferences.resources/examples
+order: 7000

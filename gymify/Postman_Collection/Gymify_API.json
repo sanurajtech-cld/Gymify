@@ -1,0 +1,144 @@
+{
+	"info": {
+		"_postman_id": "gymify-api-collection",
+		"name": "Gymify API",
+		"description": "Complete API collection for Gymify - Gym Management Application",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"variable": [
+		{"key": "baseUrl", "value": "http://localhost:8080/api"},
+		{"key": "accessToken", "value": ""},
+		{"key": "refreshToken", "value": ""},
+		{"key": "userId", "value": ""},
+		{"key": "gymId", "value": ""},
+		{"key": "planId", "value": ""},
+		{"key": "membershipId", "value": ""},
+		{"key": "exerciseId", "value": ""},
+		{"key": "workoutPlanId", "value": ""},
+		{"key": "assignmentId", "value": ""},
+		{"key": "trainerId", "value": ""},
+		{"key": "notificationId", "value": ""},
+		{"key": "workoutLogId", "value": ""}
+	],
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{"name": "Register", "event": [{"listen": "test", "script": {"exec": ["var j=pm.response.json();if(j.success){pm.collectionVariables.set('accessToken',j.data.accessToken);pm.collectionVariables.set('refreshToken',j.data.refreshToken);pm.collectionVariables.set('userId',j.data.userId);}"]}}], "request": {"method": "POST", "header": [{"key": "Content-Type", "value": "application/json"}], "body": {"mode": "raw", "raw": "{\"email\":\"user@example.com\",\"password\":\"password123\",\"firstName\":\"John\",\"lastName\":\"Doe\",\"phone\":\"+919876543210\",\"role\":\"CUSTOMER\"}"}, "url": "{{baseUrl}}/auth/register"}},
+				{"name": "Login", "event": [{"listen": "test", "script": {"exec": ["var j=pm.response.json();if(j.success){pm.collectionVariables.set('accessToken',j.data.accessToken);pm.collectionVariables.set('refreshToken',j.data.refreshToken);pm.collectionVariables.set('userId',j.data.userId);}"]}}], "request": {"method": "POST", "header": [{"key": "Content-Type", "value": "application/json"}], "body": {"mode": "raw", "raw": "{\"email\":\"user@example.com\",\"password\":\"password123\"}"}, "url": "{{baseUrl}}/auth/login"}},
+				{"name": "Refresh Token", "request": {"method": "POST", "header": [{"key": "Content-Type", "value": "application/json"}], "body": {"mode": "raw", "raw": "{\"refreshToken\":\"{{refreshToken}}\"}"}, "url": "{{baseUrl}}/auth/refresh"}},
+				{"name": "Logout", "request": {"method": "POST", "header": [{"key": "Authorization", "value": "Bearer {{accessToken}}"}], "url": "{{baseUrl}}/auth/logout"}},
+				{"name": "Request Password Reset", "request": {"method": "POST", "header": [{"key": "Content-Type", "value": "application/json"}], "body": {"mode": "raw", "raw": "{\"email\":\"user@example.com\"}"}, "url": "{{baseUrl}}/auth/password/reset-request"}},
+				{"name": "Confirm Password Reset", "request": {"method": "POST", "header": [{"key": "Content-Type", "value": "application/json"}], "body": {"mode": "raw", "raw": "{\"token\":\"reset-token\",\"newPassword\":\"newpass123\"}"}, "url": "{{baseUrl}}/auth/password/reset-confirm"}}
+			]
+		},
+		{
+			"name": "Users",
+			"item": [
+				{"name": "Get My Profile", "request": {"method": "GET", "header": [{"key": "Authorization", "value": "Bearer {{accessToken}}"}], "url": "{{baseUrl}}/users/me"}},
+				{"name": "Update My Profile", "request": {"method": "PUT", "header": [{"key": "Authorization", "value": "Bearer {{accessToken}}"},{"key": "Content-Type", "value": "application/json"}], "body": {"mode": "raw", "raw": "{\"firstName\":\"John\",\"lastName\":\"Doe\",\"phone\":\"+919876543210\",\"dateOfBirth\":\"1990-01-15\",\"gender\":\"MALE\"}"}, "url": "{{baseUrl}}/users/me"}},
+				{"name": "Change Password", "request": {"method": "PUT", "header": [{"key": "Authorization", "value": "Bearer {{accessToken}}"},{"key": "Content-Type", "value": "application/json"}], "body": {"mode": "raw", "raw": "{\"currentPassword\":\"password123\",\"newPassword\":\"newpass123\"}"}, "url": "{{baseUrl}}/users/me/password"}},
+				{"name": "Deactivate Account", "request": {"method": "DELETE", "header": [{"key": "Authorization", "value": "Bearer {{accessToken}}"}], "url": "{{baseUrl}}/users/me"}},
+				{"name": "Get User By ID", "request": {"method": "GET", "header": [{"key": "Authorization", "value": "Bearer {{accessToken}}"}], "url": "{{baseUrl}}/users/{{userId}}"}}
+			]
+		},
+		{
+			"name": "Gyms (Public)",
+			"item": [
+				{"name": "Get All Gyms", "request": {"method": "GET", "url": "{{baseUrl}}/gyms?page=0&size=20"}},
+				{"name": "Get Gym By ID", "request": {"method": "GET", "url": "{{baseUrl}}/gyms/{{gymId}}"}},
+				{"name": "Search Gyms", "request": {"method": "GET", "url": "{{baseUrl}}/gyms/search?query=fitness&page=0&size=20"}},
+				{"name": "Get Nearby Gyms", "request": {"method": "GET", "url": "{{baseUrl}}/gyms/nearby?latitude=28.6139&longitude=77.2090&radiusKm=10"}},
+				{"name": "Get Gyms By City", "request": {"method": "GET", "url": "{{baseUrl}}/gyms/city/Delhi?page=0&size=20"}}
+			]
+		},
+		{
+			"name": "Gym Owner",
+			"item": [
+				{"name": "Get My Gyms", "request": {"method": "GET", "header": [{"key": "Authorization", "value": "Bearer {{accessToken}}"}], "url": "{{baseUrl}}/owner/gyms"}},
+				{"name": "Create Gym", "event": [{"listen": "test", "script": {"exec": ["var j=pm.response.json();if(j.success&&j.data){pm.collectionVariables.set('gymId',j.data.id);}"]}}], "request": {"method": "POST", "header": [{"key": "Authorization", "value": "Bearer {{accessToken}}"},{"key": "Content-Type", "value": "application/json"}], "body": {"mode": "raw", "raw": "{\"name\":\"FitZone Gym\",\"description\":\"Premium fitness center\",\"addressLine1\":\"123 Main St\",\"city\":\"Delhi\",\"state\":\"Delhi\",\"country\":\"India\",\"postalCode\":\"110001\",\"latitude\":28.6139,\"longitude\":77.2090,\"phone\":\"+911234567890\",\"email\":\"contact@fitzone.com\"}"}, "url": "{{baseUrl}}/owner/gyms"}},
+				{"name": "Update Gym", "request": {"method": "PUT", "header": [{"key": "Authorization", "value": "Bearer {{accessToken}}"},{"key": "Content-Type", "value": "application/json"}], "body": {"mode": "raw", "raw": "{\"name\":\"FitZone Premium\",\"description\":\"Updated description\"}"}, "url": "{{baseUrl}}/owner/gyms/{{gymId}}"}},
+				{"name": "Create Membership Plan", "event": [{"listen": "test", "script": {"exec": ["var j=pm.response.json();if(j.success&&j.data){pm.collectionVariables.set('planId',j.data.id);}"]}}], "request": {"method": "POST", "header": [{"key": "Authorization", "value": "Bearer {{accessToken}}"},{"key": "Content-Type", "value": "application/json"}], "body": {"mode": "raw", "raw": "{\"name\":\"Monthly Basic\",\"description\":\"Basic monthly membership\",\"durationDays\":30,\"price\":1500.00,\"currency\":\"INR\",\"includesTrainer\":false,\"maxFreezeDays\":5}"}, "url": "{{baseUrl}}/owner/memberships/plans/{{gymId}}"}},
+				{"name": "Get Gym Memberships", "request": {"method": "GET", "header": [{"key": "Authorization", "value": "Bearer {{accessToken}}"}], "url": "{{baseUrl}}/owner/memberships/gym/{{gymId}}?page=0&size=20"}},
+				{"name": "Assign Trainer", "request": {"method": "PUT", "header": [{"key": "Authorization", "value": "Bearer {{accessToken}}"}], "url": "{{baseUrl}}/owner/memberships/{{membershipId}}/assign-trainer/{{trainerId}}"}},
+				{"name": "Get Gym Payments", "request": {"method": "GET", "header": [{"key": "Authorization", "value": "Bearer {{accessToken}}"}], "url": "{{baseUrl}}/owner/memberships/payments/{{gymId}}?page=0&size=20"}}
+			]
+		},
+		{
+			"name": "Memberships",
+			"item": [
+				{"name": "Get Gym Plans", "request": {"method": "GET", "header": [{"key": "Authorization", "value": "Bearer {{accessToken}}"}], "url": "{{baseUrl}}/memberships/plans/{{gymId}}"}},
+				{"name": "Get My Memberships", "request": {"method": "GET", "header": [{"key": "Authorization", "value": "Bearer {{accessToken}}"}], "url": "{{baseUrl}}/memberships/my"}},
+				{"name": "Get Membership By ID", "request": {"method": "GET", "header": [{"key": "Authorization", "value": "Bearer {{accessToken}}"}], "url": "{{baseUrl}}/memberships/{{membershipId}}"}},
+				{"name": "Purchase Membership", "event": [{"listen": "test", "script": {"exec": ["var j=pm.response.json();if(j.success&&j.data){pm.collectionVariables.set('membershipId',j.data.id);}"]}}], "request": {"method": "POST", "header": [{"key": "Authorization", "value": "Bearer {{accessToken}}"},{"key": "Content-Type", "value": "application/json"}], "body": {"mode": "raw", "raw": "{\"planId\":\"{{planId}}\",\"startDate\":\"2024-01-15\",\"trainerId\":null}"}, "url": "{{baseUrl}}/memberships/purchase/{{gymId}}"}},
+				{"name": "Get My Payments", "request": {"method": "GET", "header": [{"key": "Authorization", "value": "Bearer {{accessToken}}"}], "url": "{{baseUrl}}/memberships/payments"}}
+			]
+		},
+		{
+			"name": "Exercises",
+			"item": [
+				{"name": "Get All Exercises", "request": {"method": "GET", "url": "{{baseUrl}}/exercises?page=0&size=20"}},
+				{"name": "Get Exercise By ID", "request": {"method": "GET", "url": "{{baseUrl}}/exercises/{{exerciseId}}"}},
+				{"name": "Search Exercises", "request": {"method": "GET", "url": "{{baseUrl}}/exercises/search?query=squat&page=0&size=20"}},
+				{"name": "Get By Category", "request": {"method": "GET", "url": "{{baseUrl}}/exercises/category/{{categoryId}}?page=0&size=20"}},
+				{"name": "Get By Muscle Group", "request": {"method": "GET", "url": "{{baseUrl}}/exercises/muscle-group/{{muscleGroupId}}?page=0&size=20"}},
+				{"name": "Get All Categories", "request": {"method": "GET", "url": "{{baseUrl}}/exercises/categories"}},
+				{"name": "Get All Muscle Groups", "request": {"method": "GET", "url": "{{baseUrl}}/exercises/muscle-groups"}},
+				{"name": "Get All Equipment", "request": {"method": "GET", "url": "{{baseUrl}}/exercises/equipment"}}
+			]
+		},
+		{
+			"name": "Workouts (Customer)",
+			"item": [
+				{"name": "Get My Assignments", "request": {"method": "GET", "header": [{"key": "Authorization", "value": "Bearer {{accessToken}}"}], "url": "{{baseUrl}}/workouts/my-assignments"}},
+				{"name": "Get Plan By ID", "request": {"method": "GET", "header": [{"key": "Authorization", "value": "Bearer {{accessToken}}"}], "url": "{{baseUrl}}/workouts/plans/{{workoutPlanId}}"}}
+			]
+		},
+		{
+			"name": "Workouts (Trainer)",
+			"item": [
+				{"name": "Get My Plans", "request": {"method": "GET", "header": [{"key": "Authorization", "value": "Bearer {{accessToken}}"}], "url": "{{baseUrl}}/trainer/workouts/plans"}},
+				{"name": "Create Workout Plan", "event": [{"listen": "test", "script": {"exec": ["var j=pm.response.json();if(j.success&&j.data){pm.collectionVariables.set('workoutPlanId',j.data.id);}"]}}], "request": {"method": "POST", "header": [{"key": "Authorization", "value": "Bearer {{accessToken}}"},{"key": "Content-Type", "value": "application/json"}], "body": {"mode": "raw", "raw": "{\"name\":\"Beginner Full Body\",\"description\":\"Full body workout for beginners\",\"goal\":\"GENERAL\",\"difficulty\":\"BEGINNER\",\"durationWeeks\":4,\"isTemplate\":true,\"days\":[{\"dayOfWeek\":1,\"name\":\"Upper Body\",\"isRestDay\":false,\"exercises\":[{\"exerciseId\":\"{{exerciseId}}\",\"displayOrder\":1,\"sets\":3,\"reps\":\"10-12\",\"restSeconds\":60}]},{\"dayOfWeek\":2,\"name\":\"Rest\",\"isRestDay\":true}]}"}, "url": "{{baseUrl}}/trainer/workouts/plans"}},
+				{"name": "Publish Plan", "request": {"method": "PUT", "header": [{"key": "Authorization", "value": "Bearer {{accessToken}}"}], "url": "{{baseUrl}}/trainer/workouts/plans/{{workoutPlanId}}/publish"}},
+				{"name": "Assign Plan", "event": [{"listen": "test", "script": {"exec": ["var j=pm.response.json();if(j.success&&j.data){pm.collectionVariables.set('assignmentId',j.data.id);}"]}}], "request": {"method": "POST", "header": [{"key": "Authorization", "value": "Bearer {{accessToken}}"},{"key": "Content-Type", "value": "application/json"}], "body": {"mode": "raw", "raw": "{\"planId\":\"{{workoutPlanId}}\",\"customerId\":\"{{userId}}\",\"gymId\":\"{{gymId}}\",\"startDate\":\"2024-01-15\",\"endDate\":\"2024-02-15\"}"}, "url": "{{baseUrl}}/trainer/workouts/assign"}},
+				{"name": "Get My Assignments", "request": {"method": "GET", "header": [{"key": "Authorization", "value": "Bearer {{accessToken}}"}], "url": "{{baseUrl}}/trainer/workouts/assignments"}}
+			]
+		},
+		{
+			"name": "Tracking",
+			"item": [
+				{"name": "Start Workout", "event": [{"listen": "test", "script": {"exec": ["var j=pm.response.json();if(j.success&&j.data){pm.collectionVariables.set('workoutLogId',j.data.id);}"]}}], "request": {"method": "POST", "header": [{"key": "Authorization", "value": "Bearer {{accessToken}}"},{"key": "Content-Type", "value": "application/json"}], "body": {"mode": "raw", "raw": "{\"assignmentId\":\"{{assignmentId}}\",\"workoutDate\":\"2024-01-15\",\"notes\":\"Feeling good\",\"exercises\":[{\"exerciseId\":\"{{exerciseId}}\",\"setsCompleted\":3,\"repsCompleted\":\"12,10,8\",\"weightUsedKg\":20.0,\"isCompleted\":true}]}"}, "url": "{{baseUrl}}/tracking/workouts"}},
+				{"name": "Complete Workout", "request": {"method": "PUT", "header": [{"key": "Authorization", "value": "Bearer {{accessToken}}"}], "url": "{{baseUrl}}/tracking/workouts/{{workoutLogId}}/complete"}},
+				{"name": "Get My Workout Logs", "request": {"method": "GET", "header": [{"key": "Authorization", "value": "Bearer {{accessToken}}"}], "url": "{{baseUrl}}/tracking/workouts?page=0&size=20"}},
+				{"name": "Get Workouts By Date Range", "request": {"method": "GET", "header": [{"key": "Authorization", "value": "Bearer {{accessToken}}"}], "url": "{{baseUrl}}/tracking/workouts/range?start=2024-01-01&end=2024-01-31"}},
+				{"name": "Add Body Measurement", "request": {"method": "POST", "header": [{"key": "Authorization", "value": "Bearer {{accessToken}}"},{"key": "Content-Type", "value": "application/json"}], "body": {"mode": "raw", "raw": "{\"measuredAt\":\"2024-01-15\",\"weightKg\":75.5,\"heightCm\":175.0,\"bodyFatPercentage\":18.5,\"chestCm\":100.0,\"waistCm\":85.0}"}, "url": "{{baseUrl}}/tracking/measurements"}},
+				{"name": "Get My Measurements", "request": {"method": "GET", "header": [{"key": "Authorization", "value": "Bearer {{accessToken}}"}], "url": "{{baseUrl}}/tracking/measurements?page=0&size=20"}},
+				{"name": "Get Measurement History", "request": {"method": "GET", "header": [{"key": "Authorization", "value": "Bearer {{accessToken}}"}], "url": "{{baseUrl}}/tracking/measurements/history?start=2024-01-01&end=2024-12-31"}}
+			]
+		},
+		{
+			"name": "Notifications",
+			"item": [
+				{"name": "Get All Notifications", "request": {"method": "GET", "header": [{"key": "Authorization", "value": "Bearer {{accessToken}}"}], "url": "{{baseUrl}}/notifications?page=0&size=20"}},
+				{"name": "Get Unread Notifications", "request": {"method": "GET", "header": [{"key": "Authorization", "value": "Bearer {{accessToken}}"}], "url": "{{baseUrl}}/notifications/unread?page=0&size=20"}},
+				{"name": "Get Unread Count", "request": {"method": "GET", "header": [{"key": "Authorization", "value": "Bearer {{accessToken}}"}], "url": "{{baseUrl}}/notifications/unread/count"}},
+				{"name": "Mark As Read", "request": {"method": "PUT", "header": [{"key": "Authorization", "value": "Bearer {{accessToken}}"}], "url": "{{baseUrl}}/notifications/{{notificationId}}/read"}},
+				{"name": "Mark All As Read", "request": {"method": "PUT", "header": [{"key": "Authorization", "value": "Bearer {{accessToken}}"}], "url": "{{baseUrl}}/notifications/read-all"}},
+				{"name": "Get Preferences", "request": {"method": "GET", "header": [{"key": "Authorization", "value": "Bearer {{accessToken}}"}], "url": "{{baseUrl}}/notifications/preferences"}},
+				{"name": "Update Preferences", "request": {"method": "PUT", "header": [{"key": "Authorization", "value": "Bearer {{accessToken}}"},{"key": "Content-Type", "value": "application/json"}], "body": {"mode": "raw", "raw": "{\"workoutReminders\":true,\"membershipAlerts\":true,\"planUpdates\":true,\"promotional\":false,\"reminderTime\":\"08:00\"}"}, "url": "{{baseUrl}}/notifications/preferences"}},
+				{"name": "Register Device", "request": {"method": "POST", "header": [{"key": "Authorization", "value": "Bearer {{accessToken}}"},{"key": "Content-Type", "value": "application/json"}], "body": {"mode": "raw", "raw": "{\"deviceToken\":\"fcm-token\",\"deviceType\":\"ANDROID\",\"deviceName\":\"Samsung S21\"}"}, "url": "{{baseUrl}}/notifications/devices"}},
+				{"name": "Unregister Device", "request": {"method": "DELETE", "header": [{"key": "Authorization", "value": "Bearer {{accessToken}}"}], "url": "{{baseUrl}}/notifications/devices/fcm-token"}}
+			]
+		},
+		{
+			"name": "Admin",
+			"item": [
+				{"name": "Get Pending Gyms", "request": {"method": "GET", "header": [{"key": "Authorization", "value": "Bearer {{accessToken}}"}], "url": "{{baseUrl}}/admin/gyms/pending?page=0&size=20"}},
+				{"name": "Approve Gym", "request": {"method": "PUT", "header": [{"key": "Authorization", "value": "Bearer {{accessToken}}"}], "url": "{{baseUrl}}/admin/gyms/{{gymId}}/approve"}},
+				{"name": "Reject Gym", "request": {"method": "PUT", "header": [{"key": "Authorization", "value": "Bearer {{accessToken}}"}], "url": "{{baseUrl}}/admin/gyms/{{gymId}}/reject"}},
+				{"name": "Suspend Gym", "request": {"method": "PUT", "header": [{"key": "Authorization", "value": "Bearer {{accessToken}}"}], "url": "{{baseUrl}}/admin/gyms/{{gymId}}/suspend"}},
+				{"name": "Create Exercise", "event": [{"listen": "test", "script": {"exec": ["var j=pm.response.json();if(j.success&&j.data){pm.collectionVariables.set('exerciseId',j.data.id);}"]}}], "request": {"method": "POST", "header": [{"key": "Authorization", "value": "Bearer {{accessToken}}"},{"key": "Content-Type", "value": "application/json"}], "body": {"mode": "raw", "raw": "{\"name\":\"Barbell Squat\",\"description\":\"Compound lower body exercise\",\"instructions\":\"1. Stand with feet shoulder-width apart\\n2. Lower body by bending knees\\n3. Push through heels to stand\",\"difficulty\":\"INTERMEDIATE\",\"exerciseType\":\"STRENGTH\",\"caloriesPerMinute\":8.5}"}, "url": "{{baseUrl}}/admin/exercises"}}
+			]
+		}
+	]
+}

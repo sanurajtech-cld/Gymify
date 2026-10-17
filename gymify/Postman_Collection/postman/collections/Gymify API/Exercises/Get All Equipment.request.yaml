@@ -1,0 +1,5 @@
+$kind: http-request
+url: "{{baseUrl}}/exercises/equipment"
+method: GET
+examples: .resources/Get All Equipment.resources/examples
+order: 8000

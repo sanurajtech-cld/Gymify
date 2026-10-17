@@ -1,0 +1,14 @@
+$kind: http-request
+url: "{{baseUrl}}/tracking/workouts"
+method: POST
+headers:
+  Authorization: Bearer {{accessToken}}
+  Content-Type: application/json
+body:
+  type: text
+  content: '{"assignmentId":"{{assignmentId}}","workoutDate":"2024-01-15","notes":"Feeling good","exercises":[{"exerciseId":"{{exerciseId}}","setsCompleted":3,"repsCompleted":"12,10,8","weightUsedKg":20.0,"isCompleted":true}]}'
+scripts:
+  - type: afterResponse
+    code: var j=pm.response.json();if(j.success&&j.data){pm.collectionVariables.set('workoutLogId',j.data.id);}
+    language: text/javascript
+order: 1000

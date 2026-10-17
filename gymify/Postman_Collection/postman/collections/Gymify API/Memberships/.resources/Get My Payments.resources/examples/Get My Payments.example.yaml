@@ -1,0 +1,55 @@
+$kind: http-example
+request:
+  url: "{{baseUrl}}/memberships/payments"
+  method: GET
+  headers:
+    Authorization: Bearer {{accessToken}}
+response:
+  statusCode: 200
+  statusText: ""
+  headers:
+    x-content-type-options: nosniff
+    x-xss-protection: "0"
+    cache-control: no-cache, no-store, max-age=0, must-revalidate
+    pragma: no-cache
+    expires: "0"
+    x-frame-options: SAMEORIGIN
+    content-type: application/json
+    transfer-encoding: chunked
+    date: Sat, 17 Oct 2026 10:46:35 GMT
+    keep-alive: timeout=60
+    connection: keep-alive
+  body:
+    type: json
+    content: |-
+      {
+        "success": true,
+        "data": [
+          {
+            "id": "26e7b5c8-4bc5-485b-8b47-6de74f67559f",
+            "membershipId": "15925085-eb18-48a2-b617-6fbd6f548344",
+            "userId": "c4d66e2d-1873-4d03-afb7-26cc11fc0da9",
+            "amount": 6000,
+            "currency": "INR",
+            "paymentMethod": "UPI",
+            "gateway": "RAZORPAY",
+            "gatewayPaymentId": null,
+            "status": "SUCCESS",
+            "paidAt": "2026-10-17T10:00:42.036300Z"
+          },
+          {
+            "id": "76e69d78-3983-4998-90f5-5166e1e185de",
+            "membershipId": "8cf9d612-5d59-44c2-8f21-cab825b2a7b7",
+            "userId": "c4d66e2d-1873-4d03-afb7-26cc11fc0da9",
+            "amount": 6000,
+            "currency": "INR",
+            "paymentMethod": null,
+            "gateway": null,
+            "gatewayPaymentId": null,
+            "status": "SUCCESS",
+            "paidAt": "2026-10-17T10:46:10.098245Z"
+          }
+        ],
+        "timestamp": "2026-10-17T10:46:35.871008Z"
+      }
+order: 1792234063997

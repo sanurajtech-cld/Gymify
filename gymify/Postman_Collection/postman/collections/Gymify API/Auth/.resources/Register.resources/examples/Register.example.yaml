@@ -1,0 +1,52 @@
+$kind: http-example
+request:
+  url: "{{baseUrl}}/auth/register"
+  method: POST
+  headers:
+    Content-Type: application/json
+  body:
+    type: json
+    content: |-
+      {
+          "email": "user@example.com",
+          "password": "password123",
+          "firstName": "John",
+          "lastName": "Doe",
+          "phone": "+919876543210",
+          "role": "CUSTOMER"
+      }
+response:
+  statusCode: 201
+  statusText: ""
+  headers:
+    x-content-type-options: nosniff
+    x-xss-protection: "0"
+    cache-control: no-cache, no-store, max-age=0, must-revalidate
+    pragma: no-cache
+    expires: "0"
+    x-frame-options: SAMEORIGIN
+    content-type: application/json
+    transfer-encoding: chunked
+    date: Fri, 16 Oct 2026 21:02:28 GMT
+    keep-alive: timeout=60
+    connection: keep-alive
+  body:
+    type: json
+    content: |-
+      {
+        "success": true,
+        "message": "Registration successful",
+        "data": {
+          "userId": "765d84d2-6663-4db8-8792-27f7c1cf193e",
+          "email": "user@example.com",
+          "firstName": "John",
+          "lastName": "Doe",
+          "roles": [
+            "CUSTOMER"
+          ],
+          "accessToken": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI3NjVkODRkMi02NjYzLTRkYjgtODc5Mi0yN2Y3YzFjZjE5M2UiLCJlbWFpbCI6InVzZXJAZXhhbXBsZS5jb20iLCJyb2xlIjoiQ1VTVE9NRVIiLCJpYXQiOjE3OTIxODQ1NDgsImV4cCI6MTc5MjE4NTQ0OH0.eRpqSXtJ6rg-8hRS0vAkKzPOvuRQxLb5rUYci1O6OvTFoqI1c3xMdU7bAP_09voViMVsCurvRoTecENoyBQ4fA",
+          "refreshToken": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI3NjVkODRkMi02NjYzLTRkYjgtODc5Mi0yN2Y3YzFjZjE5M2UiLCJpYXQiOjE3OTIxODQ1NDgsImV4cCI6MTc5Mjc4OTM0OH0.7v1dNw7YzbiTSc0CQ47LeXtYJaVEEI0WqJBZwfplO7fQkMbRPB6UY01jgQ6x_WUQVmP_0l1_zUG8R6VwUj3i1Q"
+        },
+        "timestamp": "2026-10-16T21:02:28.343154Z"
+      }
+order: 1792184558677

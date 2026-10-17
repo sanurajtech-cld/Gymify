@@ -1,0 +1,263 @@
+databaseChangeLog:
+  - changeSet:
+      id: 004-create-memberships
+      author: gymify
+      changes:
+        - createTable:
+            tableName: membership_plans
+            columns:
+              - column:
+                  name: id
+                  type: uuid
+                  defaultValueComputed: uuid_generate_v4()
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: gym_id
+                  type: uuid
+                  constraints:
+                    nullable: false
+              - column:
+                  name: name
+                  type: varchar(100)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: description
+                  type: text
+              - column:
+                  name: duration_days
+                  type: int
+                  constraints:
+                    nullable: false
+              - column:
+                  name: price
+                  type: decimal(10,2)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: currency
+                  type: varchar(3)
+                  defaultValue: INR
+              - column:
+                  name: includes_trainer
+                  type: boolean
+                  defaultValueBoolean: false
+              - column:
+                  name: max_freeze_days
+                  type: int
+                  defaultValueNumeric: 0
+              - column:
+                  name: is_active
+                  type: boolean
+                  defaultValueBoolean: true
+              - column:
+                  name: created_at
+                  type: timestamp with time zone
+                  defaultValueComputed: CURRENT_TIMESTAMP
+              - column:
+                  name: updated_at
+                  type: timestamp with time zone
+                  defaultValueComputed: CURRENT_TIMESTAMP
+        - addForeignKeyConstraint:
+            baseTableName: membership_plans
+            baseColumnNames: gym_id
+            referencedTableName: gyms
+            referencedColumnNames: id
+            constraintName: fk_membership_plans_gym
+            onDelete: CASCADE
+
+        - createTable:
+            tableName: memberships
+            columns:
+              - column:
+                  name: id
+                  type: uuid
+                  defaultValueComputed: uuid_generate_v4()
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: user_id
+                  type: uuid
+                  constraints:
+                    nullable: false
+              - column:
+                  name: gym_id
+                  type: uuid
+                  constraints:
+                    nullable: false
+              - column:
+                  name: plan_id
+                  type: uuid
+                  constraints:
+                    nullable: false
+              - column:
+                  name: assigned_trainer_id
+                  type: uuid
+              - column:
+                  name: start_date
+                  type: date
+                  constraints:
+                    nullable: false
+              - column:
+                  name: end_date
+                  type: date
+                  constraints:
+                    nullable: false
+              - column:
+                  name: status
+                  type: varchar(20)
+                  defaultValue: ACTIVE
+              - column:
+                  name: freeze_start_date
+                  type: date
+              - column:
+                  name: freeze_end_date
+                  type: date
+              - column:
+                  name: total_freeze_days_used
+                  type: int
+                  defaultValueNumeric: 0
+              - column:
+                  name: created_at
+                  type: timestamp with time zone
+                  defaultValueComputed: CURRENT_TIMESTAMP
+              - column:
+                  name: updated_at
+                  type: timestamp with time zone
+                  defaultValueComputed: CURRENT_TIMESTAMP
+        - addForeignKeyConstraint:
+            baseTableName: memberships
+            baseColumnNames: user_id
+            referencedTableName: users
+            referencedColumnNames: id
+            constraintName: fk_memberships_user
+            onDelete: CASCADE
+        - addForeignKeyConstraint:
+            baseTableName: memberships
+            baseColumnNames: gym_id
+            referencedTableName: gyms
+            referencedColumnNames: id
+            constraintName: fk_memberships_gym
+            onDelete: RESTRICT
+        - addForeignKeyConstraint:
+            baseTableName: memberships
+            baseColumnNames: plan_id
+            referencedTableName: membership_plans
+            referencedColumnNames: id
+            constraintName: fk_memberships_plan
+            onDelete: RESTRICT
+        - addForeignKeyConstraint:
+            baseTableName: memberships
+            baseColumnNames: assigned_trainer_id
+            referencedTableName: users
+            referencedColumnNames: id
+            constraintName: fk_memberships_trainer
+            onDelete: SET NULL
+
+        - createTable:
+            tableName: payments
+            columns:
+              - column:
+                  name: id
+                  type: uuid
+                  defaultValueComputed: uuid_generate_v4()
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: membership_id
+                  type: uuid
+                  constraints:
+                    nullable: false
+              - column:
+                  name: user_id
+                  type: uuid
+                  constraints:
+                    nullable: false
+              - column:
+                  name: amount
+                  type: decimal(10,2)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: currency
+                  type: varchar(3)
+                  defaultValue: INR
+              - column:
+                  name: payment_method
+                  type: varchar(50)
+              - column:
+                  name: gateway
+                  type: varchar(50)
+              - column:
+                  name: gateway_payment_id
+                  type: varchar(255)
+              - column:
+                  name: gateway_order_id
+                  type: varchar(255)
+              - column:
+                  name: status
+                  type: varchar(20)
+                  defaultValue: PENDING
+              - column:
+                  name: failure_reason
+                  type: varchar(500)
+              - column:
+                  name: paid_at
+                  type: timestamp with time zone
+              - column:
+                  name: created_at
+                  type: timestamp with time zone
+                  defaultValueComputed: CURRENT_TIMESTAMP
+              - column:
+                  name: updated_at
+                  type: timestamp with time zone
+                  defaultValueComputed: CURRENT_TIMESTAMP
+        - addForeignKeyConstraint:
+            baseTableName: payments
+            baseColumnNames: membership_id
+            referencedTableName: memberships
+            referencedColumnNames: id
+            constraintName: fk_payments_membership
+            onDelete: RESTRICT
+        - addForeignKeyConstraint:
+            baseTableName: payments
+            baseColumnNames: user_id
+            referencedTableName: users
+            referencedColumnNames: id
+            constraintName: fk_payments_user
+            onDelete: RESTRICT
+
+        - createIndex:
+            tableName: memberships
+            indexName: idx_memberships_user
+            columns:
+              - column:
+                  name: user_id
+        - createIndex:
+            tableName: memberships
+            indexName: idx_memberships_gym
+            columns:
+              - column:
+                  name: gym_id
+        - createIndex:
+            tableName: memberships
+            indexName: idx_memberships_status
+            columns:
+              - column:
+                  name: status
+        - createIndex:
+            tableName: payments
+            indexName: idx_payments_gateway_id
+            columns:
+              - column:
+                  name: gateway_payment_id
+        - createIndex:
+            tableName: payments
+            indexName: idx_payments_status
+            columns:
+              - column:
+                  name: status

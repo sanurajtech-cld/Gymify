@@ -1,0 +1,61 @@
+$kind: http-example
+request:
+  url: "{{baseUrl}}/exercises/search?query=squat&page=0&size=20"
+  method: GET
+  queryParams:
+    query: squat
+    page: "0"
+    size: "20"
+response:
+  statusCode: 200
+  statusText: ""
+  headers:
+    x-content-type-options: nosniff
+    x-xss-protection: "0"
+    cache-control: no-cache, no-store, max-age=0, must-revalidate
+    pragma: no-cache
+    expires: "0"
+    x-frame-options: SAMEORIGIN
+    content-type: application/json
+    transfer-encoding: chunked
+    date: Sat, 17 Oct 2026 10:49:54 GMT
+    keep-alive: timeout=60
+    connection: keep-alive
+  body:
+    type: json
+    content: |-
+      {
+        "success": true,
+        "data": {
+          "content": [
+            {
+              "id": "df065ade-faa6-49cc-94da-0389a6c5e53a",
+              "name": "Squats",
+              "description": "Fundamental leg exercise",
+              "instructions": "Stand shoulder-width, lower by bending knees, return to standing",
+              "categoryId": "2bbfb695-a15f-4ebf-8eba-850d19b358d5",
+              "categoryName": "Strength Training",
+              "difficulty": "BEGINNER",
+              "exerciseType": "STRENGTH",
+              "imageUrl": null,
+              "videoUrl": null,
+              "thumbnailUrl": null,
+              "caloriesPerMinute": 9,
+              "muscleGroups": [
+                "Quadriceps"
+              ],
+              "equipment": [
+                "Bodyweight"
+              ]
+            }
+          ],
+          "page": 0,
+          "size": 20,
+          "totalElements": 1,
+          "totalPages": 1,
+          "first": true,
+          "last": true
+        },
+        "timestamp": "2026-10-17T10:49:54.729476Z"
+      }
+order: 1792234206681

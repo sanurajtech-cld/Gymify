@@ -1,0 +1,66 @@
+$kind: http-example
+request:
+  url: "{{baseUrl}}/owner/memberships/payments/{{gymId}}?page=0&size=20"
+  method: GET
+  headers:
+    Authorization: Bearer {{accessToken}}
+  queryParams:
+    page: "0"
+    size: "20"
+response:
+  statusCode: 200
+  statusText: ""
+  headers:
+    x-content-type-options: nosniff
+    x-xss-protection: "0"
+    cache-control: no-cache, no-store, max-age=0, must-revalidate
+    pragma: no-cache
+    expires: "0"
+    x-frame-options: SAMEORIGIN
+    content-type: application/json
+    transfer-encoding: chunked
+    date: Sat, 17 Oct 2026 10:38:12 GMT
+    keep-alive: timeout=60
+    connection: keep-alive
+  body:
+    type: json
+    content: |-
+      {
+        "success": true,
+        "data": {
+          "content": [
+            {
+              "id": "26e7b5c8-4bc5-485b-8b47-6de74f67559f",
+              "membershipId": "15925085-eb18-48a2-b617-6fbd6f548344",
+              "userId": "c4d66e2d-1873-4d03-afb7-26cc11fc0da9",
+              "amount": 6000,
+              "currency": "INR",
+              "paymentMethod": "UPI",
+              "gateway": "RAZORPAY",
+              "gatewayPaymentId": null,
+              "status": "SUCCESS",
+              "paidAt": "2026-10-17T10:00:42.036300Z"
+            },
+            {
+              "id": "9549a93e-b915-4ddc-9788-b228c921b084",
+              "membershipId": "fe1cd95f-c8f2-4622-a924-5930609f21a9",
+              "userId": "afb9f2f7-8bb2-4b43-86f0-57be641cadc9",
+              "amount": 1500,
+              "currency": "INR",
+              "paymentMethod": "CARD",
+              "gateway": "RAZORPAY",
+              "gatewayPaymentId": null,
+              "status": "SUCCESS",
+              "paidAt": "2026-10-17T10:00:42.046152Z"
+            }
+          ],
+          "page": 0,
+          "size": 20,
+          "totalElements": 2,
+          "totalPages": 1,
+          "first": true,
+          "last": true
+        },
+        "timestamp": "2026-10-17T10:38:12.747499Z"
+      }
+order: 1792233503451

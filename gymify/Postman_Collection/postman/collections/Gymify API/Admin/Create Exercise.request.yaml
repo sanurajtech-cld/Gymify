@@ -1,0 +1,15 @@
+$kind: http-request
+url: "{{baseUrl}}/admin/exercises"
+method: POST
+headers:
+  Authorization: Bearer {{accessToken}}
+  Content-Type: application/json
+body:
+  type: text
+  content: '{"name":"Barbell Squat","description":"Compound lower body exercise","instructions":"1. Stand with feet shoulder-width apart\n2. Lower body by bending knees\n3. Push through heels to stand","difficulty":"INTERMEDIATE","exerciseType":"STRENGTH","caloriesPerMinute":8.5}'
+scripts:
+  - type: afterResponse
+    code: var j=pm.response.json();if(j.success&&j.data){pm.collectionVariables.set('exerciseId',j.data.id);}
+    language: text/javascript
+examples: .resources/Create Exercise.resources/examples
+order: 5000

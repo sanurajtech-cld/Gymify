@@ -1,0 +1,46 @@
+$kind: http-example
+request:
+  url: "{{baseUrl}}/auth/refresh"
+  method: POST
+  headers:
+    Content-Type: application/json
+  body:
+    type: json
+    content: |-
+      {
+          "refreshToken": "{{refreshToken}}"
+      }
+response:
+  statusCode: 200
+  statusText: ""
+  headers:
+    x-content-type-options: nosniff
+    x-xss-protection: "0"
+    cache-control: no-cache, no-store, max-age=0, must-revalidate
+    pragma: no-cache
+    expires: "0"
+    x-frame-options: SAMEORIGIN
+    content-type: application/json
+    transfer-encoding: chunked
+    date: Fri, 16 Oct 2026 21:05:32 GMT
+    keep-alive: timeout=60
+    connection: keep-alive
+  body:
+    type: json
+    content: |-
+      {
+        "success": true,
+        "data": {
+          "userId": "765d84d2-6663-4db8-8792-27f7c1cf193e",
+          "email": "user@example.com",
+          "firstName": "John",
+          "lastName": "Doe",
+          "roles": [
+            "CUSTOMER"
+          ],
+          "accessToken": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI3NjVkODRkMi02NjYzLTRkYjgtODc5Mi0yN2Y3YzFjZjE5M2UiLCJlbWFpbCI6InVzZXJAZXhhbXBsZS5jb20iLCJyb2xlIjoiQ1VTVE9NRVIiLCJpYXQiOjE3OTIxODQ3MzIsImV4cCI6MTc5MjE4NTYzMn0.6JrRWRSsggIGdYbVsuK6XjVTkdVaN_9cyxDwHGiMoBC7e8ssjT_b3RUYc7UNLrSOrn9F_jULTEIUkLUjmvow0Q",
+          "refreshToken": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI3NjVkODRkMi02NjYzLTRkYjgtODc5Mi0yN2Y3YzFjZjE5M2UiLCJpYXQiOjE3OTIxODQ3MzIsImV4cCI6MTc5Mjc4OTUzMn0.yJMGUArLBcw3OnXzXpp3wvbwjctwOo52v43OMpPXRsYqmbl0ZYwRqH7ESz2-CCvf9YSgIPNDOQ23z683f48NRQ"
+        },
+        "timestamp": "2026-10-16T21:05:32.347129Z"
+      }
+order: 1792184741261

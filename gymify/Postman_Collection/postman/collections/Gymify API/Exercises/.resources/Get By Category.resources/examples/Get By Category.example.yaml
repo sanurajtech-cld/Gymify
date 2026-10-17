@@ -1,0 +1,123 @@
+$kind: http-example
+request:
+  url: "{{baseUrl}}/exercises/category/{{categoryId}}?page=0&size=20"
+  method: GET
+  queryParams:
+    page: "0"
+    size: "20"
+response:
+  statusCode: 200
+  statusText: ""
+  headers:
+    x-content-type-options: nosniff
+    x-xss-protection: "0"
+    cache-control: no-cache, no-store, max-age=0, must-revalidate
+    pragma: no-cache
+    expires: "0"
+    x-frame-options: SAMEORIGIN
+    content-type: application/json
+    transfer-encoding: chunked
+    date: Sat, 17 Oct 2026 10:50:59 GMT
+    keep-alive: timeout=60
+    connection: keep-alive
+  body:
+    type: json
+    content: |-
+      {
+        "success": true,
+        "data": {
+          "content": [
+            {
+              "id": "e6085e5f-4553-429e-bd51-f3dc06a5fac1",
+              "name": "Barbell Bench Press",
+              "description": "Classic chest exercise",
+              "instructions": "Lie on bench, grip barbell, lower to chest, press up",
+              "categoryId": "2bbfb695-a15f-4ebf-8eba-850d19b358d5",
+              "categoryName": "Strength Training",
+              "difficulty": "INTERMEDIATE",
+              "exerciseType": "STRENGTH",
+              "imageUrl": null,
+              "videoUrl": null,
+              "thumbnailUrl": null,
+              "caloriesPerMinute": 8.5,
+              "muscleGroups": [
+                "Chest",
+                "Triceps"
+              ],
+              "equipment": [
+                "Barbell",
+                "Bench Press"
+              ]
+            },
+            {
+              "id": "df065ade-faa6-49cc-94da-0389a6c5e53a",
+              "name": "Squats",
+              "description": "Fundamental leg exercise",
+              "instructions": "Stand shoulder-width, lower by bending knees, return to standing",
+              "categoryId": "2bbfb695-a15f-4ebf-8eba-850d19b358d5",
+              "categoryName": "Strength Training",
+              "difficulty": "BEGINNER",
+              "exerciseType": "STRENGTH",
+              "imageUrl": null,
+              "videoUrl": null,
+              "thumbnailUrl": null,
+              "caloriesPerMinute": 9,
+              "muscleGroups": [
+                "Quadriceps"
+              ],
+              "equipment": [
+                "Bodyweight"
+              ]
+            },
+            {
+              "id": "fa8933a3-c1d3-49c2-973d-6112287bb8de",
+              "name": "Pull-ups",
+              "description": "Upper body pulling exercise",
+              "instructions": "Hang from bar, pull up until chin over bar, lower with control",
+              "categoryId": "2bbfb695-a15f-4ebf-8eba-850d19b358d5",
+              "categoryName": "Strength Training",
+              "difficulty": "INTERMEDIATE",
+              "exerciseType": "STRENGTH",
+              "imageUrl": null,
+              "videoUrl": null,
+              "thumbnailUrl": null,
+              "caloriesPerMinute": 8,
+              "muscleGroups": [
+                "Back",
+                "Biceps"
+              ],
+              "equipment": [
+                "Pull-up Bar"
+              ]
+            },
+            {
+              "id": "fd88c9e6-3914-45a8-b86e-92dfd7d64a06",
+              "name": "Plank",
+              "description": "Core stabilization",
+              "instructions": "Hold push-up position on forearms, keep body straight",
+              "categoryId": "2bbfb695-a15f-4ebf-8eba-850d19b358d5",
+              "categoryName": "Strength Training",
+              "difficulty": "BEGINNER",
+              "exerciseType": "STRENGTH",
+              "imageUrl": null,
+              "videoUrl": null,
+              "thumbnailUrl": null,
+              "caloriesPerMinute": 5,
+              "muscleGroups": [
+                "Core"
+              ],
+              "equipment": [
+                "Bodyweight"
+              ]
+            }
+          ],
+          "page": 0,
+          "size": 20,
+          "totalElements": 4,
+          "totalPages": 1,
+          "first": true,
+          "last": true
+        },
+        "timestamp": "2026-10-17T10:50:59.923625Z"
+      }
+order: 1792234268523

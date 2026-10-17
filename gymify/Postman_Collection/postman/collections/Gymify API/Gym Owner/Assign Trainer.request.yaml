@@ -1,0 +1,7 @@
+$kind: http-request
+url: "{{baseUrl}}/owner/memberships/{{membershipId}}/assign-trainer/{{trainerId}}"
+method: PUT
+headers:
+  Authorization: Bearer {{accessToken}}
+examples: .resources/Assign Trainer.resources/examples
+order: 6000

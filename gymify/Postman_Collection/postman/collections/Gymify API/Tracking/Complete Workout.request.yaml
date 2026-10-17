@@ -1,0 +1,6 @@
+$kind: http-request
+url: "{{baseUrl}}/tracking/workouts/{{workoutLogId}}/complete"
+method: PUT
+headers:
+  Authorization: Bearer {{accessToken}}
+order: 2000

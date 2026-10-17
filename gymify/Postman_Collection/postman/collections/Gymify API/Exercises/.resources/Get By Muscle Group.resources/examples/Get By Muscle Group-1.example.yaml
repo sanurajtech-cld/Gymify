@@ -1,0 +1,61 @@
+$kind: http-example
+name: Get By Muscle Group
+request:
+  url: "{{baseUrl}}/exercises/muscle-group/{{muscleGroupId}}?page=0&size=20"
+  method: GET
+  queryParams:
+    page: "0"
+    size: "20"
+response:
+  statusCode: 200
+  statusText: ""
+  headers:
+    x-content-type-options: nosniff
+    x-xss-protection: "0"
+    cache-control: no-cache, no-store, max-age=0, must-revalidate
+    pragma: no-cache
+    expires: "0"
+    x-frame-options: SAMEORIGIN
+    content-type: application/json
+    transfer-encoding: chunked
+    date: Sat, 17 Oct 2026 10:53:25 GMT
+    keep-alive: timeout=60
+    connection: keep-alive
+  body:
+    type: json
+    content: |-
+      {
+        "success": true,
+        "data": {
+          "content": [
+            {
+              "id": "fd88c9e6-3914-45a8-b86e-92dfd7d64a06",
+              "name": "Plank",
+              "description": "Core stabilization",
+              "instructions": "Hold push-up position on forearms, keep body straight",
+              "categoryId": "2bbfb695-a15f-4ebf-8eba-850d19b358d5",
+              "categoryName": "Strength Training",
+              "difficulty": "BEGINNER",
+              "exerciseType": "STRENGTH",
+              "imageUrl": null,
+              "videoUrl": null,
+              "thumbnailUrl": null,
+              "caloriesPerMinute": 5,
+              "muscleGroups": [
+                "Core"
+              ],
+              "equipment": [
+                "Bodyweight"
+              ]
+            }
+          ],
+          "page": 0,
+          "size": 20,
+          "totalElements": 1,
+          "totalPages": 1,
+          "first": true,
+          "last": true
+        },
+        "timestamp": "2026-10-17T10:53:25.804702Z"
+      }
+order: 1654578728651635

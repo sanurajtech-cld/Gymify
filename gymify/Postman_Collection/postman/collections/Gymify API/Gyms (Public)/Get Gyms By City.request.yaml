@@ -1,0 +1,8 @@
+$kind: http-request
+url: "{{baseUrl}}/gyms/city/Delhi?page=0&size=20"
+method: GET
+queryParams:
+  page: "0"
+  size: "20"
+examples: .resources/Get Gyms By City.resources/examples
+order: 5000

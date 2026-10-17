@@ -1,0 +1,4 @@
+name: fy
+values:
+  - key: baseurl
+    value: ''

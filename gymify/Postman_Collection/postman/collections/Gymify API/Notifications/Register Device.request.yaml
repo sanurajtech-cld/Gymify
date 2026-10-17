@@ -1,0 +1,11 @@
+$kind: http-request
+url: "{{baseUrl}}/notifications/devices"
+method: POST
+headers:
+  Authorization: Bearer {{accessToken}}
+  Content-Type: application/json
+body:
+  type: text
+  content: '{"deviceToken":"fcm-token","deviceType":"ANDROID","deviceName":"Samsung S21"}'
+examples: .resources/Register Device.resources/examples
+order: 8000

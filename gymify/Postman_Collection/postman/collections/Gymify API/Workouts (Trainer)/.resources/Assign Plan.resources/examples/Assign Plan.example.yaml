@@ -1,0 +1,55 @@
+$kind: http-example
+request:
+  url: "{{baseUrl}}/trainer/workouts/assign"
+  method: POST
+  headers:
+    Authorization: Bearer {{accessToken}}
+    Content-Type: application/json
+  body:
+    type: json
+    content: |-
+      {
+          "planId": "{{workoutPlanId}}",
+          "customerId": "{{userId}}",
+          "gymId": "{{gymId}}",
+          "startDate": "2024-01-15",
+          "endDate": "2024-02-15"
+      }
+response:
+  statusCode: 201
+  statusText: ""
+  headers:
+    x-content-type-options: nosniff
+    x-xss-protection: "0"
+    cache-control: no-cache, no-store, max-age=0, must-revalidate
+    pragma: no-cache
+    expires: "0"
+    x-frame-options: SAMEORIGIN
+    content-type: application/json
+    transfer-encoding: chunked
+    date: Sat, 17 Oct 2026 15:29:32 GMT
+    keep-alive: timeout=60
+    connection: keep-alive
+  body:
+    type: json
+    content: |-
+      {
+        "success": true,
+        "message": "Plan assigned",
+        "data": {
+          "id": "41208d38-3218-4248-b101-dced26e6643a",
+          "planId": "8d2b73c5-74d4-4f66-b180-98440d72fb31",
+          "planName": "Beginner Full Body",
+          "customerId": "89e0bdea-291b-4e6c-82d2-59d817e8c31a",
+          "customerName": "Priya Nair",
+          "trainerId": "89e0bdea-291b-4e6c-82d2-59d817e8c31a",
+          "trainerName": "Priya",
+          "gymId": "b0b7acf4-c5d7-4e01-8d03-10fb3bf4052c",
+          "startDate": "2024-01-15",
+          "endDate": "2024-02-15",
+          "status": "ACTIVE",
+          "notes": null
+        },
+        "timestamp": "2026-10-17T15:29:32.595311Z"
+      }
+order: 1792250985275

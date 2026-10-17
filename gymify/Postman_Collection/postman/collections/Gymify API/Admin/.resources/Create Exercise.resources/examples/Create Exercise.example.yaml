@@ -1,0 +1,58 @@
+$kind: http-example
+request:
+  url: "{{baseUrl}}/admin/exercises"
+  method: POST
+  headers:
+    Authorization: Bearer {{accessToken}}
+    Content-Type: application/json
+  body:
+    type: json
+    content: |-
+      {
+          "name": "Barbell Squat",
+          "description": "Compound lower body exercise",
+          "instructions": "1. Stand with feet shoulder-width apart\n2. Lower body by bending knees\n3. Push through heels to stand",
+          "difficulty": "INTERMEDIATE",
+          "exerciseType": "STRENGTH",
+          "caloriesPerMinute": 8.5
+      }
+response:
+  statusCode: 201
+  statusText: ""
+  headers:
+    x-content-type-options: nosniff
+    x-xss-protection: "0"
+    cache-control: no-cache, no-store, max-age=0, must-revalidate
+    pragma: no-cache
+    expires: "0"
+    x-frame-options: SAMEORIGIN
+    content-type: application/json
+    transfer-encoding: chunked
+    date: Sat, 17 Oct 2026 15:09:22 GMT
+    keep-alive: timeout=60
+    connection: keep-alive
+  body:
+    type: json
+    content: |-
+      {
+        "success": true,
+        "message": "Exercise created",
+        "data": {
+          "id": "2dbdf0dc-6773-4e5e-8c76-08bb5248513e",
+          "name": "Barbell Squat",
+          "description": "Compound lower body exercise",
+          "instructions": "1. Stand with feet shoulder-width apart\n2. Lower body by bending knees\n3. Push through heels to stand",
+          "categoryId": null,
+          "categoryName": null,
+          "difficulty": "INTERMEDIATE",
+          "exerciseType": "STRENGTH",
+          "imageUrl": null,
+          "videoUrl": null,
+          "thumbnailUrl": null,
+          "caloriesPerMinute": 8.5,
+          "muscleGroups": [],
+          "equipment": []
+        },
+        "timestamp": "2026-10-17T15:09:22.804444Z"
+      }
+order: 1792249768448

@@ -1,0 +1,9 @@
+$kind: http-request
+url: "{{baseUrl}}/tracking/measurements?page=0&size=20"
+method: GET
+headers:
+  Authorization: Bearer {{accessToken}}
+queryParams:
+  page: "0"
+  size: "20"
+order: 6000

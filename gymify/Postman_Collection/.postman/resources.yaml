@@ -1,0 +1,15 @@
+# Use this workspace to collaborate
+workspace:
+  id: e38ed2c8-e569-402f-8a80-c3a163e1201c
+
+# Each entry here maps a local resource to one or more corresponding objects in Postman Cloud
+
+cloudResources:
+  collections:
+    ../postman/collections/Gymify API: 1c5b7f47-33ee-4b4a-a4e8-e3e4bf6ae41f
+
+# All resources in the `postman/` folder are automatically registered in Local View.
+# Point to additional files outside the `postman/` folder to register them individually. Example:
+#localResources:
+#  collections:
+#    - ../tests/E2E Test Collection/

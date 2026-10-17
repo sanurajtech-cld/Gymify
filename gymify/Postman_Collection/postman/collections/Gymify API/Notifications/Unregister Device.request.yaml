@@ -1,0 +1,6 @@
+$kind: http-request
+url: "{{baseUrl}}/notifications/devices/fcm-token"
+method: DELETE
+headers:
+  Authorization: Bearer {{accessToken}}
+order: 9000

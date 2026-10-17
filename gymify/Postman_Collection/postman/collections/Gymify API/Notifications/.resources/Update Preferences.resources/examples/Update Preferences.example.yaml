@@ -1,0 +1,47 @@
+$kind: http-example
+request:
+  url: "{{baseUrl}}/notifications/preferences"
+  method: PUT
+  headers:
+    Authorization: Bearer {{accessToken}}
+    Content-Type: application/json
+  body:
+    type: json
+    content: |-
+      {
+          "workoutReminders": true,
+          "membershipAlerts": true,
+          "planUpdates": true,
+          "promotional": true,
+          "reminderTime": "08:00"
+      }
+response:
+  statusCode: 200
+  statusText: ""
+  headers:
+    x-content-type-options: nosniff
+    x-xss-protection: "0"
+    cache-control: no-cache, no-store, max-age=0, must-revalidate
+    pragma: no-cache
+    expires: "0"
+    x-frame-options: SAMEORIGIN
+    content-type: application/json
+    transfer-encoding: chunked
+    date: Sat, 17 Oct 2026 15:13:29 GMT
+    keep-alive: timeout=60
+    connection: keep-alive
+  body:
+    type: json
+    content: |-
+      {
+        "success": true,
+        "data": {
+          "workoutReminders": true,
+          "membershipAlerts": true,
+          "planUpdates": true,
+          "promotional": true,
+          "reminderTime": "08:00:00"
+        },
+        "timestamp": "2026-10-17T15:13:29.785550Z"
+      }
+order: 1792250013713

@@ -1,0 +1,8 @@
+$kind: http-request
+url: "{{baseUrl}}/gyms/search?query=fitness&page=0&size=20"
+method: GET
+queryParams:
+  query: fitness
+  page: "0"
+  size: "20"
+order: 3247

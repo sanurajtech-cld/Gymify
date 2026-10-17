@@ -1,0 +1,65 @@
+$kind: http-example
+request:
+  url: "{{baseUrl}}/admin/gyms/pending?page=0&size=20"
+  method: GET
+  headers:
+    Authorization: Bearer {{accessToken}}
+  queryParams:
+    page: "0"
+    size: "20"
+response:
+  statusCode: 200
+  statusText: ""
+  headers:
+    x-content-type-options: nosniff
+    x-xss-protection: "0"
+    cache-control: no-cache, no-store, max-age=0, must-revalidate
+    pragma: no-cache
+    expires: "0"
+    x-frame-options: SAMEORIGIN
+    content-type: application/json
+    transfer-encoding: chunked
+    date: Sat, 17 Oct 2026 15:06:43 GMT
+    keep-alive: timeout=60
+    connection: keep-alive
+  body:
+    type: json
+    content: |-
+      {
+        "success": true,
+        "data": {
+          "content": [
+            {
+              "id": "b0b7acf4-c5d7-4e01-8d03-10fb3bf4052c",
+              "ownerId": "8b65515f-cdc3-45e6-885e-930512c05a29",
+              "name": "Terra FitZone Premium",
+              "description": "Updated description",
+              "logoUrl": null,
+              "addressLine1": "123 Main St",
+              "addressLine2": null,
+              "city": "Delhi",
+              "state": "Delhi",
+              "country": "India",
+              "postalCode": "110001",
+              "latitude": 28.6139,
+              "longitude": 77.209,
+              "phone": "+911234567890",
+              "email": "contact@fitzone.com",
+              "website": null,
+              "status": "PENDING",
+              "isActive": true,
+              "facilities": [],
+              "photos": [],
+              "operatingHours": []
+            }
+          ],
+          "page": 0,
+          "size": 20,
+          "totalElements": 1,
+          "totalPages": 1,
+          "first": true,
+          "last": true
+        },
+        "timestamp": "2026-10-17T15:06:43.853201Z"
+      }
+order: 1792249622402

@@ -1,0 +1,47 @@
+$kind: http-example
+request:
+  url: "{{baseUrl}}/memberships/my"
+  method: GET
+  headers:
+    Authorization: Bearer {{accessToken}}
+response:
+  statusCode: 200
+  statusText: ""
+  headers:
+    x-content-type-options: nosniff
+    x-xss-protection: "0"
+    cache-control: no-cache, no-store, max-age=0, must-revalidate
+    pragma: no-cache
+    expires: "0"
+    x-frame-options: SAMEORIGIN
+    content-type: application/json
+    transfer-encoding: chunked
+    date: Sat, 17 Oct 2026 10:44:38 GMT
+    keep-alive: timeout=60
+    connection: keep-alive
+  body:
+    type: json
+    content: |-
+      {
+        "success": true,
+        "data": [
+          {
+            "id": "15925085-eb18-48a2-b617-6fbd6f548344",
+            "userId": "c4d66e2d-1873-4d03-afb7-26cc11fc0da9",
+            "gymId": "dd88cee7-4317-4034-ba9d-bfbceffbf907",
+            "gymName": "Fitness First Koramangala",
+            "planId": "9d5b8987-8e14-4d44-966b-88617f03c4d8",
+            "planName": "Quarterly Premium",
+            "assignedTrainerId": "79e617f7-fe1b-40b4-8a23-f7d7a2fe6d71",
+            "assignedTrainerName": "Arjun Reddy",
+            "startDate": "2026-10-17",
+            "endDate": "2027-01-15",
+            "status": "ACTIVE",
+            "freezeStartDate": null,
+            "freezeEndDate": null,
+            "totalFreezeDaysUsed": 0
+          }
+        ],
+        "timestamp": "2026-10-17T10:44:38.761535Z"
+      }
+order: 1792233881779

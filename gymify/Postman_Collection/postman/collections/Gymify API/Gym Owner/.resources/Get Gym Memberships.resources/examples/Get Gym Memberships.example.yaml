@@ -1,0 +1,74 @@
+$kind: http-example
+request:
+  url: "{{baseUrl}}/owner/memberships/gym/{{gymId}}?page=0&size=20"
+  method: GET
+  headers:
+    Authorization: Bearer {{accessToken}}
+  queryParams:
+    page: "0"
+    size: "20"
+response:
+  statusCode: 200
+  statusText: ""
+  headers:
+    x-content-type-options: nosniff
+    x-xss-protection: "0"
+    cache-control: no-cache, no-store, max-age=0, must-revalidate
+    pragma: no-cache
+    expires: "0"
+    x-frame-options: SAMEORIGIN
+    content-type: application/json
+    transfer-encoding: chunked
+    date: Sat, 17 Oct 2026 10:34:27 GMT
+    keep-alive: timeout=60
+    connection: keep-alive
+  body:
+    type: json
+    content: |-
+      {
+        "success": true,
+        "data": {
+          "content": [
+            {
+              "id": "15925085-eb18-48a2-b617-6fbd6f548344",
+              "userId": "c4d66e2d-1873-4d03-afb7-26cc11fc0da9",
+              "gymId": "dd88cee7-4317-4034-ba9d-bfbceffbf907",
+              "gymName": "Fitness First Koramangala",
+              "planId": "9d5b8987-8e14-4d44-966b-88617f03c4d8",
+              "planName": "Quarterly Premium",
+              "assignedTrainerId": "79e617f7-fe1b-40b4-8a23-f7d7a2fe6d71",
+              "assignedTrainerName": "Arjun Reddy",
+              "startDate": "2026-10-17",
+              "endDate": "2027-01-15",
+              "status": "ACTIVE",
+              "freezeStartDate": null,
+              "freezeEndDate": null,
+              "totalFreezeDaysUsed": 0
+            },
+            {
+              "id": "fe1cd95f-c8f2-4622-a924-5930609f21a9",
+              "userId": "afb9f2f7-8bb2-4b43-86f0-57be641cadc9",
+              "gymId": "dd88cee7-4317-4034-ba9d-bfbceffbf907",
+              "gymName": "Fitness First Koramangala",
+              "planId": "efee0af1-56f0-43f0-9aa4-0c9c25168f8e",
+              "planName": "Monthly Basic",
+              "assignedTrainerId": null,
+              "assignedTrainerName": null,
+              "startDate": "2026-10-17",
+              "endDate": "2026-11-16",
+              "status": "ACTIVE",
+              "freezeStartDate": null,
+              "freezeEndDate": null,
+              "totalFreezeDaysUsed": 0
+            }
+          ],
+          "page": 0,
+          "size": 20,
+          "totalElements": 2,
+          "totalPages": 1,
+          "first": true,
+          "last": true
+        },
+        "timestamp": "2026-10-17T10:34:27.924448Z"
+      }
+order: 1792233270345

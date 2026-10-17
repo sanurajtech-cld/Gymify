@@ -1,0 +1,15 @@
+$kind: http-request
+url: "{{baseUrl}}/memberships/purchase/{{gymId}}"
+method: POST
+headers:
+  Authorization: Bearer {{accessToken}}
+  Content-Type: application/json
+body:
+  type: text
+  content: '{"planId":"{{planId}}","startDate":"2024-01-15","trainerId":null}'
+scripts:
+  - type: afterResponse
+    code: var j=pm.response.json();if(j.success&&j.data){pm.collectionVariables.set('membershipId',j.data.id);}
+    language: text/javascript
+examples: .resources/Purchase Membership.resources/examples
+order: 4000

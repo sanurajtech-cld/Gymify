@@ -1,0 +1,9 @@
+databaseChangeLog:
+  - changeSet:
+      id: 001-create-extensions
+      author: gymify
+      changes:
+        - sql:
+            sql: CREATE EXTENSION IF NOT EXISTS postgis;
+        - sql:
+            sql: CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
