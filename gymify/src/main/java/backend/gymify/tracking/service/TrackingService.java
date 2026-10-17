@@ -99,13 +99,13 @@ public class TrackingService {
 
     @Transactional(readOnly = true)
     public PageResponse<WorkoutLogResponse> getUserWorkoutLogs(UUID userId, Pageable pageable) {
-        var page = workoutLogRepository.findByUserId(userId, pageable).map(WorkoutLogResponse::from);
+        var page = workoutLogRepository.findByUser_Id(userId, pageable).map(WorkoutLogResponse::from);
         return PageResponse.from(page);
     }
 
     @Transactional(readOnly = true)
     public List<WorkoutLogResponse> getWorkoutLogsByDateRange(UUID userId, LocalDate start, LocalDate end) {
-        return workoutLogRepository.findByUserIdAndWorkoutDateBetween(userId, start, end)
+        return workoutLogRepository.findByUser_IdAndWorkoutDateBetween(userId, start, end)
                 .stream().map(WorkoutLogResponse::from).toList();
     }
 
@@ -132,14 +132,14 @@ public class TrackingService {
 
     @Transactional(readOnly = true)
     public PageResponse<BodyMeasurementResponse> getUserMeasurements(UUID userId, Pageable pageable) {
-        var page = measurementRepository.findByUserIdOrderByMeasuredAtDesc(userId, pageable)
+        var page = measurementRepository.findByUser_IdOrderByMeasuredAtDesc(userId, pageable)
                 .map(BodyMeasurementResponse::from);
         return PageResponse.from(page);
     }
 
     @Transactional(readOnly = true)
     public List<BodyMeasurementResponse> getMeasurementHistory(UUID userId, LocalDate start, LocalDate end) {
-        return measurementRepository.findByUserIdAndMeasuredAtBetweenOrderByMeasuredAtAsc(userId, start, end)
+        return measurementRepository.findByUser_IdAndMeasuredAtBetweenOrderByMeasuredAtAsc(userId, start, end)
                 .stream().map(BodyMeasurementResponse::from).toList();
     }
 }

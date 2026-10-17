@@ -61,7 +61,7 @@ public class NotificationService {
 
     @Transactional
     public void markAllAsRead(UUID userId) {
-        notificationRepository.markAllAsRead(userId);
+        notificationRepository.markAllAsRead(userId, Instant.now());
     }
 
     @Transactional(readOnly = true)

@@ -14,10 +14,10 @@ import java.util.UUID;
 @Repository
 public interface BodyMeasurementRepository extends JpaRepository<BodyMeasurement, UUID> {
 
-    Page<BodyMeasurement> findByUserIdOrderByMeasuredAtDesc(UUID userId, Pageable pageable);
+    Page<BodyMeasurement> findByUser_IdOrderByMeasuredAtDesc(UUID userId, Pageable pageable);
 
-    List<BodyMeasurement> findByUserIdAndMeasuredAtBetweenOrderByMeasuredAtAsc(
+    List<BodyMeasurement> findByUser_IdAndMeasuredAtBetweenOrderByMeasuredAtAsc(
             UUID userId, LocalDate startDate, LocalDate endDate);
 
-    Optional<BodyMeasurement> findFirstByUserIdOrderByMeasuredAtDesc(UUID userId);
+    Optional<BodyMeasurement> findFirstByUser_IdOrderByMeasuredAtDesc(UUID userId);
 }

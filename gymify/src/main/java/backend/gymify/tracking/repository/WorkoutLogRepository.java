@@ -16,16 +16,16 @@ import java.util.UUID;
 @Repository
 public interface WorkoutLogRepository extends JpaRepository<WorkoutLog, UUID> {
 
-    Page<WorkoutLog> findByUserId(UUID userId, Pageable pageable);
+    Page<WorkoutLog> findByUser_Id(UUID userId, Pageable pageable);
 
-    List<WorkoutLog> findByUserIdAndWorkoutDateBetween(UUID userId, LocalDate startDate, LocalDate endDate);
+    List<WorkoutLog> findByUser_IdAndWorkoutDateBetween(UUID userId, LocalDate startDate, LocalDate endDate);
 
-    List<WorkoutLog> findByUserIdAndStatus(UUID userId, WorkoutLogStatus status);
+    List<WorkoutLog> findByUser_IdAndStatus(UUID userId, WorkoutLogStatus status);
 
     @Query("SELECT wl FROM WorkoutLog wl WHERE wl.assignment.id = :assignmentId ORDER BY wl.workoutDate DESC")
     List<WorkoutLog> findByAssignmentId(@Param("assignmentId") UUID assignmentId);
 
-    @Query("SELECT COUNT(wl) FROM WorkoutLog wl WHERE wl.userId = :userId AND wl.status = 'COMPLETED' " +
+    @Query("SELECT COUNT(wl) FROM WorkoutLog wl WHERE wl.user.id = :userId AND wl.status = 'COMPLETED' " +
             "AND wl.workoutDate BETWEEN :startDate AND :endDate")
     long countCompletedWorkouts(@Param("userId") UUID userId,
                                 @Param("startDate") LocalDate startDate,

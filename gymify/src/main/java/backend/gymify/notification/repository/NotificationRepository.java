@@ -9,6 +9,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.time.Instant;
 import java.util.UUID;
 
 @Repository
@@ -21,6 +22,6 @@ public interface NotificationRepository extends JpaRepository<Notification, UUID
     long countByUserIdAndIsReadFalse(UUID userId);
 
     @Modifying
-    @Query("UPDATE Notification n SET n.isRead = true, n.readAt = CURRENT_TIMESTAMP WHERE n.user.id = :userId AND n.isRead = false")
-    void markAllAsRead(@Param("userId") UUID userId);
+    @Query("UPDATE Notification n SET n.isRead = true, n.readAt = :now WHERE n.user.id = :userId AND n.isRead = false")
+    void markAllAsRead(@Param("userId") UUID userId, @Param("now") Instant now);
 }
