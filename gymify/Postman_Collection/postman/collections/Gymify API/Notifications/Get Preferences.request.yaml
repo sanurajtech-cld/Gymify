@@ -1,0 +1,7 @@
+$kind: http-request
+url: "{{baseUrl}}/notifications/preferences"
+method: GET
+headers:
+  Authorization: Bearer {{accessToken}}
+examples: .resources/Get Preferences.resources/examples
+order: 6000

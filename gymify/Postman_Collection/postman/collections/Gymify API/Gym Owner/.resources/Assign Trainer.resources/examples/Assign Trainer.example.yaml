@@ -1,0 +1,45 @@
+$kind: http-example
+request:
+  url: "{{baseUrl}}/owner/memberships/{{membershipId}}/assign-trainer/{{trainerId}}"
+  method: PUT
+  headers:
+    Authorization: Bearer {{accessToken}}
+response:
+  statusCode: 200
+  statusText: ""
+  headers:
+    x-content-type-options: nosniff
+    x-xss-protection: "0"
+    cache-control: no-cache, no-store, max-age=0, must-revalidate
+    pragma: no-cache
+    expires: "0"
+    x-frame-options: SAMEORIGIN
+    content-type: application/json
+    transfer-encoding: chunked
+    date: Sat, 17 Oct 2026 10:37:31 GMT
+    keep-alive: timeout=60
+    connection: keep-alive
+  body:
+    type: json
+    content: |-
+      {
+        "success": true,
+        "data": {
+          "id": "fe1cd95f-c8f2-4622-a924-5930609f21a9",
+          "userId": "afb9f2f7-8bb2-4b43-86f0-57be641cadc9",
+          "gymId": "dd88cee7-4317-4034-ba9d-bfbceffbf907",
+          "gymName": "Fitness First Koramangala",
+          "planId": "efee0af1-56f0-43f0-9aa4-0c9c25168f8e",
+          "planName": "Monthly Basic",
+          "assignedTrainerId": "89e0bdea-291b-4e6c-82d2-59d817e8c31a",
+          "assignedTrainerName": "Priya Nair",
+          "startDate": "2026-10-17",
+          "endDate": "2026-11-16",
+          "status": "ACTIVE",
+          "freezeStartDate": null,
+          "freezeEndDate": null,
+          "totalFreezeDaysUsed": 0
+        },
+        "timestamp": "2026-10-17T10:37:31.753033Z"
+      }
+order: 1792233469724

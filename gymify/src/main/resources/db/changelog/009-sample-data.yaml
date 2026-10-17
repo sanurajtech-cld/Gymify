@@ -1,0 +1,761 @@
+databaseChangeLog:
+  - changeSet:
+      id: 009-sample-data
+      author: gymify
+      context: sample-data
+      changes:
+        # ============================================
+        # USERS (Password: Test@123 - BCrypt encoded)
+        # ============================================
+        - insert:
+            tableName: users
+            columns:
+              - column: { name: id, value: '11111111-1111-1111-1111-111111111111' }
+              - column: { name: email, value: 'admin@gymify.com' }
+              - column: { name: phone, value: '+919876543210' }
+              - column: { name: password_hash, value: '$2a$10$N9qo8uLOickgx2ZMRZoMy.MqrqBuBjZe3/JYtJ8Hs8Hs8Hs8Hs8H' }
+              - column: { name: first_name, value: 'Rajesh' }
+              - column: { name: last_name, value: 'Kumar' }
+              - column: { name: date_of_birth, value: '1985-03-15' }
+              - column: { name: gender, value: 'MALE' }
+              - column: { name: is_active, valueBoolean: true }
+              - column: { name: is_email_verified, valueBoolean: true }
+
+        - insert:
+            tableName: users
+            columns:
+              - column: { name: id, value: '22222222-2222-2222-2222-222222222222' }
+              - column: { name: email, value: 'owner@fitnessfirst.com' }
+              - column: { name: phone, value: '+919876543211' }
+              - column: { name: password_hash, value: '$2a$10$N9qo8uLOickgx2ZMRZoMy.MqrqBuBjZe3/JYtJ8Hs8Hs8Hs8Hs8H' }
+              - column: { name: first_name, value: 'Vikram' }
+              - column: { name: last_name, value: 'Sharma' }
+              - column: { name: date_of_birth, value: '1980-07-20' }
+              - column: { name: gender, value: 'MALE' }
+              - column: { name: is_active, valueBoolean: true }
+              - column: { name: is_email_verified, valueBoolean: true }
+
+        - insert:
+            tableName: users
+            columns:
+              - column: { name: id, value: '33333333-3333-3333-3333-333333333333' }
+              - column: { name: email, value: 'trainer.arjun@gymify.com' }
+              - column: { name: phone, value: '+919876543212' }
+              - column: { name: password_hash, value: '$2a$10$N9qo8uLOickgx2ZMRZoMy.MqrqBuBjZe3/JYtJ8Hs8Hs8Hs8Hs8H' }
+              - column: { name: first_name, value: 'Arjun' }
+              - column: { name: last_name, value: 'Reddy' }
+              - column: { name: date_of_birth, value: '1992-11-10' }
+              - column: { name: gender, value: 'MALE' }
+              - column: { name: is_active, valueBoolean: true }
+              - column: { name: is_email_verified, valueBoolean: true }
+
+        - insert:
+            tableName: users
+            columns:
+              - column: { name: id, value: '44444444-4444-4444-4444-444444444444' }
+              - column: { name: email, value: 'trainer.priya@gymify.com' }
+              - column: { name: phone, value: '+919876543213' }
+              - column: { name: password_hash, value: '$2a$10$N9qo8uLOickgx2ZMRZoMy.MqrqBuBjZe3/JYtJ8Hs8Hs8Hs8Hs8H' }
+              - column: { name: first_name, value: 'Priya' }
+              - column: { name: last_name, value: 'Nair' }
+              - column: { name: date_of_birth, value: '1995-04-25' }
+              - column: { name: gender, value: 'FEMALE' }
+              - column: { name: is_active, valueBoolean: true }
+              - column: { name: is_email_verified, valueBoolean: true }
+
+        - insert:
+            tableName: users
+            columns:
+              - column: { name: id, value: '55555555-5555-5555-5555-555555555555' }
+              - column: { name: email, value: 'customer.amit@gmail.com' }
+              - column: { name: phone, value: '+919876543214' }
+              - column: { name: password_hash, value: '$2a$10$N9qo8uLOickgx2ZMRZoMy.MqrqBuBjZe3/JYtJ8Hs8Hs8Hs8Hs8H' }
+              - column: { name: first_name, value: 'Amit' }
+              - column: { name: last_name, value: 'Patel' }
+              - column: { name: date_of_birth, value: '1998-08-12' }
+              - column: { name: gender, value: 'MALE' }
+              - column: { name: is_active, valueBoolean: true }
+              - column: { name: is_email_verified, valueBoolean: true }
+
+        - insert:
+            tableName: users
+            columns:
+              - column: { name: id, value: '66666666-6666-6666-6666-666666666666' }
+              - column: { name: email, value: 'customer.sneha@gmail.com' }
+              - column: { name: phone, value: '+919876543215' }
+              - column: { name: password_hash, value: '$2a$10$N9qo8uLOickgx2ZMRZoMy.MqrqBuBjZe3/JYtJ8Hs8Hs8Hs8Hs8H' }
+              - column: { name: first_name, value: 'Sneha' }
+              - column: { name: last_name, value: 'Iyer' }
+              - column: { name: date_of_birth, value: '1996-02-28' }
+              - column: { name: gender, value: 'FEMALE' }
+              - column: { name: is_active, valueBoolean: true }
+              - column: { name: is_email_verified, valueBoolean: true }
+
+        # ============================================
+        # USER ROLES ASSIGNMENT
+        # ============================================
+        - sql:
+            sql: |
+              INSERT INTO user_roles (user_id, role_id) 
+              SELECT '11111111-1111-1111-1111-111111111111', id FROM roles WHERE name = 'ADMIN';
+              INSERT INTO user_roles (user_id, role_id) 
+              SELECT '22222222-2222-2222-2222-222222222222', id FROM roles WHERE name = 'GYM_OWNER';
+              INSERT INTO user_roles (user_id, role_id) 
+              SELECT '33333333-3333-3333-3333-333333333333', id FROM roles WHERE name = 'TRAINER';
+              INSERT INTO user_roles (user_id, role_id) 
+              SELECT '44444444-4444-4444-4444-444444444444', id FROM roles WHERE name = 'TRAINER';
+              INSERT INTO user_roles (user_id, role_id) 
+              SELECT '55555555-5555-5555-5555-555555555555', id FROM roles WHERE name = 'CUSTOMER';
+              INSERT INTO user_roles (user_id, role_id) 
+              SELECT '66666666-6666-6666-6666-666666666666', id FROM roles WHERE name = 'CUSTOMER';
+
+        # ============================================
+        # FACILITIES
+        # ============================================
+        - insert:
+            tableName: facilities
+            columns:
+              - column: { name: id, value: 'f1111111-1111-1111-1111-111111111111' }
+              - column: { name: name, value: 'Air Conditioning' }
+              - column: { name: icon, value: 'ac_unit' }
+              - column: { name: description, value: 'Fully air-conditioned facility' }
+
+        - insert:
+            tableName: facilities
+            columns:
+              - column: { name: id, value: 'f2222222-2222-2222-2222-222222222222' }
+              - column: { name: name, value: 'Parking' }
+              - column: { name: icon, value: 'local_parking' }
+              - column: { name: description, value: 'Free parking available' }
+
+        - insert:
+            tableName: facilities
+            columns:
+              - column: { name: id, value: 'f3333333-3333-3333-3333-333333333333' }
+              - column: { name: name, value: 'Locker Room' }
+              - column: { name: icon, value: 'lock' }
+              - column: { name: description, value: 'Secure locker rooms with showers' }
+
+        - insert:
+            tableName: facilities
+            columns:
+              - column: { name: id, value: 'f4444444-4444-4444-4444-444444444444' }
+              - column: { name: name, value: 'Steam Room' }
+              - column: { name: icon, value: 'hot_tub' }
+              - column: { name: description, value: 'Steam and sauna facility' }
+
+        - insert:
+            tableName: facilities
+            columns:
+              - column: { name: id, value: 'f5555555-5555-5555-5555-555555555555' }
+              - column: { name: name, value: 'Cardio Zone' }
+              - column: { name: icon, value: 'directions_run' }
+              - column: { name: description, value: 'Dedicated cardio equipment area' }
+
+        - insert:
+            tableName: facilities
+            columns:
+              - column: { name: id, value: 'f6666666-6666-6666-6666-666666666666' }
+              - column: { name: name, value: 'Personal Training' }
+              - column: { name: icon, value: 'fitness_center' }
+              - column: { name: description, value: 'Certified personal trainers available' }
+
+        # ============================================
+        # GYMS (Bangalore locations)
+        # ============================================
+        - insert:
+            tableName: gyms
+            columns:
+              - column: { name: id, value: 'g1111111-1111-1111-1111-111111111111' }
+              - column: { name: owner_id, value: '22222222-2222-2222-2222-222222222222' }
+              - column: { name: name, value: 'Fitness First Koramangala' }
+              - column: { name: description, value: 'Premium fitness center in the heart of Koramangala with state-of-the-art equipment' }
+              - column: { name: address_line1, value: '80 Feet Road, 4th Block' }
+              - column: { name: address_line2, value: 'Near Sony Signal' }
+              - column: { name: city, value: 'Bengaluru' }
+              - column: { name: state, value: 'Karnataka' }
+              - column: { name: country, value: 'India' }
+              - column: { name: postal_code, value: '560034' }
+              - column: { name: phone, value: '+918041234567' }
+              - column: { name: email, value: 'koramangala@fitnessfirst.com' }
+              - column: { name: status, value: 'APPROVED' }
+              - column: { name: is_active, valueBoolean: true }
+
+        - insert:
+            tableName: gyms
+            columns:
+              - column: { name: id, value: 'g2222222-2222-2222-2222-222222222222' }
+              - column: { name: owner_id, value: '22222222-2222-2222-2222-222222222222' }
+              - column: { name: name, value: 'Fitness First Indiranagar' }
+              - column: { name: description, value: 'Modern gym with CrossFit zone and yoga studio in Indiranagar' }
+              - column: { name: address_line1, value: '100 Feet Road, HAL 2nd Stage' }
+              - column: { name: address_line2, value: 'Above Starbucks' }
+              - column: { name: city, value: 'Bengaluru' }
+              - column: { name: state, value: 'Karnataka' }
+              - column: { name: country, value: 'India' }
+              - column: { name: postal_code, value: '560038' }
+              - column: { name: phone, value: '+918041234568' }
+              - column: { name: email, value: 'indiranagar@fitnessfirst.com' }
+              - column: { name: status, value: 'APPROVED' }
+              - column: { name: is_active, valueBoolean: true }
+
+        # ============================================
+        # GYM FACILITIES MAPPING
+        # ============================================
+        - sql:
+            sql: |
+              INSERT INTO gym_facilities (gym_id, facility_id) VALUES 
+              ('g1111111-1111-1111-1111-111111111111', 'f1111111-1111-1111-1111-111111111111'),
+              ('g1111111-1111-1111-1111-111111111111', 'f2222222-2222-2222-2222-222222222222'),
+              ('g1111111-1111-1111-1111-111111111111', 'f3333333-3333-3333-3333-333333333333'),
+              ('g1111111-1111-1111-1111-111111111111', 'f4444444-4444-4444-4444-444444444444'),
+              ('g1111111-1111-1111-1111-111111111111', 'f5555555-5555-5555-5555-555555555555'),
+              ('g1111111-1111-1111-1111-111111111111', 'f6666666-6666-6666-6666-666666666666'),
+              ('g2222222-2222-2222-2222-222222222222', 'f1111111-1111-1111-1111-111111111111'),
+              ('g2222222-2222-2222-2222-222222222222', 'f2222222-2222-2222-2222-222222222222'),
+              ('g2222222-2222-2222-2222-222222222222', 'f3333333-3333-3333-3333-333333333333'),
+              ('g2222222-2222-2222-2222-222222222222', 'f5555555-5555-5555-5555-555555555555'),
+              ('g2222222-2222-2222-2222-222222222222', 'f6666666-6666-6666-6666-666666666666');
+
+        # ============================================
+        # GYM OPERATING HOURS (0=Sunday, 6=Saturday)
+        # ============================================
+        - sql:
+            sql: |
+              INSERT INTO gym_operating_hours (gym_id, day_of_week, open_time, close_time, is_closed) VALUES
+              ('g1111111-1111-1111-1111-111111111111', 0, '07:00', '20:00', false),
+              ('g1111111-1111-1111-1111-111111111111', 1, '05:30', '22:00', false),
+              ('g1111111-1111-1111-1111-111111111111', 2, '05:30', '22:00', false),
+              ('g1111111-1111-1111-1111-111111111111', 3, '05:30', '22:00', false),
+              ('g1111111-1111-1111-1111-111111111111', 4, '05:30', '22:00', false),
+              ('g1111111-1111-1111-1111-111111111111', 5, '05:30', '22:00', false),
+              ('g1111111-1111-1111-1111-111111111111', 6, '06:00', '21:00', false),
+              ('g2222222-2222-2222-2222-222222222222', 0, '08:00', '18:00', false),
+              ('g2222222-2222-2222-2222-222222222222', 1, '06:00', '22:00', false),
+              ('g2222222-2222-2222-2222-222222222222', 2, '06:00', '22:00', false),
+              ('g2222222-2222-2222-2222-222222222222', 3, '06:00', '22:00', false),
+              ('g2222222-2222-2222-2222-222222222222', 4, '06:00', '22:00', false),
+              ('g2222222-2222-2222-2222-222222222222', 5, '06:00', '22:00', false),
+              ('g2222222-2222-2222-2222-222222222222', 6, '06:00', '20:00', false);
+
+        # ============================================
+        # GYM TRAINERS
+        # ============================================
+        - sql:
+            sql: |
+              INSERT INTO gym_trainers (gym_id, trainer_id, is_active) VALUES
+              ('g1111111-1111-1111-1111-111111111111', '33333333-3333-3333-3333-333333333333', true),
+              ('g1111111-1111-1111-1111-111111111111', '44444444-4444-4444-4444-444444444444', true),
+              ('g2222222-2222-2222-2222-222222222222', '33333333-3333-3333-3333-333333333333', true);
+
+        # ============================================
+        # MEMBERSHIP PLANS
+        # ============================================
+        - insert:
+            tableName: membership_plans
+            columns:
+              - column: { name: id, value: 'mp111111-1111-1111-1111-111111111111' }
+              - column: { name: gym_id, value: 'g1111111-1111-1111-1111-111111111111' }
+              - column: { name: name, value: 'Monthly Basic' }
+              - column: { name: description, value: 'Basic monthly membership with gym access' }
+              - column: { name: duration_days, valueNumeric: 30 }
+              - column: { name: price, valueNumeric: 1500.00 }
+              - column: { name: currency, value: 'INR' }
+              - column: { name: includes_trainer, valueBoolean: false }
+              - column: { name: max_freeze_days, valueNumeric: 3 }
+              - column: { name: is_active, valueBoolean: true }
+
+        - insert:
+            tableName: membership_plans
+            columns:
+              - column: { name: id, value: 'mp222222-2222-2222-2222-222222222222' }
+              - column: { name: gym_id, value: 'g1111111-1111-1111-1111-111111111111' }
+              - column: { name: name, value: 'Quarterly Premium' }
+              - column: { name: description, value: '3-month premium membership with personal trainer' }
+              - column: { name: duration_days, valueNumeric: 90 }
+              - column: { name: price, valueNumeric: 6000.00 }
+              - column: { name: currency, value: 'INR' }
+              - column: { name: includes_trainer, valueBoolean: true }
+              - column: { name: max_freeze_days, valueNumeric: 10 }
+              - column: { name: is_active, valueBoolean: true }
+
+        - insert:
+            tableName: membership_plans
+            columns:
+              - column: { name: id, value: 'mp333333-3333-3333-3333-333333333333' }
+              - column: { name: gym_id, value: 'g1111111-1111-1111-1111-111111111111' }
+              - column: { name: name, value: 'Annual Gold' }
+              - column: { name: description, value: 'Annual membership with all facilities and personal trainer' }
+              - column: { name: duration_days, valueNumeric: 365 }
+              - column: { name: price, valueNumeric: 18000.00 }
+              - column: { name: currency, value: 'INR' }
+              - column: { name: includes_trainer, valueBoolean: true }
+              - column: { name: max_freeze_days, valueNumeric: 30 }
+              - column: { name: is_active, valueBoolean: true }
+
+        - insert:
+            tableName: membership_plans
+            columns:
+              - column: { name: id, value: 'mp444444-4444-4444-4444-444444444444' }
+              - column: { name: gym_id, value: 'g2222222-2222-2222-2222-222222222222' }
+              - column: { name: name, value: 'Monthly Standard' }
+              - column: { name: description, value: 'Standard monthly gym access' }
+              - column: { name: duration_days, valueNumeric: 30 }
+              - column: { name: price, valueNumeric: 1800.00 }
+              - column: { name: currency, value: 'INR' }
+              - column: { name: includes_trainer, valueBoolean: false }
+              - column: { name: max_freeze_days, valueNumeric: 5 }
+              - column: { name: is_active, valueBoolean: true }
+
+        # ============================================
+        # MEMBERSHIPS
+        # ============================================
+        - sql:
+            sql: |
+              INSERT INTO memberships (id, user_id, gym_id, plan_id, assigned_trainer_id, start_date, end_date, status) VALUES
+              ('m1111111-1111-1111-1111-111111111111', '55555555-5555-5555-5555-555555555555', 'g1111111-1111-1111-1111-111111111111', 'mp222222-2222-2222-2222-222222222222', '33333333-3333-3333-3333-333333333333', CURRENT_DATE, CURRENT_DATE + INTERVAL '90 days', 'ACTIVE'),
+              ('m2222222-2222-2222-2222-222222222222', '66666666-6666-6666-6666-666666666666', 'g1111111-1111-1111-1111-111111111111', 'mp111111-1111-1111-1111-111111111111', NULL, CURRENT_DATE, CURRENT_DATE + INTERVAL '30 days', 'ACTIVE');
+
+        # ============================================
+        # PAYMENTS
+        # ============================================
+        - sql:
+            sql: |
+              INSERT INTO payments (id, membership_id, user_id, amount, currency, payment_method, gateway, status, paid_at) VALUES
+              ('pay11111-1111-1111-1111-111111111111', 'm1111111-1111-1111-1111-111111111111', '55555555-5555-5555-5555-555555555555', 6000.00, 'INR', 'UPI', 'RAZORPAY', 'COMPLETED', CURRENT_TIMESTAMP),
+              ('pay22222-2222-2222-2222-222222222222', 'm2222222-2222-2222-2222-222222222222', '66666666-6666-6666-6666-666666666666', 1500.00, 'INR', 'CARD', 'RAZORPAY', 'COMPLETED', CURRENT_TIMESTAMP);
+
+        # ============================================
+        # EXERCISE CATEGORIES
+        # ============================================
+        - insert:
+            tableName: exercise_categories
+            columns:
+              - column: { name: id, value: 'ec111111-1111-1111-1111-111111111111' }
+              - column: { name: name, value: 'Strength Training' }
+              - column: { name: description, value: 'Exercises focused on building muscle strength' }
+              - column: { name: icon, value: 'fitness_center' }
+
+        - insert:
+            tableName: exercise_categories
+            columns:
+              - column: { name: id, value: 'ec222222-2222-2222-2222-222222222222' }
+              - column: { name: name, value: 'Cardio' }
+              - column: { name: description, value: 'Cardiovascular exercises for endurance' }
+              - column: { name: icon, value: 'directions_run' }
+
+        - insert:
+            tableName: exercise_categories
+            columns:
+              - column: { name: id, value: 'ec333333-3333-3333-3333-333333333333' }
+              - column: { name: name, value: 'Flexibility' }
+              - column: { name: description, value: 'Stretching and flexibility exercises' }
+              - column: { name: icon, value: 'self_improvement' }
+
+        - insert:
+            tableName: exercise_categories
+            columns:
+              - column: { name: id, value: 'ec444444-4444-4444-4444-444444444444' }
+              - column: { name: name, value: 'HIIT' }
+              - column: { name: description, value: 'High-Intensity Interval Training' }
+              - column: { name: icon, value: 'timer' }
+
+        # ============================================
+        # MUSCLE GROUPS
+        # ============================================
+        - insert:
+            tableName: muscle_groups
+            columns:
+              - column: { name: id, value: 'mg111111-1111-1111-1111-111111111111' }
+              - column: { name: name, value: 'Chest' }
+              - column: { name: body_region, value: 'UPPER_BODY' }
+
+        - insert:
+            tableName: muscle_groups
+            columns:
+              - column: { name: id, value: 'mg222222-2222-2222-2222-222222222222' }
+              - column: { name: name, value: 'Back' }
+              - column: { name: body_region, value: 'UPPER_BODY' }
+
+        - insert:
+            tableName: muscle_groups
+            columns:
+              - column: { name: id, value: 'mg333333-3333-3333-3333-333333333333' }
+              - column: { name: name, value: 'Shoulders' }
+              - column: { name: body_region, value: 'UPPER_BODY' }
+
+        - insert:
+            tableName: muscle_groups
+            columns:
+              - column: { name: id, value: 'mg444444-4444-4444-4444-444444444444' }
+              - column: { name: name, value: 'Biceps' }
+              - column: { name: body_region, value: 'ARMS' }
+
+        - insert:
+            tableName: muscle_groups
+            columns:
+              - column: { name: id, value: 'mg555555-5555-5555-5555-555555555555' }
+              - column: { name: name, value: 'Triceps' }
+              - column: { name: body_region, value: 'ARMS' }
+
+        - insert:
+            tableName: muscle_groups
+            columns:
+              - column: { name: id, value: 'mg666666-6666-6666-6666-666666666666' }
+              - column: { name: name, value: 'Quadriceps' }
+              - column: { name: body_region, value: 'LEGS' }
+
+        - insert:
+            tableName: muscle_groups
+            columns:
+              - column: { name: id, value: 'mg777777-7777-7777-7777-777777777777' }
+              - column: { name: name, value: 'Hamstrings' }
+              - column: { name: body_region, value: 'LEGS' }
+
+        - insert:
+            tableName: muscle_groups
+            columns:
+              - column: { name: id, value: 'mg888888-8888-8888-8888-888888888888' }
+              - column: { name: name, value: 'Core' }
+              - column: { name: body_region, value: 'CORE' }
+
+        # ============================================
+        # EQUIPMENT
+        # ============================================
+        - insert:
+            tableName: equipment
+            columns:
+              - column: { name: id, value: 'eq111111-1111-1111-1111-111111111111' }
+              - column: { name: name, value: 'Barbell' }
+              - column: { name: description, value: 'Standard Olympic barbell' }
+
+        - insert:
+            tableName: equipment
+            columns:
+              - column: { name: id, value: 'eq222222-2222-2222-2222-222222222222' }
+              - column: { name: name, value: 'Dumbbell' }
+              - column: { name: description, value: 'Free weight dumbbells' }
+
+        - insert:
+            tableName: equipment
+            columns:
+              - column: { name: id, value: 'eq333333-3333-3333-3333-333333333333' }
+              - column: { name: name, value: 'Treadmill' }
+              - column: { name: description, value: 'Cardio treadmill machine' }
+
+        - insert:
+            tableName: equipment
+            columns:
+              - column: { name: id, value: 'eq444444-4444-4444-4444-444444444444' }
+              - column: { name: name, value: 'Pull-up Bar' }
+              - column: { name: description, value: 'Fixed pull-up bar' }
+
+        - insert:
+            tableName: equipment
+            columns:
+              - column: { name: id, value: 'eq555555-5555-5555-5555-555555555555' }
+              - column: { name: name, value: 'Bench Press' }
+              - column: { name: description, value: 'Flat and incline bench' }
+
+        - insert:
+            tableName: equipment
+            columns:
+              - column: { name: id, value: 'eq666666-6666-6666-6666-666666666666' }
+              - column: { name: name, value: 'Cable Machine' }
+              - column: { name: description, value: 'Multi-functional cable machine' }
+
+        - insert:
+            tableName: equipment
+            columns:
+              - column: { name: id, value: 'eq777777-7777-7777-7777-777777777777' }
+              - column: { name: name, value: 'Bodyweight' }
+              - column: { name: description, value: 'No equipment needed' }
+
+        # ============================================
+        # EXERCISES
+        # ============================================
+        - insert:
+            tableName: exercises
+            columns:
+              - column: { name: id, value: 'ex111111-1111-1111-1111-111111111111' }
+              - column: { name: name, value: 'Barbell Bench Press' }
+              - column: { name: description, value: 'Classic chest exercise using barbell' }
+              - column: { name: instructions, value: 'Lie on bench, grip barbell slightly wider than shoulder width, lower to chest, press up' }
+              - column: { name: category_id, value: 'ec111111-1111-1111-1111-111111111111' }
+              - column: { name: difficulty, value: 'INTERMEDIATE' }
+              - column: { name: exercise_type, value: 'STRENGTH' }
+              - column: { name: calories_per_minute, valueNumeric: 8.5 }
+              - column: { name: is_active, valueBoolean: true }
+              - column: { name: created_by, value: '11111111-1111-1111-1111-111111111111' }
+
+        - insert:
+            tableName: exercises
+            columns:
+              - column: { name: id, value: 'ex222222-2222-2222-2222-222222222222' }
+              - column: { name: name, value: 'Deadlift' }
+              - column: { name: description, value: 'Compound exercise for back and legs' }
+              - column: { name: instructions, value: 'Stand with feet hip-width, grip barbell, keep back straight, lift by extending hips and knees' }
+              - column: { name: category_id, value: 'ec111111-1111-1111-1111-111111111111' }
+              - column: { name: difficulty, value: 'ADVANCED' }
+              - column: { name: exercise_type, value: 'STRENGTH' }
+              - column: { name: calories_per_minute, valueNumeric: 10.0 }
+              - column: { name: is_active, valueBoolean: true }
+              - column: { name: created_by, value: '11111111-1111-1111-1111-111111111111' }
+
+        - insert:
+            tableName: exercises
+            columns:
+              - column: { name: id, value: 'ex333333-3333-3333-3333-333333333333' }
+              - column: { name: name, value: 'Squats' }
+              - column: { name: description, value: 'Fundamental leg exercise' }
+              - column: { name: instructions, value: 'Stand with feet shoulder-width, lower body by bending knees, keep chest up, return to standing' }
+              - column: { name: category_id, value: 'ec111111-1111-1111-1111-111111111111' }
+              - column: { name: difficulty, value: 'BEGINNER' }
+              - column: { name: exercise_type, value: 'STRENGTH' }
+              - column: { name: calories_per_minute, valueNumeric: 9.0 }
+              - column: { name: is_active, valueBoolean: true }
+              - column: { name: created_by, value: '11111111-1111-1111-1111-111111111111' }
+
+        - insert:
+            tableName: exercises
+            columns:
+              - column: { name: id, value: 'ex444444-4444-4444-4444-444444444444' }
+              - column: { name: name, value: 'Pull-ups' }
+              - column: { name: description, value: 'Upper body pulling exercise' }
+              - column: { name: instructions, value: 'Hang from bar with overhand grip, pull body up until chin over bar, lower with control' }
+              - column: { name: category_id, value: 'ec111111-1111-1111-1111-111111111111' }
+              - column: { name: difficulty, value: 'INTERMEDIATE' }
+              - column: { name: exercise_type, value: 'STRENGTH' }
+              - column: { name: calories_per_minute, valueNumeric: 8.0 }
+              - column: { name: is_active, valueBoolean: true }
+              - column: { name: created_by, value: '11111111-1111-1111-1111-111111111111' }
+
+        - insert:
+            tableName: exercises
+            columns:
+              - column: { name: id, value: 'ex555555-5555-5555-5555-555555555555' }
+              - column: { name: name, value: 'Treadmill Running' }
+              - column: { name: description, value: 'Cardio exercise on treadmill' }
+              - column: { name: instructions, value: 'Set desired speed and incline, maintain steady pace, use handrails only if needed' }
+              - column: { name: category_id, value: 'ec222222-2222-2222-2222-222222222222' }
+              - column: { name: difficulty, value: 'BEGINNER' }
+              - column: { name: exercise_type, value: 'CARDIO' }
+              - column: { name: calories_per_minute, valueNumeric: 12.0 }
+              - column: { name: is_active, valueBoolean: true }
+              - column: { name: created_by, value: '11111111-1111-1111-1111-111111111111' }
+
+        - insert:
+            tableName: exercises
+            columns:
+              - column: { name: id, value: 'ex666666-6666-6666-6666-666666666666' }
+              - column: { name: name, value: 'Plank' }
+              - column: { name: description, value: 'Core stabilization exercise' }
+              - column: { name: instructions, value: 'Hold push-up position on forearms, keep body straight, engage core' }
+              - column: { name: category_id, value: 'ec111111-1111-1111-1111-111111111111' }
+              - column: { name: difficulty, value: 'BEGINNER' }
+              - column: { name: exercise_type, value: 'STRENGTH' }
+              - column: { name: calories_per_minute, valueNumeric: 5.0 }
+              - column: { name: is_active, valueBoolean: true }
+              - column: { name: created_by, value: '11111111-1111-1111-1111-111111111111' }
+
+        - insert:
+            tableName: exercises
+            columns:
+              - column: { name: id, value: 'ex777777-7777-7777-7777-777777777777' }
+              - column: { name: name, value: 'Bicep Curls' }
+              - column: { name: description, value: 'Isolation exercise for biceps' }
+              - column: { name: instructions, value: 'Hold dumbbells at sides, curl weights to shoulders, lower with control' }
+              - column: { name: category_id, value: 'ec111111-1111-1111-1111-111111111111' }
+              - column: { name: difficulty, value: 'BEGINNER' }
+              - column: { name: exercise_type, value: 'STRENGTH' }
+              - column: { name: calories_per_minute, valueNumeric: 6.0 }
+              - column: { name: is_active, valueBoolean: true }
+              - column: { name: created_by, value: '11111111-1111-1111-1111-111111111111' }
+
+        - insert:
+            tableName: exercises
+            columns:
+              - column: { name: id, value: 'ex888888-8888-8888-8888-888888888888' }
+              - column: { name: name, value: 'Shoulder Press' }
+              - column: { name: description, value: 'Overhead pressing movement for shoulders' }
+              - column: { name: instructions, value: 'Hold dumbbells at shoulder height, press overhead, lower with control' }
+              - column: { name: category_id, value: 'ec111111-1111-1111-1111-111111111111' }
+              - column: { name: difficulty, value: 'INTERMEDIATE' }
+              - column: { name: exercise_type, value: 'STRENGTH' }
+              - column: { name: calories_per_minute, valueNumeric: 7.5 }
+              - column: { name: is_active, valueBoolean: true }
+              - column: { name: created_by, value: '11111111-1111-1111-1111-111111111111' }
+
+        # ============================================
+        # EXERCISE MUSCLE GROUPS MAPPING
+        # ============================================
+        - sql:
+            sql: |
+              INSERT INTO exercise_muscle_groups (exercise_id, muscle_group_id, is_primary) VALUES
+              ('ex111111-1111-1111-1111-111111111111', 'mg111111-1111-1111-1111-111111111111', true),
+              ('ex111111-1111-1111-1111-111111111111', 'mg555555-5555-5555-5555-555555555555', false),
+              ('ex222222-2222-2222-2222-222222222222', 'mg222222-2222-2222-2222-222222222222', true),
+              ('ex222222-2222-2222-2222-222222222222', 'mg666666-6666-6666-6666-666666666666', false),
+              ('ex222222-2222-2222-2222-222222222222', 'mg777777-7777-7777-7777-777777777777', false),
+              ('ex333333-3333-3333-3333-333333333333', 'mg666666-6666-6666-6666-666666666666', true),
+              ('ex333333-3333-3333-3333-333333333333', 'mg777777-7777-7777-7777-777777777777', false),
+              ('ex444444-4444-4444-4444-444444444444', 'mg222222-2222-2222-2222-222222222222', true),
+              ('ex444444-4444-4444-4444-444444444444', 'mg444444-4444-4444-4444-444444444444', false),
+              ('ex666666-6666-6666-6666-666666666666', 'mg888888-8888-8888-8888-888888888888', true),
+              ('ex777777-7777-7777-7777-777777777777', 'mg444444-4444-4444-4444-444444444444', true),
+              ('ex888888-8888-8888-8888-888888888888', 'mg333333-3333-3333-3333-333333333333', true);
+
+        # ============================================
+        # EXERCISE EQUIPMENT MAPPING
+        # ============================================
+        - sql:
+            sql: |
+              INSERT INTO exercise_equipment (exercise_id, equipment_id, is_required) VALUES
+              ('ex111111-1111-1111-1111-111111111111', 'eq111111-1111-1111-1111-111111111111', true),
+              ('ex111111-1111-1111-1111-111111111111', 'eq555555-5555-5555-5555-555555555555', true),
+              ('ex222222-2222-2222-2222-222222222222', 'eq111111-1111-1111-1111-111111111111', true),
+              ('ex333333-3333-3333-3333-333333333333', 'eq111111-1111-1111-1111-111111111111', false),
+              ('ex333333-3333-3333-3333-333333333333', 'eq777777-7777-7777-7777-777777777777', true),
+              ('ex444444-4444-4444-4444-444444444444', 'eq444444-4444-4444-4444-444444444444', true),
+              ('ex555555-5555-5555-5555-555555555555', 'eq333333-3333-3333-3333-333333333333', true),
+              ('ex666666-6666-6666-6666-666666666666', 'eq777777-7777-7777-7777-777777777777', true),
+              ('ex777777-7777-7777-7777-777777777777', 'eq222222-2222-2222-2222-222222222222', true),
+              ('ex888888-8888-8888-8888-888888888888', 'eq222222-2222-2222-2222-222222222222', true);
+
+        # ============================================
+        # WORKOUT PLANS
+        # ============================================
+        - insert:
+            tableName: workout_plans
+            columns:
+              - column: { name: id, value: 'wp111111-1111-1111-1111-111111111111' }
+              - column: { name: trainer_id, value: '33333333-3333-3333-3333-333333333333' }
+              - column: { name: name, value: 'Beginner Full Body' }
+              - column: { name: description, value: 'Perfect plan for beginners starting their fitness journey' }
+              - column: { name: goal, value: 'General Fitness' }
+              - column: { name: difficulty, value: 'BEGINNER' }
+              - column: { name: duration_weeks, valueNumeric: 4 }
+              - column: { name: is_template, valueBoolean: true }
+              - column: { name: is_published, valueBoolean: true }
+
+        - insert:
+            tableName: workout_plans
+            columns:
+              - column: { name: id, value: 'wp222222-2222-2222-2222-222222222222' }
+              - column: { name: trainer_id, value: '33333333-3333-3333-3333-333333333333' }
+              - column: { name: name, value: 'Muscle Building Pro' }
+              - column: { name: description, value: 'Advanced hypertrophy program for muscle gain' }
+              - column: { name: goal, value: 'Muscle Building' }
+              - column: { name: difficulty, value: 'ADVANCED' }
+              - column: { name: duration_weeks, valueNumeric: 8 }
+              - column: { name: is_template, valueBoolean: true }
+              - column: { name: is_published, valueBoolean: true }
+
+        - insert:
+            tableName: workout_plans
+            columns:
+              - column: { name: id, value: 'wp333333-3333-3333-3333-333333333333' }
+              - column: { name: trainer_id, value: '44444444-4444-4444-4444-444444444444' }
+              - column: { name: name, value: 'Fat Loss Express' }
+              - column: { name: description, value: 'High-intensity program designed for maximum fat burning' }
+              - column: { name: goal, value: 'Weight Loss' }
+              - column: { name: difficulty, value: 'INTERMEDIATE' }
+              - column: { name: duration_weeks, valueNumeric: 6 }
+              - column: { name: is_template, valueBoolean: true }
+              - column: { name: is_published, valueBoolean: true }
+
+        # ============================================
+        # WORKOUT DAYS
+        # ============================================
+        - sql:
+            sql: |
+              INSERT INTO workout_days (id, plan_id, day_of_week, name, is_rest_day, notes) VALUES
+              ('wd111111-1111-1111-1111-111111111111', 'wp111111-1111-1111-1111-111111111111', 1, 'Push Day', false, 'Focus on chest, shoulders, triceps'),
+              ('wd222222-2222-2222-2222-222222222222', 'wp111111-1111-1111-1111-111111111111', 2, 'Pull Day', false, 'Focus on back and biceps'),
+              ('wd333333-3333-3333-3333-333333333333', 'wp111111-1111-1111-1111-111111111111', 3, 'Rest', true, 'Active recovery - light stretching'),
+              ('wd444444-4444-4444-4444-444444444444', 'wp111111-1111-1111-1111-111111111111', 4, 'Legs Day', false, 'Focus on quadriceps, hamstrings, calves'),
+              ('wd555555-5555-5555-5555-555555555555', 'wp111111-1111-1111-1111-111111111111', 5, 'Cardio & Core', false, 'Cardio and core strengthening'),
+              ('wd666666-6666-6666-6666-666666666666', 'wp111111-1111-1111-1111-111111111111', 6, 'Rest', true, 'Complete rest day'),
+              ('wd777777-7777-7777-7777-777777777777', 'wp222222-2222-2222-2222-222222222222', 1, 'Chest & Triceps', false, 'Heavy compound movements'),
+              ('wd888888-8888-8888-8888-888888888888', 'wp222222-2222-2222-2222-222222222222', 2, 'Back & Biceps', false, 'Pull movements focus');
+
+        # ============================================
+        # WORKOUT EXERCISES
+        # ============================================
+        - sql:
+            sql: |
+              INSERT INTO workout_exercises (id, workout_day_id, exercise_id, display_order, sets, reps, rest_seconds, weight_kg, notes) VALUES
+              ('we111111-1111-1111-1111-111111111111', 'wd111111-1111-1111-1111-111111111111', 'ex111111-1111-1111-1111-111111111111', 1, 4, '8-10', 90, 40.0, 'Warm up with lighter weight first'),
+              ('we222222-2222-2222-2222-222222222222', 'wd111111-1111-1111-1111-111111111111', 'ex888888-8888-8888-8888-888888888888', 2, 3, '10-12', 60, 15.0, 'Control the movement'),
+              ('we333333-3333-3333-3333-333333333333', 'wd222222-2222-2222-2222-222222222222', 'ex444444-4444-4444-4444-444444444444', 1, 4, '6-8', 90, NULL, 'Use assisted machine if needed'),
+              ('we444444-4444-4444-4444-444444444444', 'wd222222-2222-2222-2222-222222222222', 'ex777777-7777-7777-7777-777777777777', 2, 3, '12-15', 45, 10.0, 'Squeeze at the top'),
+              ('we555555-5555-5555-5555-555555555555', 'wd444444-4444-4444-4444-444444444444', 'ex333333-3333-3333-3333-333333333333', 1, 4, '10-12', 90, 60.0, 'Go below parallel'),
+              ('we666666-6666-6666-6666-666666666666', 'wd555555-5555-5555-5555-555555555555', 'ex555555-5555-5555-5555-555555555555', 1, 1, NULL, 0, NULL, '20 minutes moderate pace'),
+              ('we777777-7777-7777-7777-777777777777', 'wd555555-5555-5555-5555-555555555555', 'ex666666-6666-6666-6666-666666666666', 2, 3, NULL, 30, NULL, 'Hold for 45-60 seconds'),
+              ('we888888-8888-8888-8888-888888888888', 'wd777777-7777-7777-7777-777777777777', 'ex111111-1111-1111-1111-111111111111', 1, 5, '5', 120, 80.0, 'Heavy compound - focus on form'),
+              ('we999999-9999-9999-9999-999999999999', 'wd888888-8888-8888-8888-888888888888', 'ex222222-2222-2222-2222-222222222222', 1, 5, '5', 180, 100.0, 'Deadlift day - warm up properly');
+
+        # ============================================
+        # WORKOUT ASSIGNMENTS
+        # ============================================
+        - sql:
+            sql: |
+              INSERT INTO workout_assignments (id, plan_id, customer_id, trainer_id, gym_id, start_date, end_date, status, notes) VALUES
+              ('wa111111-1111-1111-1111-111111111111', 'wp111111-1111-1111-1111-111111111111', '55555555-5555-5555-5555-555555555555', '33333333-3333-3333-3333-333333333333', 'g1111111-1111-1111-1111-111111111111', CURRENT_DATE, CURRENT_DATE + INTERVAL '28 days', 'ACTIVE', 'Starting with beginner plan'),
+              ('wa222222-2222-2222-2222-222222222222', 'wp333333-3333-3333-3333-333333333333', '66666666-6666-6666-6666-666666666666', '44444444-4444-4444-4444-444444444444', 'g1111111-1111-1111-1111-111111111111', CURRENT_DATE, CURRENT_DATE + INTERVAL '42 days', 'ACTIVE', 'Focus on cardio and diet');
+
+        # ============================================
+        # BODY MEASUREMENTS
+        # ============================================
+        - sql:
+            sql: |
+              INSERT INTO body_measurements (id, user_id, measured_at, weight_kg, height_cm, body_fat_percentage, chest_cm, waist_cm, hips_cm, biceps_cm, thighs_cm, notes) VALUES
+              ('bm111111-1111-1111-1111-111111111111', '55555555-5555-5555-5555-555555555555', CURRENT_DATE - INTERVAL '30 days', 75.5, 175.0, 22.0, 98.0, 86.0, 96.0, 32.0, 54.0, 'Initial measurement'),
+              ('bm222222-2222-2222-2222-222222222222', '55555555-5555-5555-5555-555555555555', CURRENT_DATE - INTERVAL '15 days', 74.0, 175.0, 20.5, 99.0, 84.0, 95.0, 33.0, 55.0, 'Good progress'),
+              ('bm333333-3333-3333-3333-333333333333', '55555555-5555-5555-5555-555555555555', CURRENT_DATE, 73.0, 175.0, 19.0, 100.0, 82.0, 94.0, 34.0, 56.0, 'Excellent progress!'),
+              ('bm444444-4444-4444-4444-444444444444', '66666666-6666-6666-6666-666666666666', CURRENT_DATE - INTERVAL '7 days', 62.0, 162.0, 28.0, 88.0, 76.0, 98.0, 26.0, 52.0, 'Starting measurements'),
+              ('bm555555-5555-5555-5555-555555555555', '66666666-6666-6666-6666-666666666666', CURRENT_DATE, 61.0, 162.0, 26.5, 87.0, 74.0, 97.0, 26.5, 51.0, 'Week 1 progress');
+
+        # ============================================
+        # WORKOUT LOGS
+        # ============================================
+        - sql:
+            sql: |
+              INSERT INTO workout_logs (id, user_id, assignment_id, workout_day_id, workout_date, started_at, completed_at, duration_minutes, calories_burned, status, notes) VALUES
+              ('wl111111-1111-1111-1111-111111111111', '55555555-5555-5555-5555-555555555555', 'wa111111-1111-1111-1111-111111111111', 'wd111111-1111-1111-1111-111111111111', CURRENT_DATE - INTERVAL '2 days', CURRENT_TIMESTAMP - INTERVAL '2 days 1 hour', CURRENT_TIMESTAMP - INTERVAL '2 days', 60, 450, 'COMPLETED', 'Great push day session'),
+              ('wl222222-2222-2222-2222-222222222222', '55555555-5555-5555-5555-555555555555', 'wa111111-1111-1111-1111-111111111111', 'wd222222-2222-2222-2222-222222222222', CURRENT_DATE - INTERVAL '1 day', CURRENT_TIMESTAMP - INTERVAL '1 day 1 hour', CURRENT_TIMESTAMP - INTERVAL '1 day', 55, 420, 'COMPLETED', 'Pull day completed'),
+              ('wl333333-3333-3333-3333-333333333333', '66666666-6666-6666-6666-666666666666', 'wa222222-2222-2222-2222-222222222222', NULL, CURRENT_DATE - INTERVAL '1 day', CURRENT_TIMESTAMP - INTERVAL '1 day 45 minutes', CURRENT_TIMESTAMP - INTERVAL '1 day', 45, 380, 'COMPLETED', 'Cardio session');
+
+        # ============================================
+        # EXERCISE LOGS
+        # ============================================
+        - sql:
+            sql: |
+              INSERT INTO exercise_logs (id, workout_log_id, exercise_id, workout_exercise_id, sets_completed, reps_completed, weight_used_kg, duration_seconds, is_completed, notes) VALUES
+              ('el111111-1111-1111-1111-111111111111', 'wl111111-1111-1111-1111-111111111111', 'ex111111-1111-1111-1111-111111111111', 'we111111-1111-1111-1111-111111111111', 4, '10,10,8,8', 40.0, NULL, true, 'Felt strong today'),
+              ('el222222-2222-2222-2222-222222222222', 'wl111111-1111-1111-1111-111111111111', 'ex888888-8888-8888-8888-888888888888', 'we222222-2222-2222-2222-222222222222', 3, '12,12,10', 15.0, NULL, true, 'Good form maintained'),
+              ('el333333-3333-3333-3333-333333333333', 'wl222222-2222-2222-2222-222222222222', 'ex444444-4444-4444-4444-444444444444', 'we333333-3333-3333-3333-333333333333', 4, '8,7,6,6', NULL, NULL, true, 'Improving each week'),
+              ('el444444-4444-4444-4444-444444444444', 'wl222222-2222-2222-2222-222222222222', 'ex777777-7777-7777-7777-777777777777', 'we444444-4444-4444-4444-444444444444', 3, '15,15,12', 10.0, NULL, true, 'Good pump'),
+              ('el555555-5555-5555-5555-555555555555', 'wl333333-3333-3333-3333-333333333333', 'ex555555-5555-5555-5555-555555555555', NULL, 1, NULL, NULL, 1800, true, '30 min treadmill at 8 km/h');
+
+        # ============================================
+        # NOTIFICATIONS
+        # ============================================
+        - sql:
+            sql: |
+              INSERT INTO notifications (id, user_id, type, title, message, data, is_read, created_at) VALUES
+              ('n1111111-1111-1111-1111-111111111111', '55555555-5555-5555-5555-555555555555', 'WORKOUT_REMINDER', 'Time to workout!', 'Your Push Day workout is scheduled for today. Let''s crush it!', '{"workoutDayId": "wd111111-1111-1111-1111-111111111111"}', false, CURRENT_TIMESTAMP),
+              ('n2222222-2222-2222-2222-222222222222', '55555555-5555-5555-5555-555555555555', 'MEMBERSHIP_ALERT', 'Membership Active', 'Your Quarterly Premium membership at Fitness First Koramangala is now active.', '{"membershipId": "m1111111-1111-1111-1111-111111111111"}', true, CURRENT_TIMESTAMP - INTERVAL '1 day'),
+              ('n3333333-3333-3333-3333-333333333333', '66666666-6666-6666-6666-666666666666', 'PLAN_UPDATE', 'New Workout Plan Assigned', 'Trainer Priya has assigned you the Fat Loss Express workout plan.', '{"assignmentId": "wa222222-2222-2222-2222-222222222222"}', false, CURRENT_TIMESTAMP),
+              ('n4444444-4444-4444-4444-444444444444', '22222222-2222-2222-2222-222222222222', 'SYSTEM', 'New Member Joined', 'Amit Patel has purchased a Quarterly Premium membership at your gym.', '{"membershipId": "m1111111-1111-1111-1111-111111111111"}', true, CURRENT_TIMESTAMP - INTERVAL '2 days');
+
+        # ============================================
+        # NOTIFICATION PREFERENCES
+        # ============================================
+        - sql:
+            sql: |
+              INSERT INTO notification_preferences (id, user_id, workout_reminders, membership_alerts, plan_updates, promotional, reminder_time) VALUES
+              ('np111111-1111-1111-1111-111111111111', '55555555-5555-5555-5555-555555555555', true, true, true, false, '07:00'),
+              ('np222222-2222-2222-2222-222222222222', '66666666-6666-6666-6666-666666666666', true, true, true, true, '06:30'),
+              ('np333333-3333-3333-3333-333333333333', '33333333-3333-3333-3333-333333333333', false, true, true, false, '08:00'),
+              ('np444444-4444-4444-4444-444444444444', '44444444-4444-4444-4444-444444444444', false, true, true, false, '08:00');

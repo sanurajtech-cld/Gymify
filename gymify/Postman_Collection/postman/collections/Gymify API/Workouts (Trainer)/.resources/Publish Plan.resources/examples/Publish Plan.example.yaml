@@ -1,0 +1,73 @@
+$kind: http-example
+request:
+  url: "{{baseUrl}}/trainer/workouts/plans/{{workoutPlanId}}/publish"
+  method: PUT
+  headers:
+    Authorization: Bearer {{accessToken}}
+response:
+  statusCode: 200
+  statusText: ""
+  headers:
+    x-content-type-options: nosniff
+    x-xss-protection: "0"
+    cache-control: no-cache, no-store, max-age=0, must-revalidate
+    pragma: no-cache
+    expires: "0"
+    x-frame-options: SAMEORIGIN
+    content-type: application/json
+    transfer-encoding: chunked
+    date: Sat, 17 Oct 2026 15:28:40 GMT
+    keep-alive: timeout=60
+    connection: keep-alive
+  body:
+    type: json
+    content: |-
+      {
+        "success": true,
+        "data": {
+          "id": "8d2b73c5-74d4-4f66-b180-98440d72fb31",
+          "trainerId": "89e0bdea-291b-4e6c-82d2-59d817e8c31a",
+          "trainerName": "Priya Nair",
+          "name": "Beginner Full Body",
+          "description": "Full body workout for beginners",
+          "goal": "GENERAL",
+          "difficulty": "BEGINNER",
+          "durationWeeks": 4,
+          "isTemplate": true,
+          "isPublished": true,
+          "days": [
+            {
+              "id": "24722adf-2e99-47d2-b441-dbb6ce82de8a",
+              "dayOfWeek": 1,
+              "name": "Upper Body",
+              "isRestDay": false,
+              "notes": null,
+              "exercises": [
+                {
+                  "id": "e5af14fb-54c1-485c-9498-2f7c887befe0",
+                  "exerciseId": "29f34f41-1338-40c9-9284-bb2deaa6df13",
+                  "exerciseName": "Push-Up",
+                  "exerciseImageUrl": null,
+                  "displayOrder": 1,
+                  "sets": 3,
+                  "reps": "10-12",
+                  "durationSeconds": null,
+                  "restSeconds": 60,
+                  "weightKg": null,
+                  "notes": null
+                }
+              ]
+            },
+            {
+              "id": "7262f070-08e0-44eb-8507-3fb510626b42",
+              "dayOfWeek": 2,
+              "name": "Rest",
+              "isRestDay": true,
+              "notes": null,
+              "exercises": []
+            }
+          ]
+        },
+        "timestamp": "2026-10-17T15:28:40.109569Z"
+      }
+order: 1792250926334

@@ -1,0 +1,65 @@
+$kind: http-example
+request:
+  url: "{{baseUrl}}/exercises/equipment"
+  method: GET
+response:
+  statusCode: 200
+  statusText: ""
+  headers:
+    x-content-type-options: nosniff
+    x-xss-protection: "0"
+    cache-control: no-cache, no-store, max-age=0, must-revalidate
+    pragma: no-cache
+    expires: "0"
+    x-frame-options: SAMEORIGIN
+    content-type: application/json
+    transfer-encoding: chunked
+    date: Sat, 17 Oct 2026 10:55:08 GMT
+    keep-alive: timeout=60
+    connection: keep-alive
+  body:
+    type: json
+    content: |-
+      {
+        "success": true,
+        "data": [
+          {
+            "id": "608b67d7-c64d-437f-826e-e99c3245dbb7",
+            "name": "Barbell",
+            "description": "Olympic barbell",
+            "imageUrl": null
+          },
+          {
+            "id": "24fe89a8-d16e-40b4-80f4-76069f1f8b6f",
+            "name": "Dumbbell",
+            "description": "Free weights",
+            "imageUrl": null
+          },
+          {
+            "id": "3f5f72d9-dd02-4d04-9a29-0725c6ef6e13",
+            "name": "Treadmill",
+            "description": "Cardio machine",
+            "imageUrl": null
+          },
+          {
+            "id": "0cb247a1-b9e0-4bf2-adbb-0ef6438f9fd4",
+            "name": "Pull-up Bar",
+            "description": "Fixed bar",
+            "imageUrl": null
+          },
+          {
+            "id": "671bf90a-d5fe-4b01-94fb-858eed91d402",
+            "name": "Bench Press",
+            "description": "Flat/incline bench",
+            "imageUrl": null
+          },
+          {
+            "id": "ae4114f3-86fc-4fe7-8702-c4b56b47283a",
+            "name": "Bodyweight",
+            "description": "No equipment",
+            "imageUrl": null
+          }
+        ],
+        "timestamp": "2026-10-17T10:55:08.233014Z"
+      }
+order: 1792234514837

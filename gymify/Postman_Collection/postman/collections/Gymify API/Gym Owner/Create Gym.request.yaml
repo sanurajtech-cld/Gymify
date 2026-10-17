@@ -1,0 +1,15 @@
+$kind: http-request
+url: "{{baseUrl}}/owner/gyms"
+method: POST
+headers:
+  Authorization: Bearer {{accessToken}}
+  Content-Type: application/json
+body:
+  type: text
+  content: '{"name":"FitZone Gym","description":"Premium fitness center","addressLine1":"123 Main St","city":"Delhi","state":"Delhi","country":"India","postalCode":"110001","latitude":28.6139,"longitude":77.2090,"phone":"+911234567890","email":"contact@fitzone.com"}'
+scripts:
+  - type: afterResponse
+    code: var j=pm.response.json();if(j.success&&j.data){pm.collectionVariables.set('gymId',j.data.id);}
+    language: text/javascript
+examples: .resources/Create Gym.resources/examples
+order: 2000

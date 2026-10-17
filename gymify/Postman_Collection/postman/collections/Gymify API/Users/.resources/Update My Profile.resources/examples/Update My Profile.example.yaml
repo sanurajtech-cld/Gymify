@@ -1,0 +1,55 @@
+$kind: http-example
+request:
+  url: "{{baseUrl}}/users/me"
+  method: PUT
+  headers:
+    Authorization: Bearer {{accessToken}}
+    Content-Type: application/json
+  body:
+    type: json
+    content: |-
+      {
+          "firstName": "John",
+          "lastName": "Doe",
+          "phone": "+919876543210",
+          "dateOfBirth": "1990-01-15",
+          "gender": "MALE"
+      }
+response:
+  statusCode: 200
+  statusText: ""
+  headers:
+    x-content-type-options: nosniff
+    x-xss-protection: "0"
+    cache-control: no-cache, no-store, max-age=0, must-revalidate
+    pragma: no-cache
+    expires: "0"
+    x-frame-options: SAMEORIGIN
+    content-type: application/json
+    transfer-encoding: chunked
+    date: Fri, 16 Oct 2026 21:04:00 GMT
+    keep-alive: timeout=60
+    connection: keep-alive
+  body:
+    type: json
+    content: |-
+      {
+        "success": true,
+        "data": {
+          "id": "765d84d2-6663-4db8-8792-27f7c1cf193e",
+          "email": "user@example.com",
+          "phone": "+919876543210",
+          "firstName": "John",
+          "lastName": "Doe",
+          "profileImageUrl": null,
+          "dateOfBirth": "1990-01-15",
+          "gender": "MALE",
+          "roles": [
+            "CUSTOMER"
+          ],
+          "isActive": true,
+          "isEmailVerified": false
+        },
+        "timestamp": "2026-10-16T21:04:00.442888Z"
+      }
+order: 1792184644551

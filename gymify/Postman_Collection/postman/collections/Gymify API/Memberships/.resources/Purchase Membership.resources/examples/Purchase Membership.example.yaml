@@ -1,0 +1,55 @@
+$kind: http-example
+request:
+  url: "{{baseUrl}}/memberships/purchase/{{gymId}}"
+  method: POST
+  headers:
+    Authorization: Bearer {{accessToken}}
+    Content-Type: application/json
+  body:
+    type: json
+    content: |-
+      {
+          "planId": "{{planId}}",
+          "startDate": "2024-01-15",
+          "trainerId": null
+      }
+response:
+  statusCode: 201
+  statusText: ""
+  headers:
+    x-content-type-options: nosniff
+    x-xss-protection: "0"
+    cache-control: no-cache, no-store, max-age=0, must-revalidate
+    pragma: no-cache
+    expires: "0"
+    x-frame-options: SAMEORIGIN
+    content-type: application/json
+    transfer-encoding: chunked
+    date: Sat, 17 Oct 2026 10:46:10 GMT
+    keep-alive: timeout=60
+    connection: keep-alive
+  body:
+    type: json
+    content: |-
+      {
+        "success": true,
+        "message": "Membership purchased",
+        "data": {
+          "id": "8cf9d612-5d59-44c2-8f21-cab825b2a7b7",
+          "userId": "c4d66e2d-1873-4d03-afb7-26cc11fc0da9",
+          "gymId": "b0b7acf4-c5d7-4e01-8d03-10fb3bf4052c",
+          "gymName": "Terra FitZone Premium",
+          "planId": "f2d553d0-1f4a-48d4-ac2d-83b6b255e183",
+          "planName": "Half Yearly Basic",
+          "assignedTrainerId": null,
+          "assignedTrainerName": null,
+          "startDate": "2024-01-15",
+          "endDate": "2024-07-13",
+          "status": "ACTIVE",
+          "freezeStartDate": null,
+          "freezeEndDate": null,
+          "totalFreezeDaysUsed": 0
+        },
+        "timestamp": "2026-10-17T10:46:10.115166Z"
+      }
+order: 1792233982569

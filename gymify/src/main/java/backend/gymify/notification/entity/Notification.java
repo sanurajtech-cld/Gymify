@@ -28,7 +28,7 @@ public class Notification {
     @Column(columnDefinition = "TEXT")
     private String message;
 
-    @Column(columnDefinition = "jsonb")
+    @Column(columnDefinition = "TEXT")
     private String data;
 
     @Column(name = "is_read")

@@ -1,0 +1,7 @@
+$kind: http-request
+url: "{{baseUrl}}/trainer/workouts/plans/{{workoutPlanId}}/publish"
+method: PUT
+headers:
+  Authorization: Bearer {{accessToken}}
+examples: .resources/Publish Plan.resources/examples
+order: 3000

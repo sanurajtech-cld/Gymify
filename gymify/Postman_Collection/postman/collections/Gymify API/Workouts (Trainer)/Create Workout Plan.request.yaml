@@ -1,0 +1,15 @@
+$kind: http-request
+url: "{{baseUrl}}/trainer/workouts/plans"
+method: POST
+headers:
+  Authorization: Bearer {{accessToken}}
+  Content-Type: application/json
+body:
+  type: text
+  content: '{"name":"Beginner Full Body","description":"Full body workout for beginners","goal":"GENERAL","difficulty":"BEGINNER","durationWeeks":4,"isTemplate":true,"days":[{"dayOfWeek":1,"name":"Upper Body","isRestDay":false,"exercises":[{"exerciseId":"{{exerciseId}}","displayOrder":1,"sets":3,"reps":"10-12","restSeconds":60}]},{"dayOfWeek":2,"name":"Rest","isRestDay":true}]}'
+scripts:
+  - type: afterResponse
+    code: var j=pm.response.json();if(j.success&&j.data){pm.collectionVariables.set('workoutPlanId',j.data.id);}
+    language: text/javascript
+examples: .resources/Create Workout Plan.resources/examples
+order: 2000

@@ -1,0 +1,44 @@
+$kind: http-example
+name: Get Gym Plans
+request:
+  url: "{{baseUrl}}/memberships/plans/{{gymId}}"
+  method: GET
+  headers:
+    Authorization: Bearer {{accessToken}}
+response:
+  statusCode: 200
+  statusText: ""
+  headers:
+    x-content-type-options: nosniff
+    x-xss-protection: "0"
+    cache-control: no-cache, no-store, max-age=0, must-revalidate
+    pragma: no-cache
+    expires: "0"
+    x-frame-options: SAMEORIGIN
+    content-type: application/json
+    transfer-encoding: chunked
+    date: Sat, 17 Oct 2026 10:44:00 GMT
+    keep-alive: timeout=60
+    connection: keep-alive
+  body:
+    type: json
+    content: |-
+      {
+        "success": true,
+        "data": [
+          {
+            "id": "f2d553d0-1f4a-48d4-ac2d-83b6b255e183",
+            "gymId": "b0b7acf4-c5d7-4e01-8d03-10fb3bf4052c",
+            "name": "Half Yearly Basic",
+            "description": "Basic half yearly membership",
+            "durationDays": 180,
+            "price": 6000,
+            "currency": "INR",
+            "includesTrainer": false,
+            "maxFreezeDays": 5,
+            "isActive": true
+          }
+        ],
+        "timestamp": "2026-10-17T10:44:00.977186Z"
+      }
+order: 3099213987571013

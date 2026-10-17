@@ -1,0 +1,5 @@
+$kind: http-request
+url: "{{baseUrl}}/exercises/muscle-groups"
+method: GET
+examples: .resources/Get All Muscle Groups.resources/examples
+order: 7000

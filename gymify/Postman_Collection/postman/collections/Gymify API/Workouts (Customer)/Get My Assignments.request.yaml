@@ -1,0 +1,7 @@
+$kind: http-request
+url: "{{baseUrl}}/workouts/my-assignments"
+method: GET
+headers:
+  Authorization: Bearer {{accessToken}}
+examples: .resources/Get My Assignments.resources/examples
+order: 1000

@@ -1,0 +1,14 @@
+$kind: http-request
+url: "{{baseUrl}}/auth/login"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: text
+  content: '{"email":"user@example.com","password":"password123"}'
+scripts:
+  - type: afterResponse
+    code: var j=pm.response.json();if(j.success){pm.collectionVariables.set('accessToken',j.data.accessToken);pm.collectionVariables.set('refreshToken',j.data.refreshToken);pm.collectionVariables.set('userId',j.data.userId);}
+    language: text/javascript
+examples: .resources/Login.resources/examples
+order: 2000

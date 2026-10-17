@@ -1,0 +1,8 @@
+$kind: http-request
+url: "{{baseUrl}}/gyms/nearby?latitude=28.6139&longitude=77.2090&radiusKm=10"
+method: GET
+queryParams:
+  latitude: "28.6139"
+  longitude: "77.2090"
+  radiusKm: "10"
+order: 4000

@@ -1,0 +1,280 @@
+$kind: http-example
+request:
+  url: "{{baseUrl}}/trainer/workouts/plans"
+  method: POST
+  headers:
+    Authorization: Bearer {{accessToken}}
+    Content-Type: application/json
+  body:
+    type: json
+    content: |-
+      {
+          "name": "Beginner Full Body",
+          "description": "Full body workout for beginners",
+          "goal": "GENERAL",
+          "difficulty": "BEGINNER",
+          "durationWeeks": 4,
+          "isTemplate": true,
+          "days": [
+              {
+                  "dayOfWeek": 1,
+                  "name": "Upper Body",
+                  "isRestDay": false,
+                  "exercises": [
+                      {
+                          "exerciseId": "{{exerciseId}}",
+                          "displayOrder": 1,
+                          "sets": 3,
+                          "reps": "10-12",
+                          "restSeconds": 60
+                      }
+                  ]
+              },
+              {
+                  "dayOfWeek": 2,
+                  "name": "Rest",
+                  "isRestDay": true
+              }
+          ]
+      }
+
+      /*{
+        "name": "Beginner Full Body",
+        "description": "A 4-week beginner fitness program combining full-body strength training, active recovery, and rest days.",
+        "goal": "GENERAL",
+        "difficulty": "BEGINNER",
+        "durationWeeks": 4,
+        "isTemplate": true,
+        "days": [
+          {
+            "dayOfWeek": 1,
+            "name": "Full Body A",
+            "isRestDay": false,
+            "exercises": [
+              {
+                "exerciseId": "{{gobletSquatExerciseId}}",
+                "displayOrder": 1,
+                "sets": 3,
+                "reps": "10-12",
+                "restSeconds": 60
+              },
+              {
+                "exerciseId": "{{pushUpExerciseId}}",
+                "displayOrder": 2,
+                "sets": 3,
+                "reps": "8-12",
+                "restSeconds": 60
+              },
+              {
+                "exerciseId": "{{dumbbellRowExerciseId}}",
+                "displayOrder": 3,
+                "sets": 3,
+                "reps": "10-12",
+                "restSeconds": 60
+              },
+              {
+                "exerciseId": "{{gluteBridgeExerciseId}}",
+                "displayOrder": 4,
+                "sets": 3,
+                "reps": "12-15",
+                "restSeconds": 45
+              },
+              {
+                "exerciseId": "{{plankExerciseId}}",
+                "displayOrder": 5,
+                "sets": 3,
+                "reps": "20-30 seconds",
+                "restSeconds": 45
+              }
+            ]
+          },
+          {
+            "dayOfWeek": 2,
+            "name": "Rest and Recovery",
+            "isRestDay": true
+          },
+          {
+            "dayOfWeek": 3,
+            "name": "Full Body B",
+            "isRestDay": false,
+            "exercises": [
+              {
+                "exerciseId": "{{dumbbellRomanianDeadliftExerciseId}}",
+                "displayOrder": 1,
+                "sets": 3,
+                "reps": "10-12",
+                "restSeconds": 75
+              },
+              {
+                "exerciseId": "{{inclinePushUpExerciseId}}",
+                "displayOrder": 2,
+                "sets": 3,
+                "reps": "8-12",
+                "restSeconds": 60
+              },
+              {
+                "exerciseId": "{{latPulldownExerciseId}}",
+                "displayOrder": 3,
+                "sets": 3,
+                "reps": "10-12",
+                "restSeconds": 60
+              },
+              {
+                "exerciseId": "{{dumbbellShoulderPressExerciseId}}",
+                "displayOrder": 4,
+                "sets": 2,
+                "reps": "10-12",
+                "restSeconds": 60
+              },
+              {
+                "exerciseId": "{{deadBugExerciseId}}",
+                "displayOrder": 5,
+                "sets": 2,
+                "reps": "10 per side",
+                "restSeconds": 45
+              }
+            ]
+          },
+          {
+            "dayOfWeek": 4,
+            "name": "Rest and Recovery",
+            "isRestDay": true
+          },
+          {
+            "dayOfWeek": 5,
+            "name": "Full Body C",
+            "isRestDay": false,
+            "exercises": [
+              {
+                "exerciseId": "{{bodyweightSquatExerciseId}}",
+                "displayOrder": 1,
+                "sets": 3,
+                "reps": "12-15",
+                "restSeconds": 60
+              },
+              {
+                "exerciseId": "{{dumbbellChestPressExerciseId}}",
+                "displayOrder": 2,
+                "sets": 3,
+                "reps": "10-12",
+                "restSeconds": 60
+              },
+              {
+                "exerciseId": "{{seatedCableRowExerciseId}}",
+                "displayOrder": 3,
+                "sets": 3,
+                "reps": "10-12",
+                "restSeconds": 60
+              },
+              {
+                "exerciseId": "{{stepUpExerciseId}}",
+                "displayOrder": 4,
+                "sets": 2,
+                "reps": "10 per leg",
+                "restSeconds": 60
+              },
+              {
+                "exerciseId": "{{birdDogExerciseId}}",
+                "displayOrder": 5,
+                "sets": 2,
+                "reps": "10 per side",
+                "restSeconds": 45
+              }
+            ]
+          },
+          {
+            "dayOfWeek": 6,
+            "name": "Active Recovery",
+            "isRestDay": false,
+            "exercises": [
+              {
+                "exerciseId": "{{briskWalkingExerciseId}}",
+                "displayOrder": 1,
+                "sets": 1,
+                "reps": "20-30 minutes",
+                "restSeconds": 0
+              },
+              {
+                "exerciseId": "{{fullBodyStretchExerciseId}}",
+                "displayOrder": 2,
+                "sets": 2,
+                "reps": "20-30 seconds per stretch",
+                "restSeconds": 30
+              }
+            ]
+          },
+          {
+            "dayOfWeek": 7,
+            "name": "Rest Day",
+            "isRestDay": true
+          }
+        ]
+      }*/
+response:
+  statusCode: 201
+  statusText: ""
+  headers:
+    x-content-type-options: nosniff
+    x-xss-protection: "0"
+    cache-control: no-cache, no-store, max-age=0, must-revalidate
+    pragma: no-cache
+    expires: "0"
+    x-frame-options: SAMEORIGIN
+    content-type: application/json
+    transfer-encoding: chunked
+    date: Sat, 17 Oct 2026 15:28:01 GMT
+    keep-alive: timeout=60
+    connection: keep-alive
+  body:
+    type: json
+    content: |-
+      {
+        "success": true,
+        "message": "Plan created",
+        "data": {
+          "id": "8d2b73c5-74d4-4f66-b180-98440d72fb31",
+          "trainerId": "89e0bdea-291b-4e6c-82d2-59d817e8c31a",
+          "trainerName": "Priya Nair",
+          "name": "Beginner Full Body",
+          "description": "Full body workout for beginners",
+          "goal": "GENERAL",
+          "difficulty": "BEGINNER",
+          "durationWeeks": 4,
+          "isTemplate": true,
+          "isPublished": false,
+          "days": [
+            {
+              "id": "24722adf-2e99-47d2-b441-dbb6ce82de8a",
+              "dayOfWeek": 1,
+              "name": "Upper Body",
+              "isRestDay": false,
+              "notes": null,
+              "exercises": [
+                {
+                  "id": "e5af14fb-54c1-485c-9498-2f7c887befe0",
+                  "exerciseId": "29f34f41-1338-40c9-9284-bb2deaa6df13",
+                  "exerciseName": "Push-Up",
+                  "exerciseImageUrl": null,
+                  "displayOrder": 1,
+                  "sets": 3,
+                  "reps": "10-12",
+                  "durationSeconds": null,
+                  "restSeconds": 60,
+                  "weightKg": null,
+                  "notes": null
+                }
+              ]
+            },
+            {
+              "id": "7262f070-08e0-44eb-8507-3fb510626b42",
+              "dayOfWeek": 2,
+              "name": "Rest",
+              "isRestDay": true,
+              "notes": null,
+              "exercises": []
+            }
+          ]
+        },
+        "timestamp": "2026-10-17T15:28:01.444441Z"
+      }
+order: 1792250887143

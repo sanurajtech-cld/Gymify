@@ -1,0 +1,15 @@
+$kind: http-request
+url: "{{baseUrl}}/trainer/workouts/assign"
+method: POST
+headers:
+  Authorization: Bearer {{accessToken}}
+  Content-Type: application/json
+body:
+  type: text
+  content: '{"planId":"{{workoutPlanId}}","customerId":"{{userId}}","gymId":"{{gymId}}","startDate":"2024-01-15","endDate":"2024-02-15"}'
+scripts:
+  - type: afterResponse
+    code: var j=pm.response.json();if(j.success&&j.data){pm.collectionVariables.set('assignmentId',j.data.id);}
+    language: text/javascript
+examples: .resources/Assign Plan.resources/examples
+order: 4000

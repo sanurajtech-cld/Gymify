@@ -1,0 +1,11 @@
+$kind: http-request
+url: "{{baseUrl}}/owner/gyms/{{gymId}}"
+method: PUT
+headers:
+  Authorization: Bearer {{accessToken}}
+  Content-Type: application/json
+body:
+  type: text
+  content: '{"name":"FitZone Premium","description":"Updated description"}'
+examples: .resources/Update Gym.resources/examples
+order: 3000

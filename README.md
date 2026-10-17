@@ -16,3 +16,12 @@ A health and fitness application designed to help users plan, track, and maintai
 
 ### Objective
 To provide a convenient, secure, and personalized platform that makes fitness planning accessible, whether users prefer exercising at home or in a gym.
+
+
+
+...
+
+
+
+
+

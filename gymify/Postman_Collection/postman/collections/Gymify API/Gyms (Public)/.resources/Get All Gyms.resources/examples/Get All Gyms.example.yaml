@@ -1,0 +1,86 @@
+$kind: http-example
+request:
+  url: "{{baseUrl}}/gyms?page=0&size=20"
+  method: GET
+  queryParams:
+    page: "0"
+    size: "20"
+response:
+  statusCode: 200
+  statusText: ""
+  headers:
+    x-content-type-options: nosniff
+    x-xss-protection: "0"
+    cache-control: no-cache, no-store, max-age=0, must-revalidate
+    pragma: no-cache
+    expires: "0"
+    x-frame-options: SAMEORIGIN
+    content-type: application/json
+    transfer-encoding: chunked
+    date: Sat, 17 Oct 2026 10:06:47 GMT
+    keep-alive: timeout=60
+    connection: keep-alive
+  body:
+    type: json
+    content: |-
+      {
+        "success": true,
+        "data": {
+          "content": [
+            {
+              "id": "dd88cee7-4317-4034-ba9d-bfbceffbf907",
+              "ownerId": "8b65515f-cdc3-45e6-885e-930512c05a29",
+              "name": "Fitness First Koramangala",
+              "description": "Premium fitness center in Koramangala with state-of-the-art equipment",
+              "logoUrl": null,
+              "addressLine1": "80 Feet Road, 4th Block",
+              "addressLine2": null,
+              "city": "Bengaluru",
+              "state": "Karnataka",
+              "country": "India",
+              "postalCode": null,
+              "latitude": null,
+              "longitude": null,
+              "phone": "+918041234567",
+              "email": null,
+              "website": null,
+              "status": "APPROVED",
+              "isActive": true,
+              "facilities": null,
+              "photos": null,
+              "operatingHours": null
+            },
+            {
+              "id": "f114c6cd-9225-4b41-a2df-42fd2a8a3712",
+              "ownerId": "8b65515f-cdc3-45e6-885e-930512c05a29",
+              "name": "Fitness First Indiranagar",
+              "description": "Modern gym with CrossFit zone and yoga studio",
+              "logoUrl": null,
+              "addressLine1": "100 Feet Road, HAL 2nd Stage",
+              "addressLine2": null,
+              "city": "Bengaluru",
+              "state": "Karnataka",
+              "country": "India",
+              "postalCode": null,
+              "latitude": null,
+              "longitude": null,
+              "phone": "+918041234568",
+              "email": null,
+              "website": null,
+              "status": "APPROVED",
+              "isActive": true,
+              "facilities": null,
+              "photos": null,
+              "operatingHours": null
+            }
+          ],
+          "page": 0,
+          "size": 20,
+          "totalElements": 2,
+          "totalPages": 1,
+          "first": true,
+          "last": true
+        },
+        "timestamp": "2026-10-17T10:06:47.232332Z"
+      }
+order: 1792231653684

@@ -1,0 +1,10 @@
+$kind: http-request
+url: "{{baseUrl}}/notifications/unread?page=0&size=20"
+method: GET
+headers:
+  Authorization: Bearer {{accessToken}}
+queryParams:
+  page: "0"
+  size: "20"
+examples: .resources/Get Unread Notifications.resources/examples
+order: 2000

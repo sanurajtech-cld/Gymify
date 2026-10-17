@@ -1,0 +1,7 @@
+$kind: http-request
+url: "{{baseUrl}}/admin/gyms/{{gymId}}/approve"
+method: PUT
+headers:
+  Authorization: Bearer {{accessToken}}
+examples: .resources/Approve Gym.resources/examples
+order: 2000

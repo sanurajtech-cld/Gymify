@@ -74,6 +74,11 @@ spring:
   liquibase:
     enabled: false
 
+# Sample data loading flag for dev
+gymify:
+  sample-data:
+    enabled: true
+
 logging:
   level:
     backend.gymify: DEBUG
@@ -125,8 +130,14 @@ spring:
 
   liquibase:
     enabled: true
+    contexts: "!sample-data"
 
 logging:
   level:
     backend.gymify: INFO
     org.hibernate.SQL: WARN
+
+# Sample data disabled in production
+gymify:
+  sample-data:
+    enabled: false

@@ -1,0 +1,15 @@
+$kind: http-request
+url: "{{baseUrl}}/owner/memberships/plans/{{gymId}}"
+method: POST
+headers:
+  Authorization: Bearer {{accessToken}}
+  Content-Type: application/json
+body:
+  type: text
+  content: '{"name":"Monthly Basic","description":"Basic monthly membership","durationDays":30,"price":1500.00,"currency":"INR","includesTrainer":false,"maxFreezeDays":5}'
+scripts:
+  - type: afterResponse
+    code: var j=pm.response.json();if(j.success&&j.data){pm.collectionVariables.set('planId',j.data.id);}
+    language: text/javascript
+examples: .resources/Create Membership Plan.resources/examples
+order: 4000

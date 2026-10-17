@@ -1,0 +1,7 @@
+$kind: http-request
+url: "{{baseUrl}}/memberships/{{membershipId}}"
+method: GET
+headers:
+  Authorization: Bearer {{accessToken}}
+examples: .resources/Get Membership By ID.resources/examples
+order: 3000

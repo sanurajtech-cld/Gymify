@@ -1,0 +1,71 @@
+$kind: http-example
+request:
+  url: "{{baseUrl}}/exercises/muscle-groups"
+  method: GET
+response:
+  statusCode: 200
+  statusText: ""
+  headers:
+    x-content-type-options: nosniff
+    x-xss-protection: "0"
+    cache-control: no-cache, no-store, max-age=0, must-revalidate
+    pragma: no-cache
+    expires: "0"
+    x-frame-options: SAMEORIGIN
+    content-type: application/json
+    transfer-encoding: chunked
+    date: Sat, 17 Oct 2026 10:54:36 GMT
+    keep-alive: timeout=60
+    connection: keep-alive
+  body:
+    type: json
+    content: |-
+      {
+        "success": true,
+        "data": [
+          {
+            "id": "3b025217-f78c-4453-8bd9-b4f956c088e2",
+            "name": "Chest",
+            "bodyRegion": "UPPER_BODY",
+            "imageUrl": null
+          },
+          {
+            "id": "50b401f6-2764-4ba6-80a6-307204bdb706",
+            "name": "Back",
+            "bodyRegion": "UPPER_BODY",
+            "imageUrl": null
+          },
+          {
+            "id": "b81e6560-fb35-488c-ade4-7e788d0de787",
+            "name": "Shoulders",
+            "bodyRegion": "UPPER_BODY",
+            "imageUrl": null
+          },
+          {
+            "id": "1bdf2e8e-acaf-438b-9d6b-57159b398342",
+            "name": "Biceps",
+            "bodyRegion": "ARMS",
+            "imageUrl": null
+          },
+          {
+            "id": "252cfbb2-11e1-4e9d-ae6c-9272023a8a15",
+            "name": "Triceps",
+            "bodyRegion": "ARMS",
+            "imageUrl": null
+          },
+          {
+            "id": "a765c4e4-8020-49f8-a4a2-f927defb5200",
+            "name": "Quadriceps",
+            "bodyRegion": "LEGS",
+            "imageUrl": null
+          },
+          {
+            "id": "b467c86d-7fa5-42c4-ab60-367c99b58783",
+            "name": "Core",
+            "bodyRegion": "CORE",
+            "imageUrl": null
+          }
+        ],
+        "timestamp": "2026-10-17T10:54:36.455828Z"
+      }
+order: 1792234488302

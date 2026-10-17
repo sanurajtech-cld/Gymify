@@ -1,0 +1,47 @@
+$kind: http-example
+request:
+  url: "{{baseUrl}}/exercises/categories"
+  method: GET
+response:
+  statusCode: 200
+  statusText: ""
+  headers:
+    x-content-type-options: nosniff
+    x-xss-protection: "0"
+    cache-control: no-cache, no-store, max-age=0, must-revalidate
+    pragma: no-cache
+    expires: "0"
+    x-frame-options: SAMEORIGIN
+    content-type: application/json
+    transfer-encoding: chunked
+    date: Sat, 17 Oct 2026 10:53:43 GMT
+    keep-alive: timeout=60
+    connection: keep-alive
+  body:
+    type: json
+    content: |-
+      {
+        "success": true,
+        "data": [
+          {
+            "id": "2bbfb695-a15f-4ebf-8eba-850d19b358d5",
+            "name": "Strength Training",
+            "description": "Building muscle strength",
+            "icon": "fitness_center"
+          },
+          {
+            "id": "72ec77c4-6775-4443-962b-5cc1d908e0e6",
+            "name": "Cardio",
+            "description": "Cardiovascular exercises",
+            "icon": "directions_run"
+          },
+          {
+            "id": "1bac8ac8-95a0-49fd-8d48-bee4cc6e5e21",
+            "name": "Flexibility",
+            "description": "Stretching exercises",
+            "icon": "self_improvement"
+          }
+        ],
+        "timestamp": "2026-10-17T10:53:43.413803Z"
+      }
+order: 1792234497505

@@ -1,0 +1,8 @@
+$kind: http-request
+url: "{{baseUrl}}/exercises/category/{{categoryId}}?page=0&size=20"
+method: GET
+queryParams:
+  page: "0"
+  size: "20"
+examples: .resources/Get By Category.resources/examples
+order: 4000

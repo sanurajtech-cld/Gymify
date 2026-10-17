@@ -1,0 +1,10 @@
+$kind: http-request
+url: "{{baseUrl}}/tracking/measurements"
+method: POST
+headers:
+  Authorization: Bearer {{accessToken}}
+  Content-Type: application/json
+body:
+  type: text
+  content: '{"measuredAt":"2024-01-15","weightKg":75.5,"heightCm":175.0,"bodyFatPercentage":18.5,"chestCm":100.0,"waistCm":85.0}'
+order: 5000

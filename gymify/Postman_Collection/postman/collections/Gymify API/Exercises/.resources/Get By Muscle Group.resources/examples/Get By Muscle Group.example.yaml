@@ -1,0 +1,62 @@
+$kind: http-example
+request:
+  url: "{{baseUrl}}/exercises/muscle-group/{{muscleGroupId}}?page=0&size=20"
+  method: GET
+  queryParams:
+    page: "0"
+    size: "20"
+response:
+  statusCode: 200
+  statusText: ""
+  headers:
+    x-content-type-options: nosniff
+    x-xss-protection: "0"
+    cache-control: no-cache, no-store, max-age=0, must-revalidate
+    pragma: no-cache
+    expires: "0"
+    x-frame-options: SAMEORIGIN
+    content-type: application/json
+    transfer-encoding: chunked
+    date: Sat, 17 Oct 2026 10:52:31 GMT
+    keep-alive: timeout=60
+    connection: keep-alive
+  body:
+    type: json
+    content: |-
+      {
+        "success": true,
+        "data": {
+          "content": [
+            {
+              "id": "e6085e5f-4553-429e-bd51-f3dc06a5fac1",
+              "name": "Barbell Bench Press",
+              "description": "Classic chest exercise",
+              "instructions": "Lie on bench, grip barbell, lower to chest, press up",
+              "categoryId": "2bbfb695-a15f-4ebf-8eba-850d19b358d5",
+              "categoryName": "Strength Training",
+              "difficulty": "INTERMEDIATE",
+              "exerciseType": "STRENGTH",
+              "imageUrl": null,
+              "videoUrl": null,
+              "thumbnailUrl": null,
+              "caloriesPerMinute": 8.5,
+              "muscleGroups": [
+                "Triceps",
+                "Chest"
+              ],
+              "equipment": [
+                "Barbell",
+                "Bench Press"
+              ]
+            }
+          ],
+          "page": 0,
+          "size": 20,
+          "totalElements": 1,
+          "totalPages": 1,
+          "first": true,
+          "last": true
+        },
+        "timestamp": "2026-10-17T10:52:31.967250Z"
+      }
+order: 1792234367288

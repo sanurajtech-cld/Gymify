@@ -15,3 +15,5 @@ databaseChangeLog:
       file: db/changelog/007-create-tracking.yaml
   - include:
       file: db/changelog/008-create-notifications.yaml
+  - include:
+      file: db/changelog/009-sample-data.yaml

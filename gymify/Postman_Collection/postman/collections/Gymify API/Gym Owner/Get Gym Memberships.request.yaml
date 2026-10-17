@@ -1,0 +1,10 @@
+$kind: http-request
+url: "{{baseUrl}}/owner/memberships/gym/{{gymId}}?page=0&size=20"
+method: GET
+headers:
+  Authorization: Bearer {{accessToken}}
+queryParams:
+  page: "0"
+  size: "20"
+examples: .resources/Get Gym Memberships.resources/examples
+order: 5000

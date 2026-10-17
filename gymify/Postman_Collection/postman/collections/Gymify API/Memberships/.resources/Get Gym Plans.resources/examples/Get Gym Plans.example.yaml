@@ -1,0 +1,67 @@
+$kind: http-example
+request:
+  url: "{{baseUrl}}/memberships/plans/{{gymId}}"
+  method: GET
+  headers:
+    Authorization: Bearer {{accessToken}}
+response:
+  statusCode: 200
+  statusText: ""
+  headers:
+    x-content-type-options: nosniff
+    x-xss-protection: "0"
+    cache-control: no-cache, no-store, max-age=0, must-revalidate
+    pragma: no-cache
+    expires: "0"
+    x-frame-options: SAMEORIGIN
+    content-type: application/json
+    transfer-encoding: chunked
+    date: Sat, 17 Oct 2026 10:42:27 GMT
+    keep-alive: timeout=60
+    connection: keep-alive
+  body:
+    type: json
+    content: |-
+      {
+        "success": true,
+        "data": [
+          {
+            "id": "efee0af1-56f0-43f0-9aa4-0c9c25168f8e",
+            "gymId": "dd88cee7-4317-4034-ba9d-bfbceffbf907",
+            "name": "Monthly Basic",
+            "description": "Basic monthly membership",
+            "durationDays": 30,
+            "price": 1500,
+            "currency": "INR",
+            "includesTrainer": false,
+            "maxFreezeDays": 3,
+            "isActive": true
+          },
+          {
+            "id": "9d5b8987-8e14-4d44-966b-88617f03c4d8",
+            "gymId": "dd88cee7-4317-4034-ba9d-bfbceffbf907",
+            "name": "Quarterly Premium",
+            "description": "3-month premium with trainer",
+            "durationDays": 90,
+            "price": 6000,
+            "currency": "INR",
+            "includesTrainer": true,
+            "maxFreezeDays": 10,
+            "isActive": true
+          },
+          {
+            "id": "7f625999-2f2b-4493-8b98-ca9d2eb51e1f",
+            "gymId": "dd88cee7-4317-4034-ba9d-bfbceffbf907",
+            "name": "Annual Gold",
+            "description": "Annual membership with all facilities",
+            "durationDays": 365,
+            "price": 18000,
+            "currency": "INR",
+            "includesTrainer": true,
+            "maxFreezeDays": 30,
+            "isActive": true
+          }
+        ],
+        "timestamp": "2026-10-17T10:42:27.277940Z"
+      }
+order: 1792233749608
