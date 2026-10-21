@@ -48,6 +48,12 @@ springdoc:
     path: /swagger-ui.html
     operationsSorter: method
 
+# AI Configuration
+gymify:
+  ai:
+    openai:
+      api-key: ${OPENAI_API_KEY:}
+
 ---
 # Development Profile
 spring:
